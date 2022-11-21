@@ -1,0 +1,145 @@
+* {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-insets: 0;
+}
+
+.background-container {
+    -fx-background-color: linear-gradient(to right, #27ABFF, #0E1DF5);;
+}
+
+.secondary-background-container {
+    -fx-background-color: linear-gradient(to right, #FFA700, #FC5C0A);
+
+}
+
+.question-container {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 4, 3);;
+}
+
+.countdown-label {
+    -fx-alignment: CENTER;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-border-width: 3;
+    -fx-border-color: #FC5C0A;
+    -fx-border-radius: 1000px;
+}
+
+.player-icon-label {
+    -fx-alignment: CENTER;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-border-width: 3;
+    -fx-border-color: #323232;
+    -fx-border-radius: 1000;
+    -fx-text-fill: #323232;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 1000;
+}
+
+.medium-gray-label {
+    -fx-text-fill: #848484;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.medium-white-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+}
+
+.large-question-label {
+    -fx-text-fill: #232323;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+.question-button {
+    -fx-padding: 16px 24px 16px 24px;
+    -fx-min-width: 140px;
+    -fx-border-width: 2;
+    -fx-border-color: #323232;
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 4, 3);;
+}
+
+.question-number {
+    -fx-border-width: 1;
+    -fx-border-color: #323232;
+    -fx-alignment: Center;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+    -fx-max-width: 32px;
+    -fx-max-height: 32px;
+    -fx-border-radius: 500px;
+}
+
+.category-button {
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 8px 0 8px 32px;
+    -fx-min-width: 240px;
+    -fx-border-width: 2;
+    -fx-border-color: transparent;
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 8;
+    -fx-background-radius: 6;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 4, 3);;
+}
+
+.player-stats-hbox {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 4, 3);;
+
+}
+
+.wins-label {
+    -fx-background-color: #48cb27;
+    -fx-font-size: 16px;
+    -fx-padding: 8px;
+    -fx-background-radius: 12;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.losses-label {
+    -fx-background-color: #FE4545;
+    -fx-font-size: 16px;
+    -fx-padding: 8px;
+    -fx-background-radius: 12;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+
+.orange-button {
+    -fx-font-size: 24px;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-padding: 16px;
+    -fx-background-radius: 6;
+    -fx-background-color: linear-gradient(to right, #FFA700, #FC5C0A);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 4, 3);
+
+}
+
+.white-button {
+    -fx-padding: 8px;
+    -fx-font-size: 16px;
+    -fx-text-fill: #323232;
+    -fx-font-weight: bold;
+    -fx-background-color: #ffffff;
+    -fx-border-width: 2;
+    -fx-border-color: #32323232;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 4, 3);
+}
+
