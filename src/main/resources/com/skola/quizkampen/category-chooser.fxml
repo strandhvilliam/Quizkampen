@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="400.0" styleClass="secondary-background-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="400.0" styleClass="secondary-background-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.skola.quizkampen.ClientController">
    <center>
       <VBox alignment="TOP_CENTER" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -18,7 +17,7 @@
                   <Insets bottom="24.0" top="40.0" />
                </VBox.margin>
             </Label>
-            <Button graphicTextGap="12.0" mnemonicParsing="false" styleClass="category-button" text="Djur &amp; Natur">
+            <Button graphicTextGap="12.0" mnemonicParsing="false" onAction="#chooseCategoryAction" styleClass="category-button" text="Djur &amp; natur">
                <VBox.margin>
                   <Insets top="6.0" />
                </VBox.margin>
@@ -30,7 +29,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button graphicTextGap="12.0" mnemonicParsing="false" styleClass="category-button" text="Film &amp; TV">
+            <Button graphicTextGap="12.0" mnemonicParsing="false" onAction="#chooseCategoryAction" styleClass="category-button" text="Film &amp; TV">
                <VBox.margin>
                   <Insets top="6.0" />
                </VBox.margin>
@@ -42,7 +41,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button graphicTextGap="12.0" layoutX="192.0" layoutY="114.0" mnemonicParsing="false" styleClass="category-button" text="Historia">
+            <Button graphicTextGap="12.0" layoutX="192.0" layoutY="114.0" mnemonicParsing="false" onAction="#chooseCategoryAction" styleClass="category-button" text="Historia">
                <VBox.margin>
                   <Insets top="6.0" />
                </VBox.margin>
@@ -54,7 +53,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button graphicTextGap="12.0" layoutX="192.0" layoutY="131.0" mnemonicParsing="false" styleClass="category-button" text="Dator &amp; TV_Spel">
+            <Button fx:id="cat4" graphicTextGap="12.0" layoutX="192.0" layoutY="131.0" mnemonicParsing="false" onAction="#chooseCategoryAction" styleClass="category-button" text="Dator- &amp; TV_Spel">
                <VBox.margin>
                   <Insets top="6.0" />
                </VBox.margin>
@@ -66,7 +65,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button graphicTextGap="12.0" layoutX="192.0" layoutY="148.0" mnemonicParsing="false" styleClass="category-button" text="Geografi">
+            <Button fx:id="cat5" graphicTextGap="12.0" layoutX="192.0" layoutY="148.0" mnemonicParsing="false" onAction="#chooseCategoryAction" styleClass="category-button" text="Geografi">
                <VBox.margin>
                   <Insets top="6.0" />
                </VBox.margin>
@@ -78,7 +77,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button graphicTextGap="12.0" layoutX="192.0" layoutY="165.0" mnemonicParsing="false" styleClass="category-button" text="Teknik">
+            <Button fx:id="cat6" graphicTextGap="12.0" layoutX="192.0" layoutY="165.0" mnemonicParsing="false" onAction="#chooseCategoryAction" styleClass="category-button" text="Teknik">
                <VBox.margin>
                   <Insets top="6.0" />
                </VBox.margin>

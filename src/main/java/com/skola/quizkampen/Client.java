@@ -93,7 +93,6 @@ public class Client extends Task<Void> {
     public void startRound(List<Question> questions) {
 
         int numOfRound = questions.size();
-        List<Boolean> answers =
 
         for (Question q : questions) {
             //TODO: be kontrollern visa fönster med fråga och alternativ som knappar
