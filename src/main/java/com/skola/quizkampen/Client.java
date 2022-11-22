@@ -1,15 +1,17 @@
 package com.skola.quizkampen;
 
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Client extends /*Task<Void> */ Thread {
+public class Client extends Task<Void>  /*Thread*/ {
 
     private/* static final */ String serverAddress; /* = "127.0.0.1"*/
     ;
@@ -19,15 +21,18 @@ public class Client extends /*Task<Void> */ Thread {
     private ObjectOutputStream outputStream;
     private ObjectInputStream inputStream;
 
+    private ClientController controller;
 
-    public Client(String serverAdress) throws IOException {
+
+    public Client(String serverAdress, ClientController controller) throws IOException {
         this.serverAddress = serverAdress;
+        this.controller = controller;
 
     }
 
     @Override
-    /* protected Void call() */ public void run()/* throws Exception */ {
-        try {
+     protected Void call() /* public void run()*/ throws Exception  {
+        /*try {
             socket = new Socket(serverAddress, PORT);
             inputStream = new ObjectInputStream(socket.getInputStream());
             outputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -38,8 +43,8 @@ public class Client extends /*Task<Void> */ Thread {
             }
         } catch (IOException | ClassNotFoundException e) {
 
-        }
-        /*return null;*/
+        } */
+        return null;
     }
 
 
@@ -58,11 +63,16 @@ public class Client extends /*Task<Void> */ Thread {
 
     public void requestCategoryQuestions(Category category) {
         //TODO: skicka kategori
+
+        //TEST
+        List<Question> testList = new ArrayList<>();
+        testList.add(new Question("Vad är det för dag?", "Tisdag", Category.GEOGRAFI));
+        testList.add(new Question("Vad är det för imorgon?", "Onsdag", Category.GEOGRAFI));
+        processResponse(testList);
     }
 
     public void requestOtherUsername() {
         //TODO: skickar förfrågan till servern för motståndarens användarnamn
-        // initierar GUIn med motståndarens användarnamn
     }
 
     public void requestStatistics(Integer numOfWins) throws IOException {
@@ -77,7 +87,14 @@ public class Client extends /*Task<Void> */ Thread {
      */
     public void processResponse(Object resFromServer) {
 
+
+        if (resFromServer instanceof List) {
+            List<Question> questionForRound = (List<Question>) resFromServer;
+            Platform.runLater(() -> controller.startRound(questionForRound));
+        }
+
         /*
+
 
         OM servern skickar en lista med frågor från ur en kategori
             starta runda med frågor
@@ -107,8 +124,8 @@ public class Client extends /*Task<Void> */ Thread {
 
 
     public static void main(String[] args) throws IOException {
-        Client p = new Client("127.0.0.1");
-        p.start();
+        //Client p = new Client("127.0.0.1", this);
+        //p.start();
     }
 
 
