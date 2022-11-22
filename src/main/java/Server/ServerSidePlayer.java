@@ -36,6 +36,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     public void setOpponant(ServerSidePlayer opppannt) {
         this.opponant = opppannt;
+
     }
 
     public void run() {
@@ -51,6 +52,14 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
         /*TODO: lägg till logiken för spelet. Om spelare svarar rätt spara antal poäng,
            om spelare svarar fel spara antal fel eventuellt skicka till server*/
+
+        /* WHILE output inte är tom
+        *       OM output är en instans av lista med booleans
+        *           skicka statistik från rond till båda klienterna
+        *       OM output är en category (från en av klienterna)
+        *           skicka frågor ur rätt kategori till båda klienterna
+        *
+         */
     }
 
     public void showMessage(String s){

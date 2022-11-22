@@ -75,9 +75,10 @@ public class Client extends Task<Void>  /*Thread*/ {
         //TODO: skickar förfrågan till servern för motståndarens användarnamn
     }
 
-    public void requestStatistics(Integer numOfWins) throws IOException {
+    public void requestStatistics() throws IOException {
         //TODO: fundera ut vilket format vi ska skicka till servern
-        sendObject(numOfWins);
+        List<Boolean> testOpponentList = List.of(true, true, true, false);
+        processResponse(testOpponentList);
     }
 
 
@@ -89,8 +90,14 @@ public class Client extends Task<Void>  /*Thread*/ {
 
 
         if (resFromServer instanceof List) {
-            List<Question> questionForRound = (List<Question>) resFromServer;
-            Platform.runLater(() -> controller.startRound(questionForRound));
+            if (((List<?>) resFromServer).get(0) instanceof Question) {
+                List<Question> questionForRound = (List<Question>) resFromServer;
+                Platform.runLater(() -> controller.startRound(questionForRound));
+            } else if (((List<?>) resFromServer).get(0) instanceof Boolean) {
+                List<Boolean> opponentResult = (List<Boolean>) resFromServer;
+                Platform.runLater(() -> controller.displayStatistics(opponentResult));
+            }
+
         }
 
         /*
@@ -106,19 +113,6 @@ public class Client extends Task<Void>  /*Thread*/ {
             be controllern initiera GUIn med motståndarens namn
 
          */
-
-    }
-
-    public void startRound(List<Question> questions) {
-
-        int numOfRound = questions.size();
-        List<Boolean> answers;
-
-        for (Question q : questions) {
-            //TODO: be kontrollern visa fönster med fråga och alternativ som knappar
-        }
-
-        //skickar antal vinster till server
 
     }
 

@@ -1,14 +1,11 @@
 package com.skola.quizkampen;
 
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -107,6 +104,28 @@ public class ClientController implements Initializable {
             clientThread.start();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+        try {
+            client.requestStatistics();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //test list
+    List<Boolean> myResult = List.of(true, false, true, true);
+
+    public void displayStatistics(List<Boolean> opponentResult) {
+        System.out.println("OpponentResult:");
+        for (Boolean b : opponentResult) {
+            System.out.println(b);
+        }
+
+        System.out.println();
+
+        System.out.println("PlayerResult:");
+        for (Boolean b : myResult) {
+            System.out.println(b);
         }
     }
 }
