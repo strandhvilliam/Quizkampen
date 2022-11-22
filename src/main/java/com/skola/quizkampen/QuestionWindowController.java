@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +39,7 @@ public class QuestionWindowController implements Initializable {
 
 
     @FXML
-    public void optionSelectedAction(ActionEvent event) {
+    public void optionSelectedAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
 
         checkIfCorrectAnswer(button.getText());
@@ -52,7 +53,6 @@ public class QuestionWindowController implements Initializable {
         } else {
             clientController.roundResult.add(false);
         }
-
     }
 
 

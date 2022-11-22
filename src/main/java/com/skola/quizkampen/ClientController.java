@@ -29,7 +29,7 @@ public class ClientController implements Initializable {
      */
 
 
-    public void displayNextQuestion() {
+    public void displayNextQuestion() throws IOException {
         if (questionsInRound.size() > 0) {
             Question questionToDisplay = questionsInRound.get(0);
             questionsInRound.remove(0);
@@ -45,12 +45,24 @@ public class ClientController implements Initializable {
             questionWindowController.initData(this, questionToDisplay);
 
             stage.show();
-        } else {
+        }
+        else{
+            sendResult();
+            requestIsDoneWithRound();
+        }
+
+
+
+        /*else {
            for (Boolean result : roundResult) {
                System.out.println(result);
            }
-        }
+        }*/
 
+    }
+
+    public void sendResult() throws IOException {
+        client.sendObject(roundResult);
     }
 
 
@@ -65,6 +77,10 @@ public class ClientController implements Initializable {
             e.printStackTrace();
         }
         stage.show();
+    }
+
+    public void requestIsDoneWithRound() throws IOException {
+        client.sendObject("ROUND_FINISHED");
     }
 
 
@@ -90,7 +106,7 @@ public class ClientController implements Initializable {
     }
 
 
-    public void startRound(List<Question> questions) {
+    public void startRound(List<Question> questions) throws IOException {
         this.questionsInRound = questions;
         displayNextQuestion();
     }
@@ -105,26 +121,26 @@ public class ClientController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        try {
-            client.requestStatistics();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            client.requestStatistics();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     //test list
     List<Boolean> myResult = List.of(true, false, true, true);
 
     public void displayStatistics(List<Boolean> opponentResult) {
-        System.out.println("OpponentResult:");
+        System.out.println("Motståndare:");
         for (Boolean b : opponentResult) {
             System.out.println(b);
         }
 
         System.out.println();
 
-        System.out.println("PlayerResult:");
-        for (Boolean b : myResult) {
+        System.out.println("Mitt resultat:");
+        for (Boolean b : roundResult) {
             System.out.println(b);
         }
     }

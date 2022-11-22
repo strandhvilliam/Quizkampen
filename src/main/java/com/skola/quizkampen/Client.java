@@ -32,7 +32,7 @@ public class Client extends Task<Void>  /*Thread*/ {
 
     @Override
      protected Void call() /* public void run()*/ throws Exception  {
-        /*try {
+        try {
             socket = new Socket(serverAddress, PORT);
             inputStream = new ObjectInputStream(socket.getInputStream());
             outputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -43,7 +43,7 @@ public class Client extends Task<Void>  /*Thread*/ {
             }
         } catch (IOException | ClassNotFoundException e) {
 
-        } */
+        }
         return null;
     }
 
@@ -87,17 +87,20 @@ public class Client extends Task<Void>  /*Thread*/ {
      * @param resFromServer objekt som kommer från servern
      */
     public void processResponse(Object resFromServer) {
-
-
         if (resFromServer instanceof List) {
             if (((List<?>) resFromServer).get(0) instanceof Question) {
                 List<Question> questionForRound = (List<Question>) resFromServer;
-                Platform.runLater(() -> controller.startRound(questionForRound));
+                Platform.runLater(() -> {
+                    try {
+                        controller.startRound(questionForRound);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             } else if (((List<?>) resFromServer).get(0) instanceof Boolean) {
                 List<Boolean> opponentResult = (List<Boolean>) resFromServer;
                 Platform.runLater(() -> controller.displayStatistics(opponentResult));
             }
-
         }
 
         /*
@@ -118,8 +121,8 @@ public class Client extends Task<Void>  /*Thread*/ {
 
 
     public static void main(String[] args) throws IOException {
-        //Client p = new Client("127.0.0.1", this);
-        //p.start();
+//        Client p = new Client("127.0.0.1", this);
+//        p.start();
     }
 
 
