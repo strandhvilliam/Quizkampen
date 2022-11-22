@@ -3,7 +3,9 @@ package com.skola.quizkampen;
 
 import javafx.concurrent.Task;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
 
@@ -47,7 +49,6 @@ public class Client extends /*Task<Void> */ Thread {
 
     /**
      * Skickar object i form av sträng för att sätta användarnamn
-     *
      * @param username som hämtas från GUI controllern
      * @throws IOException
      */
@@ -72,7 +73,6 @@ public class Client extends /*Task<Void> */ Thread {
 
     /**
      * Metoden hanterar all inkommande data från servern och väljer vad som ska göras med den
-     *
      * @param resFromServer objekt som kommer från servern
      */
     public void processResponse(Object resFromServer) {
