@@ -20,15 +20,6 @@ public class ServerSidePlayer extends Thread implements Serializable {
         this.nameOfPlayer = nameOfPlayer;
         this.game = game;
         this.scorePlayer = new ArrayList<>();
-
-        try {
-            input = new ObjectInputStream(socket.getInputStream());
-            output = new ObjectOutputStream(socket.getOutputStream());
-
-            System.out.println("Welcome " + nameOfPlayer);
-        } catch (IOException e) {
-            System.out.println("Could not find server: " + e.getMessage());
-        }
     }
 
     public void setNameOfPlayer(String nameOfPlayer) {
@@ -49,9 +40,21 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     public void run() {
         System.out.println("All players have connected (2).");
+        try {
+            output = new ObjectOutputStream(socket.getOutputStream());
+            input = new ObjectInputStream(socket.getInputStream());
+
+            System.out.println("Welcome " + nameOfPlayer);
+        } catch (IOException e) {
+            System.out.println("Could not find server: " + e.getMessage());
+        }
 
         /*TODO: lägg till logiken för spelet. Om spelare svarar rätt spara antal poäng,
            om spelare svarar fel spara antal fel eventuellt skicka till server*/
+    }
+
+    public void showMessage(String s){
+        System.out.println(s);
     }
 
     public void checkAnswer(String score) {
