@@ -7,7 +7,7 @@ public class QuestionGenerator {
     private String question = "";
     private String rightAnswer = "";
     private String wrongAnswer = "";
-    public void hittaKund (){
+    public void readQuestions (){
 
         try (BufferedReader br = new BufferedReader(new FileReader("D:\\javamapp\\Quizkampen\\src\\main\\java\\com\\skola\\quizkampen\\questions"))) {
             while((row = br.readLine()) != null){
