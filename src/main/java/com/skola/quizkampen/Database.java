@@ -1,45 +1,76 @@
 package com.skola.quizkampen;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 
 public class Database implements Serializable {
-    private static List<Question> allQuestions;
 
-    public Database(String question, String correctAnswer) {
-    }
+    static List<Question> allQuestions;
+    private int roundsPerGame;
+    private int questionsPerRound;
 
-    public void loadQuestionFromFile(){
+    public Database() throws FileNotFoundException, IOException {
 
-    }
-    public static Object readObject(String fileName){
-        ObjectInputStream objectInputStream=null;
-        Object object = null;
-
-        try{
-            FileInputStream streamIn = new FileInputStream(fileName);
-            objectInputStream=new ObjectInputStream(streamIn);
-            object=objectInputStream.readObject();
-            objectInputStream.close();
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileInputStream("src/main/java/com/skola/quizkampen/Settings.properties"));
+            String questionsPerGameString = properties.getProperty("roundsPerGame").trim();
+            roundsPerGame = Integer.parseInt(questionsPerGameString);
+            String questionsPerRoundString = properties.getProperty("questionsPerRound").trim();
+            questionsPerRound = Integer.parseInt(questionsPerRoundString);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("IOException");
         }
-        catch(Exception e){
-            e.printStackTrace();
     }
-        return object;
-}
 
-        public String getQuestion (String q) {
-            for (Question question : allQuestions) {
-                if (question.getQuestion().equalsIgnoreCase(q)) {
-                    return question.getCorrectAnswer();
-                }
+    public void initializeQuestions() throws IOException {
+        allQuestions.clear();
+
+        String filePath = "src/main/java/com/skola/quizkampen/questions.txt";
+        String dbQuestion, dbAnswers, dbCategory;
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
+
+            while ((dbQuestion = bufferedReader.readLine()) != null) {
+                dbAnswers = bufferedReader.readLine();
+                dbCategory = bufferedReader.readLine();
+                String[] dbAnswersArr = dbAnswers.split(",");
+                allQuestions.add(new Question(dbQuestion, dbAnswersArr, dbCategory));
             }
-            return null;
+        } catch (IOException e) {
+            System.out.println("IOException");
         }
-
-        public static void main (String[]args) {
     }
+
+    public void shuffleListOfQuestions() {
+        Collections.shuffle(allQuestions);
+    }
+
+    public List<Question> getAllQuestions() {
+        List<Question> questions = new ArrayList<>();
+        Category tempCategory=allQuestions.get(0).getCategory();
+        questions.add(allQuestions.get(0));
+
+        for (int i=1; i<allQuestions.size(); i++){
+            if(allQuestions.get(i).getCategory().equals(allQuestions.get(0).getCategory())){
+                questions.add(allQuestions.get(i));
+                allQuestions.remove(i);
+            }
+        }
+        return questions;
+    }
+
+    public int getRoundsPerGame() {
+        return roundsPerGame;
+    }
+
+    public int getQuestionsPerRound() {
+        return questionsPerRound;
+    }
+    
 }
