@@ -22,6 +22,8 @@ public class ClientController implements Initializable {
     protected List<Boolean> roundResult = new ArrayList<>();
     private List<Question> questionsInRound;
 
+    private int testAmountOfRounds = 0;
+
 
     /*TODO: metod som hanterar när användare skriver in användarnamn.
         ber klienten skicka request till servern att valt användarnamn
@@ -143,5 +145,30 @@ public class ClientController implements Initializable {
         for (Boolean b : roundResult) {
             System.out.println(b);
         }
+
+        //TODO: antal rundor variabel ska bytas ut till properties värde senare
+        testAmountOfRounds++;
+        if (testAmountOfRounds == 4) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statistics.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Choose category");
+            try {
+                stage.setScene(new Scene(fxmlLoader.load()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            StatisticsController controller = fxmlLoader.getController();
+            roundResult.add(true);
+            roundResult.add(true);
+            opponentResult.add(true);
+            opponentResult.add(true);
+            controller.initStatistics(this, roundResult, opponentResult, 4);
+
+            stage.show();
+            testAmountOfRounds = 0;
+        }
+
+
     }
 }

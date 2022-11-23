@@ -41,7 +41,8 @@ public class ServerSidePlayer extends Thread implements Serializable {
     }
 
     public void setScore(List<Boolean> scores) {
-        scorePlayer.addAll(scores);
+        //scorePlayer.addAll(scores);
+        scorePlayer = new ArrayList<>(scores);
     }
 
     public List<Boolean> getScore() {
@@ -51,6 +52,13 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     public void sendOpponentScoreStat() throws IOException {
 //        if(!opponant.getScore().isEmpty()){
+
+        System.out.println("----\n" );
+        for (Boolean aBoolean : opponant.getScore()) {
+            System.out.println(aBoolean);
+        }
+        System.out.println("----\n" );
+
         output.writeObject(opponant.getScore());
         output.flush();
         output.reset();

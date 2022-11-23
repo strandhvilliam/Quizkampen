@@ -177,3 +177,10 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 4, 3);
 }
 
+.win-point-label {
+    -fx-background-color: #48cb27;
+}
+
+.loss-point-label {
+    -fx-background-color: #FE4545;
+}

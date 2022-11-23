@@ -50,6 +50,8 @@ public class Client extends Task<Void>  /*Thread*/ {
 
     public void sendObject(Object obj) throws IOException {
         outputStream.writeObject(obj);
+        outputStream.flush();
+        outputStream.reset();
     }
 
     /**
