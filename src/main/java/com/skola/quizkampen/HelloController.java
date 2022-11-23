@@ -20,7 +20,7 @@ public class HelloController {
             System.out.println(questionArrayList.get(i).getCategory() + "\n" + questionArrayList.get(i).getQuestion() + "\n" + questionArrayList.get(i).getCorrectAnswer());
             System.out.println(questionArrayList.get(i).getWrongAnswers()[0]);
             System.out.println(questionArrayList.get(i).getWrongAnswers()[1]);
-            System.out.println(questionArrayList.get(0).getWrongAnswers()[2]);
+            System.out.println(questionArrayList.get(i).getWrongAnswers()[2]);
         }
     }
 }
