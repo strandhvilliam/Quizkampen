@@ -23,37 +23,31 @@ public class QuestionGenerator {
                     if (row.startsWith("spel")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        //System.out.println("Spelfråga: " + question + "\n");
                         category = Category.SPEL;
                     }
                     if (row.startsWith("geografi")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        //System.out.println("Geografifråga: " + question + "\n");
                         category = Category.GEOGRAFI;
                     }
                     if (row.startsWith("historia")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        //System.out.println("Historiefråga: " + question + "\n");
                         category = Category.HISTORIA;
                     }
                     if (row.startsWith("film")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        //System.out.println("Filmfråga: " + question + "\n");
                         category = Category.FILM;
                     }
                     if (row.startsWith("djur")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        //System.out.println("Djurfråga: " + question + "\n");
                         category = Category.DJUR;
                     }
                     if (row.startsWith("teknik")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        //System.out.println("Teknikfråga: " + question + "\n");
                         category = Category.TEKNIK;
                     }
                     if (row.startsWith("wrong")) {
@@ -61,13 +55,10 @@ public class QuestionGenerator {
                         wrongAnswer = row.substring(space + 1);
                         wrongAnswers[i] = wrongAnswer;
                         i++;
-
-                        //System.out.println("Fel svar: " + wrongAnswer + "\n");
                     }
                     if (row.startsWith("correct")) {
                         int space = row.indexOf(' ');
                         rightAnswer = row.substring(space + 1);
-                        //System.out.println("Rätt svar: " + rightAnswer + "\n");
                         questionArrayList.add(new Question(question, rightAnswer, category, wrongAnswers));
                         System.out.println(wrongAnswers[0]);
                         System.out.println(wrongAnswers[1]);
@@ -75,7 +66,6 @@ public class QuestionGenerator {
                         Arrays.fill(wrongAnswers, null);
                         i = 0;
                     }
-                    //System.out.println(questionArray[i].getQuestion() + " " + " " + questionArray[i].getCorrectAnswer() + " " + questionArray[i].getCategory());
                 }
             }
         } catch (FileNotFoundException e) {
