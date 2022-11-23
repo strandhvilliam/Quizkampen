@@ -13,7 +13,6 @@ public class ServerSidePlayer extends Thread implements Serializable {
     ObjectInputStream input;
     ObjectOutputStream output;
     ServerGame game;
-    int rounderCounter = 1;
 
     protected boolean isWaiting = false;
 
