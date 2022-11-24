@@ -131,9 +131,11 @@ public class ClientController implements Initializable {
     }
 
     //test list
-    List<Boolean> myResult = List.of(true, false, true, true);
+    List<Boolean> myResult = new ArrayList<>(List.of(true, true, false, false));
+
 
     public void displayStatistics(List<Boolean> opponentResult) {
+
         System.out.println("Motståndare:");
         for (Boolean b : opponentResult) {
             System.out.println(b);
@@ -147,8 +149,8 @@ public class ClientController implements Initializable {
         }
 
         //TODO: antal rundor variabel ska bytas ut till properties värde senare
-        testAmountOfRounds++;
-        if (testAmountOfRounds == 4) {
+        testAmountOfRounds = 2;
+        if (testAmountOfRounds == 2) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statistics.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Choose category");
@@ -159,16 +161,12 @@ public class ClientController implements Initializable {
             }
 
             StatisticsController controller = fxmlLoader.getController();
-            roundResult.add(true);
-            roundResult.add(true);
-            opponentResult.add(true);
-            opponentResult.add(true);
-            controller.initStatistics(this, roundResult, opponentResult, 4);
+            controller.initStatistics(this, roundResult, opponentResult, testAmountOfRounds);
 
             stage.show();
             testAmountOfRounds = 0;
         }
 
-
     }
+
 }
