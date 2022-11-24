@@ -24,7 +24,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../AppData/Local/Temp/icons8_cute_hamster_40px.png" />
+                        <Image url="@icons/icons8_cute_hamster_40px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -36,7 +36,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../AppData/Local/Temp/icons8_cinema_40px_1.png" />
+                        <Image url="@icons/icons8_film_reel_40px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -48,7 +48,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../AppData/Local/Temp/icons8_colosseum_40px.png" />
+                        <Image url="@icons/icons8_greek_helmet_40px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -60,7 +60,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../AppData/Local/Temp/icons8_game_controller_40px.png" />
+                        <Image url="@icons/icons8_game_controller_40px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -72,7 +72,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../AppData/Local/Temp/icons8_map_marker_40px.png" />
+                        <Image url="@icons/icons8_adventure_40px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -84,7 +84,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../AppData/Local/Temp/icons8_robot_2_40px.png" />
+                        <Image url="@icons/icons8_robot_2_40px.png" />
                      </image>
                   </ImageView>
                </graphic>

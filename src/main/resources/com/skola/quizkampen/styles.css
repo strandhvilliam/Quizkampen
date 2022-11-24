@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 * {
+    -fx-font-family: 'Poppins', sans-serif;
+    -fx-font-smoothing-type: gray;
     -fx-background-insets: 0;
     -fx-padding: 0;
     -fx-border-insets: 0;
@@ -46,9 +50,20 @@
     -fx-font-weight: bold;
 }
 
+.medium-black-thin-label {
+    -fx-text-fill: #323232;
+    -fx-font-size: 16px;
+}
+
 .medium-white-label {
     -fx-text-fill: #ffffff;
     -fx-font-size: 20px;
+}
+
+.large-white-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 42px;
+    -fx-font-weight: bold;
 }
 
 .large-question-label {
@@ -143,3 +158,29 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 4, 3);
 }
 
+.point-circle {
+    -fx-border-color: #323232;
+    -fx-border-width: 2;
+    -fx-border-radius: 1000;
+    -fx-background-radius: 1000;
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+    -fx-max-width: 24px;
+    -fx-max-height: 24px;
+
+}
+
+.point-grid {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #323232;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 4, 3);
+}
+
+.win-point-label {
+    -fx-background-color: #48cb27;
+}
+
+.loss-point-label {
+    -fx-background-color: #FE4545;
+}
