@@ -25,9 +25,9 @@ public class ClientController implements Initializable {
     private int testAmountOfRounds = 0;
 
 
-    /*
-        TODO: metod som hanterar när användare skriver in användarnamn. Ber klienten skicka request till servern
-            att valt användarnamn sätter namnet i GUIn
+    /*TODO: metod som hanterar när användare skriver in användarnamn.
+        ber klienten skicka request till servern att valt användarnamn
+        sätter namnet i GUIn
      */
 
 
@@ -52,6 +52,15 @@ public class ClientController implements Initializable {
             sendResult();
             requestIsDoneWithRound();
         }
+
+
+
+        /*else {
+           for (Boolean result : roundResult) {
+               System.out.println(result);
+           }
+        }*/
+
     }
 
     public void sendResult() throws IOException {
@@ -114,10 +123,16 @@ public class ClientController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+//        try {
+//            client.requestStatistics();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     //test list
-    List<Boolean> myResult = List.of(true, false, true, true);
+    List<Boolean> myResult = new ArrayList<>(List.of(true, false, false, false, true, true, false, false, false, false, true, true));
+
 
     public void displayStatistics(List<Boolean> opponentResult) {
         System.out.println("Motståndare:");
@@ -133,8 +148,8 @@ public class ClientController implements Initializable {
         }
 
         //TODO: antal rundor variabel ska bytas ut till properties värde senare
-        testAmountOfRounds++;
-        if (testAmountOfRounds == 4) {
+        testAmountOfRounds = 3;
+        if (testAmountOfRounds == 3) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statistics.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Choose category");
@@ -145,11 +160,7 @@ public class ClientController implements Initializable {
             }
 
             StatisticsController controller = fxmlLoader.getController();
-            roundResult.add(true);
-            roundResult.add(true);
-            opponentResult.add(true);
-            opponentResult.add(true);
-            controller.initStatistics(this, roundResult, opponentResult, 4);
+            controller.initStatistics(this, roundResult, opponentResult, testAmountOfRounds);
 
             stage.show();
             testAmountOfRounds = 0;
