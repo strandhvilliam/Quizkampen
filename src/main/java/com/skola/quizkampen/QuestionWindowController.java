@@ -71,7 +71,7 @@ public class QuestionWindowController implements Initializable {
     public void initData(ClientController clientController, Question question) {
         this.clientController = clientController;
         this.currentQuestionRound = question;
-        setOptionButtons(question.getWrongAlternatives(), question.getCorrectAnswer());
+        setOptionButtons(List.of(question.getWrongAnswers()), question.getCorrectAnswer());
     }
 
     @Override
