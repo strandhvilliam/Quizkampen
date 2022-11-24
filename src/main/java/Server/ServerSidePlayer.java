@@ -1,5 +1,7 @@
 package Server;
 
+import com.skola.quizkampen.Category;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -8,11 +10,12 @@ import java.util.List;
 public class ServerSidePlayer extends Thread implements Serializable {
     String nameOfPlayer;
     List<Boolean> scorePlayer;  // räkna antal poäng för spelare.
-    ServerSidePlayer opponant;
+    ServerSidePlayer opponent;
     Socket socket;
     ObjectInputStream input;
     ObjectOutputStream output;
     ServerGame game;
+    int rounderCounter = 1;
 
     protected boolean isWaiting = false;
 
@@ -25,19 +28,20 @@ public class ServerSidePlayer extends Thread implements Serializable {
     }
 
     public void setNameOfPlayer(String nameOfPlayer) {
-        if (nameOfPlayer instanceof String) {
-            this.nameOfPlayer = nameOfPlayer;
-        } else {
-            System.out.println("Invalid name");
-        }
-        /*
-         Kanske kan ersättas i servern i while loopen!
-        * */
+        this.nameOfPlayer = nameOfPlayer;
+    }
+
+    public String getNameOfPlayer(){
+        return this.nameOfPlayer;
+    }
+
+    public String getOpponentName(){
+        return opponent.nameOfPlayer;
     }
 
 
-    public void setOpponant(ServerSidePlayer opppannt) {
-        this.opponant = opppannt;
+    public void setOpponent(ServerSidePlayer opponent) {
+        this.opponent = opponent;
     }
 
     public void setScore(List<Boolean> scores) {
@@ -51,15 +55,16 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
 
     public void sendOpponentScoreStat() throws IOException {
+        output.writeObject(opponent.getScore());
 //        if(!opponant.getScore().isEmpty()){
 
-        System.out.println("----\n" );
-        for (Boolean aBoolean : opponant.getScore()) {
+        /*System.out.println("----\n" );
+        for (Boolean aBoolean : opponent.getScore()) {
             System.out.println(aBoolean);
         }
-        System.out.println("----\n" );
+        System.out.println("----\n" );*/  // TODO: Ändra tillbaka detta
 
-        output.writeObject(opponant.getScore());
+        output.writeObject(opponent.getScore());
         output.flush();
         output.reset();
 
@@ -76,23 +81,30 @@ public class ServerSidePlayer extends Thread implements Serializable {
             System.out.println("Welcome " + nameOfPlayer);
 
             Object object;
+
             while (true) {
                 object = input.readObject();
                 if (object instanceof List<?>) {
                     setScore((List<Boolean>) object);
-                } else if (object instanceof String) {
-                    String s = (String) object;
+                    game.getScore(scorePlayer, nameOfPlayer);
+                } else if (object instanceof String s) {
                     if (s.equals("ROUND_FINISHED")) {
-                        if (!opponant.isWaiting) {
+                        if (!opponent.isWaiting) {
                             this.isWaiting = true;
                         } else {
                             this.isWaiting = false;
-                            opponant.isWaiting = false;
+                            opponent.isWaiting = false;
                             sendOpponentScoreStat();
-                            opponant.sendOpponentScoreStat();
+                            opponent.sendOpponentScoreStat();
+//                            System.out.println(getScore() + " --> " + opponent.getScore());
+//                            game.getScore(getScore(), getName());
+//                            game.getScore(opponent.getScore(), getName());
+
                         }
+
                     }
                 }
+
 
 
                 /*System.out.println(scorePlayer.size());

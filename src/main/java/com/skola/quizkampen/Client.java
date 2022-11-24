@@ -11,17 +11,17 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Client extends Task<Void>  /*Thread*/ {
+public class Client extends Task<Void> {
 
-    private/* static final */ String serverAddress; /* = "127.0.0.1"*/
-    ;
+    private final String serverAddress;
+
 
     private Socket socket;
-    private static int PORT = 5555;
+    private final static int PORT = 5555;
     private ObjectOutputStream outputStream;
     private ObjectInputStream inputStream;
 
-    private ClientController controller;
+    private final ClientController controller;
 
 
     public Client(String serverAdress, ClientController controller) throws IOException {
@@ -31,7 +31,7 @@ public class Client extends Task<Void>  /*Thread*/ {
     }
 
     @Override
-     protected Void call() /* public void run()*/ throws Exception  {
+    protected Void call() throws Exception {
         try {
             socket = new Socket(serverAddress, PORT);
             inputStream = new ObjectInputStream(socket.getInputStream());
@@ -56,6 +56,7 @@ public class Client extends Task<Void>  /*Thread*/ {
 
     /**
      * Skickar object i form av sträng för att sätta användarnamn
+     *
      * @param username som hämtas från GUI controllern
      * @throws IOException
      */
@@ -86,6 +87,7 @@ public class Client extends Task<Void>  /*Thread*/ {
 
     /**
      * Metoden hanterar all inkommande data från servern och väljer vad som ska göras med den
+     *
      * @param resFromServer objekt som kommer från servern
      */
     public void processResponse(Object resFromServer) {
@@ -123,9 +125,5 @@ public class Client extends Task<Void>  /*Thread*/ {
 
 
     public static void main(String[] args) throws IOException {
-//        Client p = new Client("127.0.0.1", this);
-//        p.start();
     }
-
-
 }

@@ -53,6 +53,14 @@ public class ClientController implements Initializable {
             requestIsDoneWithRound();
         }
 
+
+
+        /*else {
+           for (Boolean result : roundResult) {
+               System.out.println(result);
+           }
+        }*/
+
     }
 
     public void sendResult() throws IOException {
@@ -127,7 +135,6 @@ public class ClientController implements Initializable {
 
 
     public void displayStatistics(List<Boolean> opponentResult) {
-
         System.out.println("Motståndare:");
         for (Boolean b : opponentResult) {
             System.out.println(b);
@@ -159,6 +166,6 @@ public class ClientController implements Initializable {
             testAmountOfRounds = 0;
         }
 
-    }
 
+    }
 }
