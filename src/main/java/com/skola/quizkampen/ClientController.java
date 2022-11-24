@@ -53,14 +53,6 @@ public class ClientController implements Initializable {
             requestIsDoneWithRound();
         }
 
-
-
-        /*else {
-           for (Boolean result : roundResult) {
-               System.out.println(result);
-           }
-        }*/
-
     }
 
     public void sendResult() throws IOException {
@@ -131,7 +123,7 @@ public class ClientController implements Initializable {
     }
 
     //test list
-    List<Boolean> myResult = new ArrayList<>(List.of(true, true, false, false));
+    List<Boolean> myResult = new ArrayList<>(List.of(true, false, false, false, true, true, false, false, false, false, true, true));
 
 
     public void displayStatistics(List<Boolean> opponentResult) {
@@ -149,8 +141,8 @@ public class ClientController implements Initializable {
         }
 
         //TODO: antal rundor variabel ska bytas ut till properties värde senare
-        testAmountOfRounds = 2;
-        if (testAmountOfRounds == 2) {
+        testAmountOfRounds = 3;
+        if (testAmountOfRounds == 3) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statistics.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Choose category");
