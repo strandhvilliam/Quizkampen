@@ -69,8 +69,8 @@ public class Client extends Task<Void> {
 
         //TEST
         List<Question> testList = new ArrayList<>();
-        testList.add(new Question("Vad är det för dag?", "Tisdag", Category.GEOGRAFI));
-        testList.add(new Question("Vad är det för imorgon?", "Onsdag", Category.GEOGRAFI));
+        testList.add(new Question("Vad är det för dag?", "Tisdag", Category.GEOGRAFI, new String[] {"FEL", "FEL", "FEL"}));
+        testList.add(new Question("Vad är det för imorgon?", "Onsdag", Category.GEOGRAFI, new String[] {"FEL", "FEL", "FEL"}));
         processResponse(testList);
     }
 
