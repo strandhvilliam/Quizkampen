@@ -1,25 +1,24 @@
 package com.skola.quizkampen;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
-public class Question {
+public class Question implements Serializable {
+    protected String question;
+    protected String correctAnswer;
+    protected Category category;
+    protected String[] wrongAnswers = new String[3];
 
-
-    private String question;
-    private String correctAnswer;
-    private List<String> wrongAlternatives;
-
-    private Category category;
-
-
-    public Question(String question, String correctAnswer, Category c) {
+    public Question(String question, String correctAnswer, Category category, String[] wrongAnswers) {
         this.question = question;
         this.correctAnswer = correctAnswer;
-        this.category = c;
-        this.wrongAlternatives = List.of("Fel Alt 1", "Fel Alt 2", "Fel Alt 3");
+        this.category = category;
+        for (int i = 0; i < 3; i++) {
+            this.wrongAnswers[i] = wrongAnswers[i];
+        }
     }
 
+    public Question(String dbQuestion, String[] dbAnswersArr, String dbCategory) {
+    }
     public String getQuestion() {
         return question;
     }
@@ -28,11 +27,19 @@ public class Question {
         return category;
     }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public String getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public List<String> getWrongAlternatives() {
-        return wrongAlternatives;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    public String[] getWrongAnswers() {
+        return wrongAnswers;
     }
 }

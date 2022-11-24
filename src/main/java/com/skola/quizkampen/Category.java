@@ -1,6 +1,6 @@
 package com.skola.quizkampen;
 
-public enum Category { //KOD AV GUSTAF
+public enum Category {
 
     DJUR("Djur & natur"),
     FILM ("Film & TV"),
