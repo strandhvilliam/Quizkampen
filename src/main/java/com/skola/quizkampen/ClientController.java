@@ -25,9 +25,9 @@ public class ClientController implements Initializable {
     private int testAmountOfRounds = 0;
 
 
-    /*TODO: metod som hanterar när användare skriver in användarnamn.
-        ber klienten skicka request till servern att valt användarnamn
-        sätter namnet i GUIn
+    /*
+        TODO: metod som hanterar när användare skriver in användarnamn. Ber klienten skicka request till servern
+            att valt användarnamn sätter namnet i GUIn
      */
 
 
@@ -52,15 +52,6 @@ public class ClientController implements Initializable {
             sendResult();
             requestIsDoneWithRound();
         }
-
-
-
-        /*else {
-           for (Boolean result : roundResult) {
-               System.out.println(result);
-           }
-        }*/
-
     }
 
     public void sendResult() throws IOException {
@@ -123,11 +114,6 @@ public class ClientController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        try {
-//            client.requestStatistics();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
     //test list
