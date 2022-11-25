@@ -1,16 +1,15 @@
 package com.skola.quizkampen;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class Database implements Serializable {
 
-    static List<Question> allQuestions;
+    List<Question> allQuestions = new ArrayList<Question>();
     private int roundsPerGame;
     private int questionsPerRound;
+    private Category category;
+
 
     public Database() throws FileNotFoundException, IOException {
 
@@ -27,6 +26,8 @@ public class Database implements Serializable {
             System.out.println("IOException");
         }
     }
+
+
 
     public void initializeQuestions() throws IOException {
         allQuestions.clear();
@@ -64,6 +65,82 @@ public class Database implements Serializable {
         }
         return questions;
     }
+
+    public void getAllQuestions(){
+        int i = 0;
+        String row;
+        String question = "";
+        String rightAnswer = "";
+        String wrongAnswer = "";
+        String[] wrongAnswers = new String[3];
+
+        try (BufferedReader br = new BufferedReader(new FileReader("D:\\javamapp\\Quizkampen\\src\\main\\java\\com\\skola\\quizkampen\\questions"))) {
+            while((row = br.readLine()) != null){
+                if (!row.isBlank()) {
+                    if (row.startsWith("spel")) {
+                        int space = row.indexOf(' ');
+                        question = row.substring(space + 1);
+                        category = Category.SPEL;
+                    }
+                    if (row.startsWith("geografi")) {
+                        int space = row.indexOf(' ');
+                        question = row.substring(space + 1);
+                        category = Category.GEOGRAFI;
+                    }
+                    if (row.startsWith("historia")) {
+                        int space = row.indexOf(' ');
+                        question = row.substring(space + 1);
+                        category = Category.HISTORIA;
+                    }
+                    if (row.startsWith("film")) {
+                        int space = row.indexOf(' ');
+                        question = row.substring(space + 1);
+                        category = Category.FILM;
+                    }
+                    if (row.startsWith("djur")) {
+                        int space = row.indexOf(' ');
+                        question = row.substring(space + 1);
+                        category = Category.DJUR;
+                    }
+                    if (row.startsWith("teknik")) {
+                        int space = row.indexOf(' ');
+                        question = row.substring(space + 1);
+                        category = Category.TEKNIK;
+                    }
+                    if (row.startsWith("wrong")) {
+                        int space = row.indexOf(' ');
+                        wrongAnswer = row.substring(space + 1);
+                        wrongAnswers[i] = wrongAnswer;
+                        i++;
+                    }
+                    if (row.startsWith("correct")) {
+                        int space = row.indexOf(' ');
+                        rightAnswer = row.substring(space + 1);
+                        allQuestions.add(new Question(question, rightAnswer, category, wrongAnswers));
+                        Arrays.fill(wrongAnswers, null);
+                        i = 0;
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void getByCategory(Category category) {
+        List<Question> categoryQList = new ArrayList<>();
+        getAllQuestions();
+        for (int i = 0; i < allQuestions.size(); i++) {
+            if (allQuestions.get(i).getCategory().equals(category)) {
+                categoryQList.add(allQuestions.get(i));
+            }
+        }
+        for (int i = 0; i < categoryQList.size(); i++) {
+            System.out.println(categoryQList.get(i).getQuestion());
+        }
+    }
+
 
     public int getRoundsPerGame() {
         return roundsPerGame;
