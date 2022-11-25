@@ -21,7 +21,6 @@ public class ServerGame {
     private static final int NUMBEROFQUESTIONS = 4;
 
     private int state = WAITING;
-
     private int currentQuestion = 0;
 
 

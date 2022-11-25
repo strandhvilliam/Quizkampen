@@ -1,6 +1,6 @@
 package com.skola.quizkampen;
 
-import javafx.concurrent.Task;
+import Server.Question;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

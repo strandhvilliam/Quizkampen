@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="initial gui fix (but in wrong branch :( )">
+    <list default="true" id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="Updated master branch to current version.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/QuestionGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/QuestionGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/QuestionWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/questions" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/questions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +39,11 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/.idea/misc.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Server/Question.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Category.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -48,23 +61,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Git.Branch.Popup.ShowAllRemotes": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\linus\OneDrive\Skrivbord\Java Nacka\Projekt skolan\Quizkampen\src\main\java\Server" />
       <recent name="D:\javamapp\Quizkampen\src\main\java\com\skola\quizkampen" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.skola.quizkampen" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.skola.quizkampen" />
+      <recent name="Server" />
     </key>
   </component>
   <component name="RunManager">
@@ -73,7 +93,7 @@
       <module name="Quizkampen" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.skola.quizkampen.*" />
+          <option name="PATTERN" value="Server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -165,6 +185,7 @@
     <MESSAGE value="added questions" />
     <MESSAGE value="name fix" />
     <MESSAGE value="initial gui fix (but in wrong branch :( )" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial gui fix (but in wrong branch :( )" />
+    <MESSAGE value="Updated master branch to current version." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated master branch to current version." />
   </component>
 </project>
