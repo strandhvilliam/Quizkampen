@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="restructured packages">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ResultsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/results-window.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/QuestionWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/StatisticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/statistics.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/statistics.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,10 +19,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="question_display" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -103,6 +100,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainApplication" />
         <item itemvalue="Application.MainApplication" />
       </list>
     </recent_temporary>
