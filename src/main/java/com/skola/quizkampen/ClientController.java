@@ -18,9 +18,11 @@ public class ClientController implements Initializable {
 
     private String correctAnswerForRound;
 
+    private boolean isWaiting;
+
     private Client client;
 
-    protected List<Boolean> roundResult = new ArrayList<>();
+    protected List<Boolean> playerScore = new ArrayList<>();
     private List<Question> questionsInRound;
 
     protected String opponentName;
@@ -71,7 +73,7 @@ public class ClientController implements Initializable {
     }
 
     public void sendResult() throws IOException {
-        client.sendObject(roundResult);
+        client.sendObject(playerScore);
     }
 
 
@@ -115,6 +117,12 @@ public class ClientController implements Initializable {
 
     public void startRound(List<Question> questions) throws IOException {
         this.questionsInRound = questions;
+
+        if (isWaiting) {
+            waitingWindow.getScene().getWindow().hide();
+            isWaiting = false;
+        }
+
         displayNextQuestion();
     }
 
@@ -143,7 +151,7 @@ public class ClientController implements Initializable {
         System.out.println();
 
         System.out.println("Mitt resultat:");
-        for (Boolean b : roundResult) {
+        for (Boolean b : playerScore) {
             System.out.println(b);
         }
 
@@ -160,7 +168,7 @@ public class ClientController implements Initializable {
             }
 
             StatisticsController controller = fxmlLoader.getController();
-            controller.initStatistics(this, roundResult, opponentResult, testAmountOfRounds);
+            controller.initStatistics(this, playerScore, opponentResult, testAmountOfRounds);
 
             stage.show();
             testAmountOfRounds = 0;
@@ -197,6 +205,7 @@ public class ClientController implements Initializable {
         }
         stage.show();
 
+        isWaiting = true;
         waitingWindow = stage;
     }
 }

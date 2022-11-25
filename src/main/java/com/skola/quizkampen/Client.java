@@ -103,10 +103,11 @@ public class Client extends Task<Void> {
     public void processResponse(Object resFromServer) throws IOException {
         if (resFromServer instanceof List) {
             if (((List<?>) resFromServer).get(0) instanceof Question) {
-                List<Question> questionForRound = (List<Question>) resFromServer;
+                List<Question> questionsForRound = (List<Question>) resFromServer;
+                //TODO: kolla hur många frågor per rond och avgör storlek på lista efter det
                 Platform.runLater(() -> {
                     try {
-                        controller.startRound(questionForRound);
+                        controller.startRound(questionsForRound);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

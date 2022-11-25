@@ -42,6 +42,8 @@ public class QuestionWindowController implements Initializable {
     public void optionSelectedAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
 
+        //TODO: lägg in kod så att GUI reagerar med grönt om rätt, rött om fel
+
         checkIfCorrectAnswer(button.getText());
         clientController.displayNextQuestion();
         questionLabel.getScene().getWindow().hide();
