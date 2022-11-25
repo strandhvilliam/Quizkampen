@@ -1,6 +1,8 @@
 package Server;
 
-public enum Category {
+import java.io.Serializable;
+
+public enum Category implements Serializable {
 
     DJUR("Djur & natur"),
     FILM ("Film & TV"),

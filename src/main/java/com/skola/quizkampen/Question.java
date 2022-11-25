@@ -1,17 +1,14 @@
 package com.skola.quizkampen;
 
-
-import Server.Category;
-
 import java.io.Serializable;
 
 public class Question implements Serializable {
     protected String question;
     protected String correctAnswer;
-    protected Server.Category category;
+    protected Category category;
     protected String[] wrongAnswers = new String[3];
 
-    public Question(String question, String correctAnswer, Server.Category category, String[] wrongAnswers) {
+    public Question(String question, String correctAnswer, Category category, String[] wrongAnswers) {
         this.question = question;
         this.correctAnswer = correctAnswer;
         this.category = category;
@@ -26,7 +23,7 @@ public class Question implements Serializable {
         return question;
     }
 
-    public Server.Category getCategory() {
+    public Category getCategory() {
         return category;
     }
 
