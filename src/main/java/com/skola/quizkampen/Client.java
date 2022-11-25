@@ -125,6 +125,8 @@ public class Client extends Task<Void> {
             if (resArray[0].equals(OPPONENT_NAME)) {
                 Platform.runLater(() -> controller.opponentName = resArray[1]);
                 sendObject(PROPERTIES_PROTOCOL);
+            } else {
+                Platform.runLater(() -> controller.displayGameResult(resArray));
             }
 
         } else if (resFromServer instanceof int[]) {

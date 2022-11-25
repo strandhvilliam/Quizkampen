@@ -152,7 +152,18 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
                     } else if(s.equals(GAME_FINISHED)){
                         String[] theWinner = game.getWinner();
-                        output.writeObject(theWinner);
+                        String[] sendArray = new String[3];
+                        if (theWinner[0].equals(idInstance)) {
+                            sendArray[0] = "WON";
+                        } else if (!theWinner[0].equals("DRAW")) {
+                            sendArray[0] = "DRAW";
+                        } else {
+                            sendArray[0] = "LOSE";
+                        }
+                        sendArray[1] = theWinner[1];
+                        sendArray[2] = theWinner[2];
+
+                        output.writeObject(sendArray);
                         //TODO: implementera resultat av vinnare / förlorare
                     }
                 } else if (object instanceof Category) {

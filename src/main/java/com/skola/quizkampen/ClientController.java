@@ -214,4 +214,25 @@ public class ClientController implements Initializable {
             client.requestNewRound();
         }
     }
+
+    public void displayGameResult(String[] resArray) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("results-windows.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Results");
+        try {
+            stage.setScene(new Scene(fxmlLoader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ResultsController resultsController = fxmlLoader.getController();
+
+        resultsController.initData(resArray);
+
+        stage.show();
+    }
+
+    private void resultsController(String[] resArray) {
+
+    }
 }

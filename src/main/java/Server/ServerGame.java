@@ -116,7 +116,7 @@ public class ServerGame {
             results[2] = String.valueOf(playerScoreOne);
             return results;
         } else {
-            results[0] = "";
+            results[0] = "DRAW";
             results[1] = String.valueOf(playerScoreOne);
             results[2] = String.valueOf(playerScoreTwo);
             return results;
