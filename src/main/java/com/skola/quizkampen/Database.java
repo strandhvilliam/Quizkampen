@@ -51,15 +51,15 @@ public class Database implements Serializable {
         Collections.shuffle(allQuestions);
     }
 
-    public List<Question> getAllQuestions() {
+    public List<Question> getAllQuestions(List<Question> questionTestList) {
         List<Question> questions = new ArrayList<>();
-        Category tempCategory=allQuestions.get(0).getCategory();
-        questions.add(allQuestions.get(0));
+        Category tempCategory=questionTestList.get(0).getCategory();
+        questions.add(questionTestList.get(0));
 
-        for (int i=1; i<allQuestions.size(); i++){
-            if(allQuestions.get(i).getCategory().equals(allQuestions.get(0).getCategory())){
-                questions.add(allQuestions.get(i));
-                allQuestions.remove(i);
+        for (int i=1; i<questionTestList.size(); i++){
+            if(questionTestList.get(i).getCategory().equals(questionTestList.get(0).getCategory())){
+                questions.add(questionTestList.get(i));
+                questionTestList.remove(i);
             }
         }
         return questions;

@@ -7,15 +7,15 @@ import java.util.List;
 
 public class QuestionGenerator {
     private String row;
-    private String question = "";
-    private String rightAnswer = "";
-    private String wrongAnswer = "";
-    ArrayList<Question> questionArrayList = new ArrayList<Question>();
+    private String question;
+    private String rightAnswer;
+    private String wrongAnswer;
+    List<Question> questionList = new ArrayList<Question>();
     private String[] wrongAnswers = new String[3];
 
 
     private Category category;
-    public ArrayList<Question> readQuestions (){
+    public List<Question> getAllQuestions(){
         int i = 0;
         try (BufferedReader br = new BufferedReader(new FileReader("D:\\javamapp\\Quizkampen\\src\\main\\java\\com\\skola\\quizkampen\\questions"))) {
             while((row = br.readLine()) != null){
@@ -59,10 +59,7 @@ public class QuestionGenerator {
                     if (row.startsWith("correct")) {
                         int space = row.indexOf(' ');
                         rightAnswer = row.substring(space + 1);
-                        questionArrayList.add(new Question(question, rightAnswer, category, wrongAnswers));
-                        System.out.println(wrongAnswers[0]);
-                        System.out.println(wrongAnswers[1]);
-                        System.out.println(wrongAnswers[2]);
+                        questionList.add(new Question(question, rightAnswer, category, wrongAnswers));
                         Arrays.fill(wrongAnswers, null);
                         i = 0;
                     }
@@ -73,7 +70,17 @@ public class QuestionGenerator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return questionArrayList;
+        return questionList;
+    }
+
+    public List<Question> getByCategory(List<Question> questionList, Category category){
+        List<Question> categoryQList = new ArrayList<>();
+        for (int i = 1; i < questionList.size(); i++) {
+            if (questionList.get(i).getCategory().equals(category)){
+                categoryQList.add(questionList.get(i));
+            }
+        }
+        return categoryQList;
     }
 }
 
