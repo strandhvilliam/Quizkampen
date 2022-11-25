@@ -22,7 +22,7 @@ public class Client extends Task<Void> {
 
     private static final String START_ROUND = "START_ROUND";
 
-    public static final String GAME_OVER = "GAME_OVER";
+    public static final String GAME_FINISHED = "GAME_FINISHED";
 
     public static final String ROUND_FINISHED = "ROUND_FINISHED";
 
@@ -162,7 +162,7 @@ public class Client extends Task<Void> {
     }
 
     public void requestGameOver() {
-        sendObject(GAME_OVER);
+        sendObject(GAME_FINISHED);
     }
 
 
