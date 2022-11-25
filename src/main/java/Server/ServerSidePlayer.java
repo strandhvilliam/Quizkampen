@@ -48,7 +48,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
         this.nameOfPlayer = nameOfPlayer;
     }
 
-    public void sendOpponentName(String name){
+    public void sendOpponentName(String name) {
         Data data = new Data();
         data.task = Task.OPPONENT_NAME;
         data.message = name;
@@ -160,7 +160,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
         output.writeObject(listOfQuestions);
     }
 
-    protected void roundFinished() throws IOException {
+    protected void roundFinished() {
         if (!opponent.isWaiting) {
             this.isWaiting = true;
         } else {
@@ -181,9 +181,10 @@ public class ServerSidePlayer extends Thread implements Serializable {
     }
 
 
-    protected void startGame(Data startGame) throws IOException {
+    protected void startGame(Data startGame) {
         setNameOfPlayer(startGame.message);
         opponent.sendOpponentName(getNameOfPlayer());
+        startRound();
     }
 
     protected void propertiesProtocol() throws IOException {
@@ -193,12 +194,15 @@ public class ServerSidePlayer extends Thread implements Serializable {
         output.writeObject(propertiesValues);
     }
 
-    protected void startRound() throws IOException {
+    protected void startRound() {
         Data data = new Data();
-        if (game.playerTurn(this)) {
+        if (game.playerTurn(idInstance).equals(idInstance)) {
             data.task = Task.CHOOSE_CATEGORY;
+            System.out.println("You choose category");
+
         } else {
             data.task = Task.NOT_YOUR_TURN;
+            System.out.println("You are waiting");
         }
         sendData(data);
     }

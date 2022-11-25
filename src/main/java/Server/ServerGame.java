@@ -5,14 +5,16 @@ import java.util.List;
 
 public class ServerGame {
     // BEHÖVER VI ENS DEN HÄR KLASSEN?
-    ServerSidePlayer theCurrentPlayer;
     List<Boolean> scoreOfPlayerOne;
     List<Boolean> scoreOfPlayerTwo;
+    boolean playerOneReady = false;
+    boolean playerTwoReady = false;
 
     int numberOfRounds;
-// TODO: FIXA SYNC PROBLEM?
+    // TODO: FIXA SYNC PROBLEM?
     private final String idInstanceOne = "Player_1";
     private final String idInstanceTwo = "Player_2";
+    String theCurrentPlayer = idInstanceOne;
 
     private static final int WAITING = 0;
     private static final int STARTROUND = 1;
@@ -26,13 +28,26 @@ public class ServerGame {
     private int currentQuestion = 0;
 
 
-    public synchronized boolean playerTurn(ServerSidePlayer player) {
+    public synchronized String playerTurn(String idInstance) {
         // Metod för att kontrollera turbaserade rundor. TODO;
-        if (player == theCurrentPlayer) {
-            theCurrentPlayer = theCurrentPlayer.opponent;
-            return true;
+        if(idInstance.equals(idInstanceOne)){
+            playerOneReady = true;
+        } else if (idInstance.equals(idInstanceTwo)){
+            playerTwoReady = true;
         }
-        return false;
+
+        String currentPlayerNow = theCurrentPlayer;
+
+        if (playerOneReady && playerTwoReady){
+            if (theCurrentPlayer.equals(idInstanceOne)) {
+                theCurrentPlayer = idInstanceTwo;
+            } else {
+                theCurrentPlayer = idInstanceOne;
+            }
+            playerOneReady = false;
+            playerTwoReady = false;
+        }
+        return currentPlayerNow;
     }
 
     public void getScore(List<Boolean> playerScores, String idInstance) {
