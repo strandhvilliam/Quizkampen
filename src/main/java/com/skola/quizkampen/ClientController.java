@@ -128,14 +128,12 @@ public class ClientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            client = new Client("127.0.0.1", this);
-            Thread clientThread = new Thread(client);
-            clientThread.setDaemon(true);
-            clientThread.start();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        System.out.println("Initialize method");
+
+    }
+
+    public void setupClient(Client client) {
+        this.client = client;
     }
 
     //test list

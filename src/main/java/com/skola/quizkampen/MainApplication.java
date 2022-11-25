@@ -17,7 +17,7 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
-        fxmlLoader.setController(new ClientController());
+        //fxmlLoader.setController(new ClientController());
         stage.show();
 
     }

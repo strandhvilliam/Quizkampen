@@ -49,8 +49,8 @@ public class Client extends Task<Void> {
     protected Void call() throws Exception {
         try {
             socket = new Socket(serverAddress, PORT);
-            inputStream = new ObjectInputStream(socket.getInputStream());
             outputStream = new ObjectOutputStream(socket.getOutputStream());
+            inputStream = new ObjectInputStream(socket.getInputStream());
 
             Object fromServer;
             while ((fromServer = inputStream.readObject()) != null) {
