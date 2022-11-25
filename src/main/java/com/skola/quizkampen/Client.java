@@ -17,6 +17,12 @@ public class Client extends Task<Void> {
 
     private static final String PROPERTIES_PROTOCOL = "PROPERTIES_PROTOCOL";
 
+    private static final String NOT_YOUR_TURN = "NOT_YOUR_TURN";
+    private static final String CHOOSE_CATEGORY = "CHOOSE_CATEGORY";
+
+    private static final String START_ROUND = "START_ROUND";
+
+
 
     private final String serverAddress;
 
@@ -53,10 +59,15 @@ public class Client extends Task<Void> {
     }
 
 
-    public void sendObject(Object obj) throws IOException {
-        outputStream.writeObject(obj);
-        outputStream.flush();
-        outputStream.reset();
+    public void sendObject(Object obj) {
+        try {
+            outputStream.writeObject(obj);
+            outputStream.flush();
+            outputStream.reset();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     /**
@@ -70,13 +81,7 @@ public class Client extends Task<Void> {
     }
 
     public void requestCategoryQuestions(Category category) {
-        //TODO: skicka kategori
-
-        //TEST
-        /*List<Question> testList = new ArrayList<>();
-        testList.add(new Question("Vad är det för dag?", "Tisdag", Category.GEOGRAFI, new String[] {"FEL", "FEL", "FEL"}));
-        testList.add(new Question("Vad är det för imorgon?", "Onsdag", Category.GEOGRAFI, new String[] {"FEL", "FEL", "FEL"}));
-        processResponse(testList); */
+        sendObject(category);
     }
 
     public void requestOtherUsername() {
@@ -121,6 +126,14 @@ public class Client extends Task<Void> {
             int[] properties = (int[]) resFromServer;
             Platform.runLater(() -> controller.totalNumOfRounds = properties[0]);
             Platform.runLater(() -> controller.questionsPerRound = properties[1]);
+            sendObject(START_ROUND);
+        } else if (resFromServer instanceof String) {
+            String res = (String) resFromServer;
+            if (res.equals(CHOOSE_CATEGORY)) {
+                controller.displayCategoryChooser();
+            } else if (res.equals(NOT_YOUR_TURN)) {
+                controller.displayWaitingWindow();
+            }
         }
 
         /*

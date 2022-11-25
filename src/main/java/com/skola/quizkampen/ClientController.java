@@ -27,7 +27,7 @@ public class ClientController implements Initializable {
     protected int totalNumOfRounds;
     protected int questionsPerRound;
 
-
+    private Stage waitingWindow;
 
     private int testAmountOfRounds = 0;
 
@@ -54,8 +54,7 @@ public class ClientController implements Initializable {
             questionWindowController.initData(this, questionToDisplay);
 
             stage.show();
-        }
-        else{
+        } else {
             sendResult();
             requestIsDoneWithRound();
         }
@@ -195,5 +194,19 @@ public class ClientController implements Initializable {
         }
         stage.show();
 
+    }
+
+    public void displayWaitingWindow() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Choose category");
+        try {
+            stage.setScene(new Scene(fxmlLoader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.show();
+
+        waitingWindow = stage;
     }
 }
