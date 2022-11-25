@@ -24,6 +24,8 @@ public class Client extends Task<Void> {
     private final ClientController controller;
 
 
+
+
     public Client(String serverAdress, ClientController controller) throws IOException {
         this.serverAddress = serverAdress;
         this.controller = controller;
@@ -69,7 +71,7 @@ public class Client extends Task<Void> {
 
         //TEST
         List<Question> testList = new ArrayList<>();
-        testList.add(new Question("Vad är det för dag?", "Tisdag", Category.GEOGRAFI, new String[] {"FEL", "FEL", "FEL"}));
+        testList.add(new Question("Vad är det för dag?", "Tisdag",Category.GEOGRAFI, new String[] {"FEL", "FEL", "FEL"}));
         testList.add(new Question("Vad är det för imorgon?", "Onsdag", Category.GEOGRAFI, new String[] {"FEL", "FEL", "FEL"}));
         processResponse(testList);
     }
@@ -109,13 +111,12 @@ public class Client extends Task<Void> {
 
         /*
 
-
         OM servern skickar en lista med frågor från ur en kategori
             starta runda med frågor
             startRound(List<Questions>)
             controller.startRound
         OM servern skickar resultat från föregående omgång
-            be controllern visa ruta med statisktik och knapp att börja nästa omgång
+            be controllern visa ruta med statistik och knapp att börja nästa omgång
         OM servern skickar motståndarens namn
             be controllern initiera GUIn med motståndarens namn
 
