@@ -173,11 +173,7 @@ public class ClientController implements Initializable {
     public void startGame(String username) {
         String[] req = {"START_GAME", username};
 
-        try {
-            client.sendObject(req);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        client.sendObject(req);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
         Stage stage = new Stage();
