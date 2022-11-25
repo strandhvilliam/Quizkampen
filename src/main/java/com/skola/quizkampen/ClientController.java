@@ -104,7 +104,6 @@ public class ClientController implements Initializable {
     public void chooseCategoryAction(ActionEvent event) {
         Button button = (Button) event.getSource();
         String categoryString = button.getText();
-
         for (Category category : Category.values()) {
             if (category.name.equalsIgnoreCase(categoryString)) {
                 client.requestCategoryQuestions(category);
@@ -112,7 +111,6 @@ public class ClientController implements Initializable {
                 break;
             }
         }
-
     }
 
 
