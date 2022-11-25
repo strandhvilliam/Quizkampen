@@ -22,6 +22,13 @@ public class ClientController implements Initializable {
     protected List<Boolean> roundResult = new ArrayList<>();
     private List<Question> questionsInRound;
 
+    protected String opponentName;
+
+    protected int totalNumOfRounds;
+    protected int questionsPerRound;
+
+
+
     private int testAmountOfRounds = 0;
 
 
