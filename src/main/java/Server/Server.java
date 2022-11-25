@@ -1,6 +1,5 @@
 package Server;
 
-import com.skola.quizkampen.Category;
 
 import java.io.IOException;
 import java.net.ServerSocket;

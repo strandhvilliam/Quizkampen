@@ -22,9 +22,12 @@ public class InitialController {
 
             clientThread.setDaemon(true);
             clientThread.start();
+            Thread.sleep(1000);
             clientController.setupClient(client);
             clientController.startGame(username);
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 

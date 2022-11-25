@@ -1,6 +1,8 @@
 package com.skola.quizkampen;
 
 import Server.Question;
+import TransferData.Data;
+import TransferData.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,7 +75,10 @@ public class ClientController implements Initializable {
     }
 
     public void sendResult() throws IOException {
-        client.sendObject(playerScore);
+        Data score = new Data();
+        score.task = Task.ROUND_FINISHED;
+        score.listOfBooleans = playerScore;
+        client.sendObject(score);
     }
 
 
@@ -105,9 +110,15 @@ public class ClientController implements Initializable {
     public void chooseCategoryAction(ActionEvent event) {
         Button button = (Button) event.getSource();
         String categoryString = button.getText();
+
+        Data categories = new Data();
+        categories.task = Task.CHOOSE_CATEGORY;
+
         for (Category category : Category.values()) {
             if (category.name.equalsIgnoreCase(categoryString)) {
-                client.requestCategoryQuestions(category);
+//                client.requestCategoryQuestions(category);
+                categories.category = Server.Category.valueOf(categoryString);
+                client.sendObject(categories);
                 System.out.println("Category chosen: " + category.name);
                 break;
             }
@@ -174,9 +185,11 @@ public class ClientController implements Initializable {
     }
 
     public void startGame(String username) {
-        String[] req = {"START_GAME", username};
+        Data data = new Data();
+        data.message = username;
+        data.task = Task.START_GAME;
+        client.sendObject(data);
 
-        client.sendObject(req);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
         Stage stage = new Stage();
@@ -184,6 +197,7 @@ public class ClientController implements Initializable {
         try {
             stage.setScene(new Scene(fxmlLoader.load()));
         } catch (IOException e) {
+            e.getCause();
             e.printStackTrace();
         }
         stage.show();

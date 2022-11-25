@@ -1,9 +1,13 @@
 package Server;
 
 
+import TransferData.Data;
+import TransferData.Task;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Properties;
 
@@ -24,19 +28,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     int rounderCounter = 1;
 
-    private static final String START_GAME = "START_GAME";
-
-    private final static String START_ROUND = "START_ROUND";
-    private static final String PROPERTIES_PROTOCOL = "PROPERTIES_PROTOCOL";
-    private static final String OPPONENT_NAME = "OPPONENT_NAME";
-
-    public static final String ROUND_FINISHED = "ROUND_FINISHED";
-
     protected boolean isWaiting = false;
-
-    private static final String CHOOSE_CATEGORY = "CHOOSE_CATEGORY";
-    private static final String NOT_YOUR_TURN = "NOT_YOUR_TURN";
-    private static final String GAME_FINISHED = "GAME_FINISHED";
 
 
     public ServerSidePlayer(Socket socket, String idInstance, ServerGame game) throws IOException {
@@ -56,10 +48,11 @@ public class ServerSidePlayer extends Thread implements Serializable {
         this.nameOfPlayer = nameOfPlayer;
     }
 
-    public void sendOpponentName(String name) throws IOException {
-        String[] respons_name = {OPPONENT_NAME, name};
-        output.writeObject(respons_name);
-        flushAndReset();
+    public void sendOpponentName(String name){
+        Data data = new Data();
+        data.task = Task.OPPONENT_NAME;
+        data.message = name;
+        sendData(data);
     }
 
     public String getNameOfPlayer() {
@@ -80,23 +73,16 @@ public class ServerSidePlayer extends Thread implements Serializable {
         scorePlayer = new ArrayList<>(scores);
     }
 
-    public List<Boolean> getScore() {
-        return this.scorePlayer;
-    }
+
+    public void sendData(Data data) {
 
 
-    public void sendOpponentScoreStat() throws IOException {
-        //output.writeObject(opponent.getScore());
-//        if(!opponant.getScore().isEmpty()){
-
-        /*System.out.println("----\n" );
-        for (Boolean aBoolean : opponent.getScore()) {
-            System.out.println(aBoolean);
+        try {
+            output.writeObject(data);
+            flushAndReset();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        System.out.println("----\n" );*/  // TODO: Ändra tillbaka detta
-
-        output.writeObject(opponent.getScore());
-        flushAndReset();
 
        /* } else {
 //            output.writeObject(scoresOpponent);
@@ -109,76 +95,12 @@ public class ServerSidePlayer extends Thread implements Serializable {
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
 
-            Object object;
+            Data object;
 
             while (true) {
-                object = input.readObject();
-                if (object instanceof String[]) {
-                    String[] array = (String[]) object;
-                    if (array[0].equals(START_GAME)) {
-                        setNameOfPlayer(array[1]);
-                        opponent.sendOpponentName(getNameOfPlayer());
-                    }
-                }
-                if (object instanceof List<?>) {
-                    setScore((List<Boolean>) object);
-                    game.getScore(scorePlayer, idInstance);
-                } else if (object instanceof String s) {
-                    if (s.equals(ROUND_FINISHED)) {
-                        if (!opponent.isWaiting) {
-                            this.isWaiting = true;
-                        } else {
-                            this.isWaiting = false;
-                            opponent.isWaiting = false;
-                            sendOpponentScoreStat();
-                            opponent.sendOpponentScoreStat();
-//                            System.out.println(getScore() + " --> " + opponent.getScore());
-//                            game.getScore(getScore(), getName());
-//                            game.getScore(opponent.getScore(), getName());
+                object = (Data) input.readObject();
+                dataProtocol(object);
 
-                        }
-
-                    } else if (s.equals(PROPERTIES_PROTOCOL)) {
-                        int[] propertiesValues = new int[2];
-                        propertiesValues[0] = amountOfRounds;
-                        propertiesValues[1] = amountOfQuesitons;
-                        output.writeObject(propertiesValues);
-                    } else if (s.equals(START_ROUND)) {
-                        if (game.playerTurn(this)) {
-                            output.writeObject(CHOOSE_CATEGORY);
-                        } else {
-                            output.writeObject(NOT_YOUR_TURN);
-                        }
-
-                    } else if(s.equals(GAME_FINISHED)){
-                        String[] theWinner = game.getWinner();
-                        String[] sendArray = new String[3];
-                        if (theWinner[0].equals(idInstance)) {
-                            sendArray[0] = "WON";
-                        } else if (!theWinner[0].equals("DRAW")) {
-                            sendArray[0] = "DRAW";
-                        } else {
-                            sendArray[0] = "LOSE";
-                        }
-                        sendArray[1] = theWinner[1];
-                        sendArray[2] = theWinner[2];
-
-                        output.writeObject(sendArray);
-                        //TODO: implementera resultat av vinnare / förlorare
-                    }
-                } else if (object instanceof Category) {
-                    Category tempCategory = (Category) object;
-                    List<Question> listOfQuestions = db.getByCategory(tempCategory);
-                    output.writeObject(listOfQuestions);
-                }
-                flushAndReset();
-                /*System.out.println(scorePlayer.size());
-                System.out.println(opponant.getScore().size());
-
-                output.writeObject(scorePlayer);
-                if(this.scorePlayer.size() == 2 && opponant.getScore().size() == 2){
-                    sendOpponentScoreStat();
-                }*/
             }
         } catch (IOException e) {
             System.out.println("Could not find server: " + e.getMessage());
@@ -198,8 +120,25 @@ public class ServerSidePlayer extends Thread implements Serializable {
          */
     }
 
+    protected void dataProtocol(Data data) throws IOException {
+        switch (data.task) {
+            case START_GAME -> startGame(data);
+            case PROPERTIES_PROTOCOL -> propertiesProtocol();
+            case CHOOSE_CATEGORY -> setCategory(data);
+            case ROUND_FINISHED -> setScore(data);
+            case GAME_FINISHED -> gameFinished();
+            case START_ROUND -> startRound();
+        }
+    }
+
     public void showMessage(String s) {
         System.out.println(s);
+    }
+
+    protected void setScore(Data data) {
+
+        setScore(data.score);
+        game.getScore(scorePlayer, idInstance);
     }
 
     public void checkAnswer(String score) {
@@ -215,5 +154,73 @@ public class ServerSidePlayer extends Thread implements Serializable {
         }
 
     }
+
+    protected void setCategory(Data data) throws IOException {
+        List<Question> listOfQuestions = db.getByCategory(data.category);
+        output.writeObject(listOfQuestions);
+    }
+
+    protected void roundFinished() throws IOException {
+        if (!opponent.isWaiting) {
+            this.isWaiting = true;
+        } else {
+            this.isWaiting = false;
+            opponent.isWaiting = false;
+            Data data = new Data();
+            data.task = Task.OPPONENT_SCORE;
+            data.score = scorePlayer;
+
+            sendData(data);
+            opponent.sendData(data);
+
+//                            System.out.println(getScore() + " --> " + opponent.getScore());
+//                            game.getScore(getScore(), getName());
+//                            game.getScore(opponent.getScore(), getName());
+
+        }
+    }
+
+
+    protected void startGame(Data startGame) throws IOException {
+        setNameOfPlayer(startGame.message);
+        opponent.sendOpponentName(getNameOfPlayer());
+    }
+
+    protected void propertiesProtocol() throws IOException {
+        int[] propertiesValues = new int[2];
+        propertiesValues[0] = amountOfRounds;
+        propertiesValues[1] = amountOfQuesitons;
+        output.writeObject(propertiesValues);
+    }
+
+    protected void startRound() throws IOException {
+        Data data = new Data();
+        if (game.playerTurn(this)) {
+            data.task = Task.CHOOSE_CATEGORY;
+        } else {
+            data.task = Task.NOT_YOUR_TURN;
+        }
+        sendData(data);
+    }
+
+
+    protected void gameFinished() throws IOException {
+        String[] theWinner = game.getWinner();
+        String[] sendArray = new String[3];
+        if (theWinner[0].equals(idInstance)) {
+            sendArray[0] = "WON";
+        } else if (!theWinner[0].equals("DRAW")) {
+            sendArray[0] = "DRAW";
+        } else {
+            sendArray[0] = "LOSE";
+        }
+        sendArray[1] = theWinner[1];
+        sendArray[2] = theWinner[2];
+
+        output.writeObject(sendArray);
+        //TODO: implementera resultat av vinnare / förlorare
+    }
+
+
 }
 //Todo: Lägga till metod ifall en person har vunnit trots att det fortfarande finns ronder kvar att spela

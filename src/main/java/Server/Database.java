@@ -15,7 +15,7 @@ public class Database implements Serializable {
 
         Properties properties = new Properties();
         try {
-            properties.load(new FileInputStream("Settings.properties"));
+            properties.load(new FileInputStream("C:\\Users\\linus\\OneDrive\\Skrivbord\\Java Nacka\\Projekt skolan\\Quizkampen\\src\\main\\java\\Server\\Settings.properties"));
             String questionsPerGameString = properties.getProperty("roundsPerGame", "2");
             roundsPerGame = Integer.parseInt(questionsPerGameString);
             String questionsPerRoundString = properties.getProperty("questionsPerRound", "2");
@@ -87,7 +87,7 @@ public class Database implements Serializable {
         String wrongAnswer = "";
         String[] wrongAnswers = new String[3];
 
-        try (BufferedReader br = new BufferedReader(new FileReader("questions"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\linus\\OneDrive\\Skrivbord\\Java Nacka\\Projekt skolan\\Quizkampen\\src\\main\\java\\Server\\questions"))) {
             while((row = br.readLine()) != null){
                 if (!row.isBlank()) {
                     if (row.startsWith("spel")) {

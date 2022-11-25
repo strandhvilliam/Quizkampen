@@ -2,6 +2,7 @@ package com.skola.quizkampen;
 
 
 import Server.Question;
+import TransferData.Data;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 
@@ -63,15 +64,15 @@ public class Client extends Task<Void> {
     }
 
 
-    public void sendObject(Object obj) {
+    public void sendObject(Data obj) {
         try {
+            System.out.println("Client connection startat");
             outputStream.writeObject(obj);
             outputStream.flush();
             outputStream.reset();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     /**
@@ -80,13 +81,13 @@ public class Client extends Task<Void> {
      * @param username som hämtas från GUI controllern
      * @throws IOException
      */
-    public void initializeUser(String username /* TODO: bild för profilbild */) throws IOException {
+    public void initializeUser(Data username /* TODO: bild för profilbild */) throws IOException {
         sendObject(username);
     }
 
-    public void requestCategoryQuestions(Category category) {
-        sendObject(category);
-    }
+//    public void requestCategoryQuestions(Data category) {
+//        sendObject(category);
+//    }
 
     public void requestOtherUsername() {
         //TODO: skickar förfrågan till servern för motståndarens användarnamn
@@ -124,7 +125,9 @@ public class Client extends Task<Void> {
             String[] resArray = (String[]) resFromServer;
             if (resArray[0].equals(OPPONENT_NAME)) {
                 Platform.runLater(() -> controller.opponentName = resArray[1]);
-                sendObject(PROPERTIES_PROTOCOL);
+                Data data = new Data();
+                data.task = TransferData.Task.PROPERTIES_PROTOCOL;
+                sendObject(data);
             } else {
                 Platform.runLater(() -> controller.displayGameResult(resArray));
             }
@@ -160,11 +163,11 @@ public class Client extends Task<Void> {
     }
 
     public void requestNewRound() {
-        sendObject(START_ROUND);
+//        sendObject(START_ROUND);
     }
 
     public void requestGameOver() {
-        sendObject(GAME_FINISHED);
+//        sendObject(GAME_FINISHED);
     }
 
 
@@ -173,6 +176,6 @@ public class Client extends Task<Void> {
 
 
     public void requestPlayerDoneWithRound() {
-        sendObject(ROUND_FINISHED);
+//        sendObject(ROUND_FINISHED);
     }
 }

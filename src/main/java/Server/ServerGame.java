@@ -10,7 +10,7 @@ public class ServerGame {
     List<Boolean> scoreOfPlayerTwo;
 
     int numberOfRounds;
-
+// TODO: FIXA SYNC PROBLEM?
     private final String idInstanceOne = "Player_1";
     private final String idInstanceTwo = "Player_2";
 
