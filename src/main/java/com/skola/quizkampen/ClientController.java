@@ -1,5 +1,6 @@
 package com.skola.quizkampen;
 
+import Server.Question;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -102,7 +103,6 @@ public class ClientController implements Initializable {
     public void chooseCategoryAction(ActionEvent event) {
         Button button = (Button) event.getSource();
         String categoryString = button.getText();
-
         for (Category category : Category.values()) {
             if (category.name.equalsIgnoreCase(categoryString)) {
                 client.requestCategoryQuestions(category);
@@ -110,7 +110,6 @@ public class ClientController implements Initializable {
                 break;
             }
         }
-
     }
 
 

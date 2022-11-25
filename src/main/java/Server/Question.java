@@ -1,4 +1,5 @@
-package com.skola.quizkampen;
+package Server;
+
 
 import java.io.Serializable;
 

@@ -1,6 +1,7 @@
 package com.skola.quizkampen;
 
 
+import Server.Question;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 
@@ -8,7 +9,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Client extends Task<Void> {

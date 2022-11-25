@@ -1,4 +1,6 @@
-package com.skola.quizkampen;
+package Server;
+
+import com.skola.quizkampen.Category;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class QuestionGenerator {
     private String[] wrongAnswers = new String[3];
 
 
-    private Category category;
+    private com.skola.quizkampen.Category category;
     public List<Question> getAllQuestions(){
         int i = 0;
         try (BufferedReader br = new BufferedReader(new FileReader("D:\\javamapp\\Quizkampen\\src\\main\\java\\com\\skola\\quizkampen\\questions"))) {
@@ -23,32 +25,32 @@ public class QuestionGenerator {
                     if (row.startsWith("spel")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        category = Category.SPEL;
+                        category = com.skola.quizkampen.Category.SPEL;
                     }
                     if (row.startsWith("geografi")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        category = Category.GEOGRAFI;
+                        category = com.skola.quizkampen.Category.GEOGRAFI;
                     }
                     if (row.startsWith("historia")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        category = Category.HISTORIA;
+                        category = com.skola.quizkampen.Category.HISTORIA;
                     }
                     if (row.startsWith("film")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        category = Category.FILM;
+                        category = com.skola.quizkampen.Category.FILM;
                     }
                     if (row.startsWith("djur")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        category = Category.DJUR;
+                        category = com.skola.quizkampen.Category.DJUR;
                     }
                     if (row.startsWith("teknik")) {
                         int space = row.indexOf(' ');
                         question = row.substring(space + 1);
-                        category = Category.TEKNIK;
+                        category = com.skola.quizkampen.Category.TEKNIK;
                     }
                     if (row.startsWith("wrong")) {
                         int space = row.indexOf(' ');

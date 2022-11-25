@@ -1,24 +1,24 @@
-package com.skola.quizkampen;
+package Server;
 
 import java.io.*;
 import java.util.*;
 
 public class Database implements Serializable {
 
-    List<Question> allQuestions = new ArrayList<Question>();
+    static List<Question> allQuestions = new ArrayList<Question>();
+
+    static Category category;
     private int roundsPerGame;
     private int questionsPerRound;
-    private Category category;
 
-
-    public Database() throws FileNotFoundException, IOException {
+    public Database() {
 
         Properties properties = new Properties();
         try {
-            properties.load(new FileInputStream("src/main/java/com/skola/quizkampen/Settings.properties"));
-            String questionsPerGameString = properties.getProperty("roundsPerGame").trim();
+            properties.load(new FileInputStream("Settings.properties"));
+            String questionsPerGameString = properties.getProperty("roundsPerGame", "2");
             roundsPerGame = Integer.parseInt(questionsPerGameString);
-            String questionsPerRoundString = properties.getProperty("questionsPerRound").trim();
+            String questionsPerRoundString = properties.getProperty("questionsPerRound", "2");
             questionsPerRound = Integer.parseInt(questionsPerRoundString);
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
@@ -27,9 +27,7 @@ public class Database implements Serializable {
         }
     }
 
-
-
-    public void initializeQuestions() throws IOException {
+    /*public void initializeQuestions() throws IOException {
         allQuestions.clear();
 
         String filePath = "src/main/java/com/skola/quizkampen/questions.txt";
@@ -46,7 +44,7 @@ public class Database implements Serializable {
         } catch (IOException e) {
             System.out.println("IOException");
         }
-    }
+    }*/
 
     public void shuffleListOfQuestions() {
         Collections.shuffle(allQuestions);
@@ -54,16 +52,31 @@ public class Database implements Serializable {
 
     public List<Question> getAllQuestions(List<Question> questionTestList) {
         List<Question> questions = new ArrayList<>();
-        Category tempCategory=questionTestList.get(0).getCategory();
+        Category tempCategory = questionTestList.get(0).getCategory();
         questions.add(questionTestList.get(0));
 
-        for (int i=1; i<questionTestList.size(); i++){
-            if(questionTestList.get(i).getCategory().equals(questionTestList.get(0).getCategory())){
+        for (int i = 1; i < questionTestList.size(); i++) {
+            if (questionTestList.get(i).getCategory().equals(questionTestList.get(0).getCategory())) {
                 questions.add(questionTestList.get(i));
                 questionTestList.remove(i);
             }
         }
         return questions;
+    }
+
+
+    public List <Question> getByCategory(Category category) {
+        List<Question> categoryQList = new ArrayList<>();
+        getAllQuestions();
+        for (int i = 0; i < allQuestions.size(); i++) {
+            if (allQuestions.get(i).getCategory().equals(category)) {
+                categoryQList.add(allQuestions.get(i));
+            }
+        }
+        for (int i = 0; i < categoryQList.size(); i++) {
+            System.out.println(categoryQList.get(i).getQuestion());
+        }
+        return  categoryQList;
     }
 
     public void getAllQuestions(){
@@ -74,7 +87,7 @@ public class Database implements Serializable {
         String wrongAnswer = "";
         String[] wrongAnswers = new String[3];
 
-        try (BufferedReader br = new BufferedReader(new FileReader("D:\\javamapp\\Quizkampen\\src\\main\\java\\com\\skola\\quizkampen\\questions"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("questions"))) {
             while((row = br.readLine()) != null){
                 if (!row.isBlank()) {
                     if (row.startsWith("spel")) {
@@ -128,18 +141,7 @@ public class Database implements Serializable {
             e.printStackTrace();
         }
     }
-    public void getByCategory(Category category) {
-        List<Question> categoryQList = new ArrayList<>();
-        getAllQuestions();
-        for (int i = 0; i < allQuestions.size(); i++) {
-            if (allQuestions.get(i).getCategory().equals(category)) {
-                categoryQList.add(allQuestions.get(i));
-            }
-        }
-        for (int i = 0; i < categoryQList.size(); i++) {
-            System.out.println(categoryQList.get(i).getQuestion());
-        }
-    }
+
 
 
     public int getRoundsPerGame() {
@@ -149,5 +151,5 @@ public class Database implements Serializable {
     public int getQuestionsPerRound() {
         return questionsPerRound;
     }
-    
+
 }

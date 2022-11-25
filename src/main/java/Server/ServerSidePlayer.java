@@ -1,6 +1,5 @@
 package Server;
 
-import com.skola.quizkampen.Category;
 
 import java.io.*;
 import java.net.Socket;
@@ -16,6 +15,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
     ObjectInputStream input;
     ObjectOutputStream output;
     ServerGame game;
+    Database db = new Database();
 
     private int amountOfRounds;
     private int amountOfQuesitons;
@@ -24,13 +24,18 @@ public class ServerSidePlayer extends Thread implements Serializable {
     int rounderCounter = 1;
 
     private static final String START_GAME = "START_GAME";
+
+    private final static String START_ROUND = "START_ROUND";
     private static final String PROPERTIES_PROTOCOL = "PROPERTIES_PROTOCOL";
     private static final String OPPONENT_NAME = "OPPONENT_NAME";
 
     protected boolean isWaiting = false;
 
+    private static final String CHOOSE_CATEGORY = "CHOOSE_CATEGORY";
+    private static final String NOT_YOUR_TURN = "NOT_YOUR_TURN";
 
-    public ServerSidePlayer(Socket socket, String nameOfPlayer, ServerGame game) {
+
+    public ServerSidePlayer(Socket socket, String nameOfPlayer, ServerGame game) throws IOException {
         this.socket = socket;
         this.nameOfPlayer = nameOfPlayer;
         this.game = game;
@@ -38,13 +43,8 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
 
         Properties p = new Properties();
-        try{
-            p.load(new FileInputStream("Settings.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.amountOfRounds = Integer.parseInt(p.getProperty("roundsPerGame", "1"));
-        this.amountOfQuesitons = Integer.parseInt(p.getProperty("questionsPerRound", "2"));
+        this.amountOfRounds = db.getRoundsPerGame();
+        this.amountOfQuesitons = db.getQuestionsPerRound();
 
     }
 
@@ -55,15 +55,14 @@ public class ServerSidePlayer extends Thread implements Serializable {
     public void sendOpponentName(String name) throws IOException {
         String[] respons_name = {OPPONENT_NAME, name};
         output.writeObject(respons_name);
-        output.flush();
-        output.reset();
+        flushAndReset();
     }
 
-    public String getNameOfPlayer(){
+    public String getNameOfPlayer() {
         return this.nameOfPlayer;
     }
 
-    public String getOpponentName(){
+    public String getOpponentName() {
         return opponent.nameOfPlayer;
     }
 
@@ -93,8 +92,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
         System.out.println("----\n" );*/  // TODO: Ändra tillbaka detta
 
         output.writeObject(opponent.getScore());
-        output.flush();
-        output.reset();
+        flushAndReset();
 
        /* } else {
 //            output.writeObject(scoresOpponent);
@@ -112,17 +110,13 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
             while (true) {
                 object = input.readObject();
-
-
-                if(object instanceof String[]){
-                   String[] array = (String[]) object;
-                   if(array[0].equals(START_GAME)){
-                       setNameOfPlayer(array[1]);
-                       opponent.sendOpponentName(getNameOfPlayer());
-                   }
+                if (object instanceof String[]) {
+                    String[] array = (String[]) object;
+                    if (array[0].equals(START_GAME)) {
+                        setNameOfPlayer(array[1]);
+                        opponent.sendOpponentName(getNameOfPlayer());
+                    }
                 }
-
-
                 if (object instanceof List<?>) {
                     setScore((List<Boolean>) object);
                     game.getScore(scorePlayer, nameOfPlayer);
@@ -141,18 +135,25 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
                         }
 
-                    } else if(s.equals(PROPERTIES_PROTOCOL)){
+                    } else if (s.equals(PROPERTIES_PROTOCOL)) {
                         int[] propertiesValues = new int[2];
                         propertiesValues[0] = amountOfRounds;
                         propertiesValues[1] = amountOfQuesitons;
                         output.writeObject(propertiesValues);
-                        output.flush();
-                        output.reset();
+                    } else if (s.equals(START_ROUND)) {
+                        if (game.playerTurn(this)) {
+                            output.writeObject(CHOOSE_CATEGORY);
+                        } else {
+                            output.writeObject(NOT_YOUR_TURN);
+                        }
+
                     }
+                } else if(object instanceof Category){
+                    Category tempCategory = (Category) object;
+                    List<Question> listOfQuestions = db.getByCategory(tempCategory);
+                    output.writeObject(listOfQuestions);
                 }
-
-
-
+                flushAndReset();
                 /*System.out.println(scorePlayer.size());
                 System.out.println(opponant.getScore().size());
 
@@ -160,8 +161,6 @@ public class ServerSidePlayer extends Thread implements Serializable {
                 if(this.scorePlayer.size() == 2 && opponant.getScore().size() == 2){
                     sendOpponentScoreStat();
                 }*/
-
-
             }
         } catch (IOException e) {
             System.out.println("Could not find server: " + e.getMessage());
@@ -187,6 +186,15 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     public void checkAnswer(String score) {
         this.scorePlayer.add(Boolean.valueOf(score));  // användas för att spara svar från spelare.
+    }
+
+    public void flushAndReset() {
+        try {
+            output.flush();
+            output.reset();
+        } catch (IOException e) {
+        }
+
     }
 }
 
