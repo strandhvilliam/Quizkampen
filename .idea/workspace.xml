@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fccd1c21-8258-45c5-a70f-a0dfa3216f1c" name="Changes" comment="initial gui fix (but in wrong branch :( )">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" afterDir="false" />
+    <list default="true" id="fccd1c21-8258-45c5-a70f-a0dfa3216f1c" name="Changes" comment="send category request fixed">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669367214680</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="send category request fixed">
+      <created>1669374858765</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669374858765</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,6 +174,7 @@
     <MESSAGE value="added questions" />
     <MESSAGE value="name fix" />
     <MESSAGE value="initial gui fix (but in wrong branch :( )" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial gui fix (but in wrong branch :( )" />
+    <MESSAGE value="send category request fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="send category request fixed" />
   </component>
 </project>

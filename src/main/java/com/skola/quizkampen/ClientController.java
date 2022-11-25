@@ -129,11 +129,6 @@ public class ClientController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        try {
-//            client.requestStatistics();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
     //test list
