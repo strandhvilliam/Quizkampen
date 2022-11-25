@@ -42,7 +42,6 @@ public class ClientController implements Initializable {
         sätter namnet i GUIn
      */
 
-
     public void displayNextQuestion() throws IOException {
         if (questionsInRound.size() > 0) {
             Question questionToDisplay = questionsInRound.get(0);
@@ -247,4 +246,6 @@ public class ClientController implements Initializable {
     private void resultsController(String[] resArray) {
 
     }
+
+
 }

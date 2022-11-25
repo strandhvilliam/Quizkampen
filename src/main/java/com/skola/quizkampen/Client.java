@@ -28,7 +28,6 @@ public class Client extends Task<Void> {
     public static final String ROUND_FINISHED = "ROUND_FINISHED";
 
 
-
     private final String serverAddress;
 
 
@@ -53,14 +52,29 @@ public class Client extends Task<Void> {
             outputStream = new ObjectOutputStream(socket.getOutputStream());
             inputStream = new ObjectInputStream(socket.getInputStream());
 
-            Object fromServer;
-            while ((fromServer = inputStream.readObject()) != null) {
-                processResponse(fromServer);
+            Data fromServer;
+            while ((fromServer = (Data) inputStream.readObject()) != null) {
+                dataProtocol(fromServer);
             }
         } catch (IOException | ClassNotFoundException e) {
 
         }
         return null;
+    }
+
+    protected void dataProtocol(Data data) {
+        switch (data.task) {
+
+            // TODO: Fortsätt här. Skapa metoder för varje uppdrag enligt switch.
+
+            case START_GAME -> (data);
+            case PROPERTIES_PROTOCOL -> ();
+            case CHOOSE_CATEGORY -> (data);
+            case ROUND_FINISHED -> (data);
+            case GAME_FINISHED -> ();
+            case START_ROUND -> ();
+            // TODO: DO THIS SHIT
+        }
     }
 
 
