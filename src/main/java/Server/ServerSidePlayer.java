@@ -19,9 +19,8 @@ public class ServerSidePlayer extends Thread implements Serializable {
     ServerGame game;
     Database db = new Database();
 
-    private int amountOfRounds;
-    private int amountOfQuesitons;
-
+    private final int amountOfRounds;
+    private final int amountOfQuesitons;
 
     int rounderCounter = 1;
 
@@ -37,6 +36,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     private static final String CHOOSE_CATEGORY = "CHOOSE_CATEGORY";
     private static final String NOT_YOUR_TURN = "NOT_YOUR_TURN";
+    private static final String GAME_FINISHED = "GAME_FINISHED";
 
 
     public ServerSidePlayer(Socket socket, String idInstance, ServerGame game) throws IOException {
@@ -150,8 +150,12 @@ public class ServerSidePlayer extends Thread implements Serializable {
                             output.writeObject(NOT_YOUR_TURN);
                         }
 
+                    } else if(s.equals(GAME_FINISHED)){
+                        String[] theWinner = game.getWinner();
+                        output.writeObject(theWinner);
+                        //TODO: implementera resultat av vinnare / förlorare
                     }
-                } else if(object instanceof Category){
+                } else if (object instanceof Category) {
                     Category tempCategory = (Category) object;
                     List<Question> listOfQuestions = db.getByCategory(tempCategory);
                     output.writeObject(listOfQuestions);
@@ -196,10 +200,9 @@ public class ServerSidePlayer extends Thread implements Serializable {
             output.flush();
             output.reset();
         } catch (IOException e) {
+            System.out.println("Could not flush / reset object stream" + " " + e.getMessage());
         }
 
     }
 }
-
-// TODO: Lägg till metod för att flusha och resetta output.
 //Todo: Lägga till metod ifall en person har vunnit trots att det fortfarande finns ronder kvar att spela

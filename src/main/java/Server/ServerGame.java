@@ -50,6 +50,7 @@ public class ServerGame {
         int score1 = 0;
         int score2 = 0;
 
+
         if (scoreOfPlayerOne != null) {
             for (Boolean aBoolean : scoreOfPlayerOne) {
                 if (aBoolean) {
@@ -84,39 +85,53 @@ public class ServerGame {
 
     }
 
-    public void getWinner(List<Boolean> player, String name) {
-        List<Boolean> playerOne = new ArrayList<>();
-        List<Boolean> playerTwo = new ArrayList<>();
+    public String[] getWinner() {
+        List<Boolean> playerOne = this.scoreOfPlayerOne;
+        List<Boolean> playerTwo = this.scoreOfPlayerTwo;
+
         int playerScoreOne = 0;
         int playerScoreTwo = 0;
-        if(player != null && name.equals("Placeholder one")){
-            playerOne.addAll(player);
-        }
 
         for (Boolean aBoolean : playerOne) {
-            if(aBoolean){
+            if (aBoolean) {
                 playerScoreOne++;
             }
         }
 
         for (Boolean aBoolean : playerTwo) {
-            if(aBoolean){
+            if (aBoolean) {
                 playerScoreTwo++;
             }
         }
 
-        //TODO: skicka istället till båda klienterna
+        String[] results = new String[3];
+        if (playerScoreOne > playerScoreTwo) {
+            results[0] = idInstanceOne;
+            results[1] = String.valueOf(playerScoreOne);
+            results[2] = String.valueOf(playerScoreTwo);
+            return results;
+        } else if (playerScoreTwo > playerScoreOne) {
+            results[0] = idInstanceTwo;
+            results[1] = String.valueOf(playerScoreTwo);
+            results[2] = String.valueOf(playerScoreOne);
+            return results;
+        } else {
+            results[0] = "";
+            results[1] = String.valueOf(playerScoreOne);
+            results[2] = String.valueOf(playerScoreTwo);
+            return results;
+        }
 
-        System.out.println("Placeholder one total score "
+       /* System.out.println("Placeholder one total score "
                 + playerScoreOne
                 + " Placeholder two total score "
                 + playerScoreTwo
-                +"\nIndividual rounds: "
+                + "\nIndividual rounds: "
                 + playerOne
                 + " "
                 + playerTwo);
 
-        numberOfRounds++;
+        numberOfRounds++;*/
     }
 
 
