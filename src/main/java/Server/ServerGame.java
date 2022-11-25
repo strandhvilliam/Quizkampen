@@ -12,6 +12,18 @@ public class ServerGame {
     int scorePlayerTwo;
     int numberOfRounds;
 
+    private static final int WAITING = 0;
+    private static final int STARTROUND = 1;
+    private static final int NEXTROUND = 2;
+    private static final int NEXTGAME = 3;
+// för att bestämma vilken state spelaren är i
+
+    private static final int NUMBEROFQUESTIONS = 4;
+
+    private int state = WAITING;
+
+    private int currentQuestion = 0;
+
 
     public synchronized boolean playerTurn(ServerSidePlayer player) {
         // Metod för att kontrollera turbaserade rundor. TODO;
@@ -33,7 +45,7 @@ public class ServerGame {
             listOfPlayers2 = new ArrayList<>();
             listOfPlayers2.addAll(playerScores);
         }
-//        getWinner(listOfPlayers1, listOfPlayers2);
+
         int score1 = 0;
         int score2 = 0;
 
@@ -53,41 +65,54 @@ public class ServerGame {
             }
             numberOfQuestionsAnsweredTwo = listOfPlayers2.size();
         }
+        getWinner(listOfPlayers1, nameOfPlayer);
+
+
+
 
         if (numberOfQuestionsAnsweredOne == 4 && numberOfQuestionsAnsweredTwo == 4) {
-//            System.out.println("score one --> " + score1 + " score two --> " + score2 + " rounds --> " + numberOfQuestionsAnsweredOne + " number 2 --> " + numberOfQuestionsAnsweredTwo);
-            if(score1 > score2){
+            if (score1 > score2) {
+
                 System.out.println("Placeholder one won!" + " score Player 1 --> " + score1 + " Player 2 --> " + score2);
-            } else if(score1 == score2){
+            } else if (score1 == score2) {
                 System.out.println("It's a draw!");
             } else {
                 System.out.println("Placeholder 2 won!" + " score Player 2 --> " + score2 + " Player 1 --> " + score1);
             }
         }
+
     }
 
-    public void getWinner(List<Boolean> playerOne, List<Boolean> playerTwo) {
-        System.out.println(playerOne + " --> " + playerTwo);
-//        List<Boolean> asd1 = new ArrayList<>();
-//        List<Boolean> asd2 = new ArrayList<>();
+    public void getWinner(List<Boolean> player, String name) {
+        List<Boolean> playerOne = new ArrayList<>();
+        List<Boolean> playerTwo = new ArrayList<>();
+        int playerScoreOne = 0;
+        int playerScoreTwo = 0;
+        if(player != null && name.equals("Placeholder one")){
+            playerOne.addAll(player);
+        }
 
-//        asd1.addAll(playerOne);
-//        asd2.addAll(playerTwo);
-//        int score1 = 0;
-//        int score2 = 0;
         for (Boolean aBoolean : playerOne) {
-            if (aBoolean) {
-                scorePlayerOne++;
+            if(aBoolean){
+                playerScoreOne++;
             }
         }
 
         for (Boolean aBoolean : playerTwo) {
-            if (aBoolean) {
-                scorePlayerTwo++;
+            if(aBoolean){
+                playerScoreTwo++;
             }
         }
+        System.out.println("Placeholder one total score "
+                + playerScoreOne
+                + " Placeholder two total score "
+                + playerScoreTwo
+                +"\nIndividual rounds: "
+                + playerOne
+                + " "
+                + playerTwo);
+
         numberOfRounds++;
-        System.out.println("player one --> " + scorePlayerOne + " player two --> " + scorePlayerTwo + " --> " + numberOfRounds);
     }
 
 

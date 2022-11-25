@@ -13,6 +13,11 @@ import java.util.List;
 
 public class Client extends Task<Void> {
 
+    private static final String OPPONENT_NAME = "OPPONENT_NAME";
+
+    private static final String PROPERTIES_PROTOCOL = "PROPERTIES_PROTOCOL";
+
+
     private final String serverAddress;
 
 
@@ -68,10 +73,10 @@ public class Client extends Task<Void> {
         //TODO: skicka kategori
 
         //TEST
-        List<Question> testList = new ArrayList<>();
+        /*List<Question> testList = new ArrayList<>();
         testList.add(new Question("Vad är det för dag?", "Tisdag", Category.GEOGRAFI, new String[] {"FEL", "FEL", "FEL"}));
         testList.add(new Question("Vad är det för imorgon?", "Onsdag", Category.GEOGRAFI, new String[] {"FEL", "FEL", "FEL"}));
-        processResponse(testList);
+        processResponse(testList); */
     }
 
     public void requestOtherUsername() {
@@ -90,7 +95,7 @@ public class Client extends Task<Void> {
      *
      * @param resFromServer objekt som kommer från servern
      */
-    public void processResponse(Object resFromServer) {
+    public void processResponse(Object resFromServer) throws IOException {
         if (resFromServer instanceof List) {
             if (((List<?>) resFromServer).get(0) instanceof Question) {
                 List<Question> questionForRound = (List<Question>) resFromServer;
@@ -105,6 +110,17 @@ public class Client extends Task<Void> {
                 List<Boolean> opponentResult = (List<Boolean>) resFromServer;
                 Platform.runLater(() -> controller.displayStatistics(opponentResult));
             }
+        } else if (resFromServer instanceof String[]) {
+            String[] resArray = (String[]) resFromServer;
+            if (resArray[0].equals(OPPONENT_NAME)) {
+                Platform.runLater(() -> controller.opponentName = resArray[1]);
+                sendObject(PROPERTIES_PROTOCOL);
+            }
+
+        } else if (resFromServer instanceof int[]) {
+            int[] properties = (int[]) resFromServer;
+            Platform.runLater(() -> controller.totalNumOfRounds = properties[0]);
+            Platform.runLater(() -> controller.questionsPerRound = properties[1]);
         }
 
         /*
@@ -115,7 +131,7 @@ public class Client extends Task<Void> {
             startRound(List<Questions>)
             controller.startRound
         OM servern skickar resultat från föregående omgång
-            be controllern visa ruta med statisktik och knapp att börja nästa omgång
+            be controllern visa ruta med statistik och knapp att börja nästa omgång
         OM servern skickar motståndarens namn
             be controllern initiera GUIn med motståndarens namn
 

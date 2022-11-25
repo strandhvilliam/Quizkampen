@@ -22,6 +22,13 @@ public class ClientController implements Initializable {
     protected List<Boolean> roundResult = new ArrayList<>();
     private List<Question> questionsInRound;
 
+    protected String opponentName;
+
+    protected int totalNumOfRounds;
+    protected int questionsPerRound;
+
+
+
     private int testAmountOfRounds = 0;
 
 
@@ -164,6 +171,27 @@ public class ClientController implements Initializable {
             testAmountOfRounds = 0;
         }
 
+
+    }
+
+    public void startGame(String username) {
+        String[] req = {"START_GAME", username};
+
+        try {
+            client.sendObject(req);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Choose category");
+        try {
+            stage.setScene(new Scene(fxmlLoader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.show();
 
     }
 }
