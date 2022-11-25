@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="restructured packages">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" afterDir="false" />
-    </list>
+    <list default="true" id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -159,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669383058725</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fetching and setting up winner for show in GUI.">
+      <created>1669388117966</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669388117966</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +199,7 @@
     <MESSAGE value="Updated master branch to current version." />
     <MESSAGE value="moved classes" />
     <MESSAGE value="restructured packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="restructured packages" />
+    <MESSAGE value="fetching and setting up winner for show in GUI." />
+    <option name="LAST_COMMIT_MESSAGE" value="fetching and setting up winner for show in GUI." />
   </component>
 </project>
