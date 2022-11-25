@@ -22,6 +22,10 @@ public class Client extends Task<Void> {
 
     private static final String START_ROUND = "START_ROUND";
 
+    public static final String GAME_OVER = "GAME_OVER";
+
+    public static final String ROUND_FINISHED = "ROUND_FINISHED";
+
 
 
     private final String serverAddress;
@@ -127,7 +131,7 @@ public class Client extends Task<Void> {
             int[] properties = (int[]) resFromServer;
             Platform.runLater(() -> controller.totalNumOfRounds = properties[0]);
             Platform.runLater(() -> controller.questionsPerRound = properties[1]);
-            sendObject(START_ROUND);
+            requestNewRound();
         } else if (resFromServer instanceof String) {
             String res = (String) resFromServer;
             if (res.equals(CHOOSE_CATEGORY)) {
@@ -153,7 +157,20 @@ public class Client extends Task<Void> {
 
     }
 
+    public void requestNewRound() {
+        sendObject(START_ROUND);
+    }
+
+    public void requestGameOver() {
+        sendObject(GAME_OVER);
+    }
+
 
     public static void main(String[] args) throws IOException {
+    }
+
+
+    public void requestPlayerDoneWithRound() {
+        sendObject(ROUND_FINISHED);
     }
 }

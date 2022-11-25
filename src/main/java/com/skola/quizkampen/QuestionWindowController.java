@@ -51,9 +51,9 @@ public class QuestionWindowController implements Initializable {
 
     private void checkIfCorrectAnswer(String userAnswer) {
         if (userAnswer.equals(currentQuestionRound.getCorrectAnswer())) {
-            clientController.roundResult.add(true);
+            clientController.playerScore.add(true);
         } else {
-            clientController.roundResult.add(false);
+            clientController.playerScore.add(false);
         }
     }
 

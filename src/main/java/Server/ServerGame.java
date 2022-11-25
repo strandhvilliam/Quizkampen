@@ -6,11 +6,13 @@ import java.util.List;
 public class ServerGame {
     // BEHÖVER VI ENS DEN HÄR KLASSEN?
     ServerSidePlayer theCurrentPlayer;
-    List<Boolean> listOfPlayers1;
-    List<Boolean> listOfPlayers2;
-    int scorePlayerOne;
-    int scorePlayerTwo;
+    List<Boolean> scoreOfPlayerOne;
+    List<Boolean> scoreOfPlayerTwo;
+
     int numberOfRounds;
+
+    private final String idInstanceOne = "Player_1";
+    private final String idInstanceTwo = "Player_2";
 
     private static final int WAITING = 0;
     private static final int STARTROUND = 1;
@@ -33,43 +35,43 @@ public class ServerGame {
         return false;
     }
 
-    public void getScore(List<Boolean> playerScores, String nameOfPlayer) {
+    public void getScore(List<Boolean> playerScores, String idInstance) {
         int numberOfQuestionsAnsweredOne = 0;
         int numberOfQuestionsAnsweredTwo = 0;
 
-        if (nameOfPlayer.equals("Placeholder one")) {
-            listOfPlayers1 = new ArrayList<>();
-            listOfPlayers1.addAll(playerScores);
-        } else if (nameOfPlayer.equals("Placeholder two")) {
-            listOfPlayers2 = new ArrayList<>();
-            listOfPlayers2.addAll(playerScores);
+        if (idInstance.equals(idInstanceOne)) {
+            scoreOfPlayerOne = new ArrayList<>();
+            scoreOfPlayerOne.addAll(playerScores);
+        } else if (idInstance.equals(idInstanceTwo)) {
+            scoreOfPlayerTwo = new ArrayList<>();
+            scoreOfPlayerTwo.addAll(playerScores);
         }
 
         int score1 = 0;
         int score2 = 0;
 
-        if (listOfPlayers1 != null) {
-            for (Boolean aBoolean : listOfPlayers1) {
+        if (scoreOfPlayerOne != null) {
+            for (Boolean aBoolean : scoreOfPlayerOne) {
                 if (aBoolean) {
                     score1++;
                 }
             }
-            numberOfQuestionsAnsweredOne = listOfPlayers1.size();
+            //numberOfQuestionsAnsweredOne = scoreOfPlayerOne.size();
         }
-        if (listOfPlayers2 != null) {
-            for (Boolean aBoolean : listOfPlayers2) {
+        if (scoreOfPlayerTwo != null) {
+            for (Boolean aBoolean : scoreOfPlayerTwo) {
                 if (aBoolean) {
                     score2++;
                 }
             }
-            numberOfQuestionsAnsweredTwo = listOfPlayers2.size();
+            //numberOfQuestionsAnsweredTwo = scoreOfPlayerTwo.size();
         }
-        getWinner(listOfPlayers1, nameOfPlayer);
+        //getWinner(scoreOfPlayerOne, idInstance);
 
 
 
 
-        if (numberOfQuestionsAnsweredOne == 4 && numberOfQuestionsAnsweredTwo == 4) {
+        /* if (numberOfQuestionsAnsweredOne == 4 && numberOfQuestionsAnsweredTwo == 4) {
             if (score1 > score2) {
 
                 System.out.println("Placeholder one won!" + " score Player 1 --> " + score1 + " Player 2 --> " + score2);
@@ -78,7 +80,7 @@ public class ServerGame {
             } else {
                 System.out.println("Placeholder 2 won!" + " score Player 2 --> " + score2 + " Player 1 --> " + score1);
             }
-        }
+        } */
 
     }
 
@@ -102,6 +104,9 @@ public class ServerGame {
                 playerScoreTwo++;
             }
         }
+
+        //TODO: skicka istället till båda klienterna
+
         System.out.println("Placeholder one total score "
                 + playerScoreOne
                 + " Placeholder two total score "

@@ -29,15 +29,22 @@ public class StatisticsController implements Initializable {
     private int numOfRounds;
 
 
-    public void initStatistics(ClientController clientController, List<Boolean> playerResult, List<Boolean> opponentResult, int numOfRounds) {
+    public void nextRoundAction() {
+        roundGrid.getScene().getWindow().hide();
+        clientController.checkIfGameIsOver();
+    }
+
+
+    public void initStatistics(ClientController clientController, List<Boolean> playerResult, List<Boolean> opponentResult, int numOfRounds, int amountOfQuestionPerRound) {
         this.clientController = clientController;
 
         //playerPointGrid.setGridLinesVisible(true);
         //opponentPointGrid.setGridLinesVisible(true);
 
-        this.totalQuestions = playerResult.size();
+        this.totalQuestions = amountOfQuestionPerRound;
 
-        int numOfColumns = playerResult.size() / numOfRounds;
+        int numOfColumns = numOfRounds * amountOfQuestionPerRound;
+
         System.out.println("rounds : " + numOfRounds);
         System.out.println("num of cols: " + numOfColumns);
         System.out.println("resultsize: " + playerResult.size());
@@ -67,18 +74,21 @@ public class StatisticsController implements Initializable {
                 VBox vBox = new VBox();
                 Label pointLabel = new Label("");
                 pointLabel.getStyleClass().add("point-circle");
-                if (result.get(0)) {
-                    pointLabel.getStyleClass().add("win-point-label");
-                } else {
-                    pointLabel.getStyleClass().add("loss-point-label");
+                if (!result.isEmpty()) {
+                    if (result.get(0)) {
+                        pointLabel.getStyleClass().add("win-point-label");
+                    } else {
+                        pointLabel.getStyleClass().add("loss-point-label");
+                    }
+                    result.remove(0);
                 }
+
                 vBox.setAlignment(Pos.CENTER);
                 vBox.getChildren().add(pointLabel);
                 gridPane.add(vBox, col, row);
                 GridPane.setVgrow(vBox, Priority.ALWAYS);
                 GridPane.setHgrow(vBox, Priority.ALWAYS);
 
-                result.remove(0);
             }
         }
 

@@ -13,8 +13,8 @@ public class Server {
         try (ServerSocket listener = new ServerSocket(5555)) {
             while (true) {
                 ServerGame game = new ServerGame();
-                ServerSidePlayer playerOne = new ServerSidePlayer(listener.accept(), "Placeholder one", game);
-                ServerSidePlayer playerTwo = new ServerSidePlayer(listener.accept(), "Placeholder two", game);
+                ServerSidePlayer playerOne = new ServerSidePlayer(listener.accept(), "Player_1", game);
+                ServerSidePlayer playerTwo = new ServerSidePlayer(listener.accept(), "Player_2", game);
 
                 playerOne.setOpponent(playerTwo);
                 playerTwo.setOpponent(playerOne);

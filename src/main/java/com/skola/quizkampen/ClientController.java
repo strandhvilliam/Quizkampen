@@ -32,7 +32,7 @@ public class ClientController implements Initializable {
 
     private Stage waitingWindow;
 
-    private int testAmountOfRounds = 0;
+
 
 
     /*TODO: metod som hanterar när användare skriver in användarnamn.
@@ -90,8 +90,8 @@ public class ClientController implements Initializable {
         stage.show();
     }
 
-    public void requestIsDoneWithRound() throws IOException {
-        client.sendObject("ROUND_FINISHED");
+    public void requestIsDoneWithRound() {
+        client.requestPlayerDoneWithRound();
     }
 
 
@@ -139,7 +139,7 @@ public class ClientController implements Initializable {
     }
 
     //test list
-    List<Boolean> myResult = new ArrayList<>(List.of(true, false, false, false, true, true, false, false, false, false, true, true));
+    //List<Boolean> myResult = new ArrayList<>(List.of(true, false, false, false, true, true, false, false, false, false, true, true));
 
 
     public void displayStatistics(List<Boolean> opponentResult) {
@@ -156,23 +156,21 @@ public class ClientController implements Initializable {
         }
 
         //TODO: antal rundor variabel ska bytas ut till properties värde senare
-        testAmountOfRounds = 3;
-        if (testAmountOfRounds == 3) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statistics.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Choose category");
-            try {
-                stage.setScene(new Scene(fxmlLoader.load()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-            StatisticsController controller = fxmlLoader.getController();
-            controller.initStatistics(this, playerScore, opponentResult, testAmountOfRounds);
 
-            stage.show();
-            testAmountOfRounds = 0;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statistics.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Choose category");
+        try {
+            stage.setScene(new Scene(fxmlLoader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        StatisticsController controller = fxmlLoader.getController();
+        controller.initStatistics(this, playerScore, opponentResult, totalNumOfRounds, questionsPerRound);
+
+        stage.show();
 
 
     }
@@ -207,5 +205,13 @@ public class ClientController implements Initializable {
 
         isWaiting = true;
         waitingWindow = stage;
+    }
+
+    public void checkIfGameIsOver() {
+        if (playerScore.size() == totalNumOfRounds) {
+            client.requestGameOver();
+        } else {
+            client.requestNewRound();
+        }
     }
 }

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Properties;
 
 public class ServerSidePlayer extends Thread implements Serializable {
+    final String idInstance;
+
     String nameOfPlayer;
     List<Boolean> scorePlayer;  // räkna antal poäng för spelare.
     ServerSidePlayer opponent;
@@ -29,15 +31,17 @@ public class ServerSidePlayer extends Thread implements Serializable {
     private static final String PROPERTIES_PROTOCOL = "PROPERTIES_PROTOCOL";
     private static final String OPPONENT_NAME = "OPPONENT_NAME";
 
+    public static final String ROUND_FINISHED = "ROUND_FINISHED";
+
     protected boolean isWaiting = false;
 
     private static final String CHOOSE_CATEGORY = "CHOOSE_CATEGORY";
     private static final String NOT_YOUR_TURN = "NOT_YOUR_TURN";
 
 
-    public ServerSidePlayer(Socket socket, String nameOfPlayer, ServerGame game) throws IOException {
+    public ServerSidePlayer(Socket socket, String idInstance, ServerGame game) throws IOException {
         this.socket = socket;
-        this.nameOfPlayer = nameOfPlayer;
+        this.idInstance = idInstance;
         this.game = game;
         this.scorePlayer = new ArrayList<>();
 
@@ -82,7 +86,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
 
     public void sendOpponentScoreStat() throws IOException {
-        output.writeObject(opponent.getScore());
+        //output.writeObject(opponent.getScore());
 //        if(!opponant.getScore().isEmpty()){
 
         /*System.out.println("----\n" );
@@ -104,7 +108,6 @@ public class ServerSidePlayer extends Thread implements Serializable {
         try {
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
-            System.out.println("Welcome " + nameOfPlayer);
 
             Object object;
 
@@ -119,9 +122,9 @@ public class ServerSidePlayer extends Thread implements Serializable {
                 }
                 if (object instanceof List<?>) {
                     setScore((List<Boolean>) object);
-                    game.getScore(scorePlayer, nameOfPlayer);
+                    game.getScore(scorePlayer, idInstance);
                 } else if (object instanceof String s) {
-                    if (s.equals("ROUND_FINISHED")) {
+                    if (s.equals(ROUND_FINISHED)) {
                         if (!opponent.isWaiting) {
                             this.isWaiting = true;
                         } else {

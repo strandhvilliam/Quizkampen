@@ -20,13 +20,6 @@ public class MainApplication extends Application {
         fxmlLoader.setController(new ClientController());
         stage.show();
 
-
-        ClientController c = fxmlLoader.getController();
-        List<Boolean> x = new ArrayList<>(c.myResult);
-        Collections.reverse(x);
-        c.roundResult = x;
-        c.displayStatistics(c.myResult);
-
     }
 
     public static void main(String[] args) {
