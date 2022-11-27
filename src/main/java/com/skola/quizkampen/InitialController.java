@@ -16,6 +16,7 @@ public class InitialController {
 
         clientController.startGame(username);
 
+        usernameTextField.getScene().getWindow().hide();
 
     }
 

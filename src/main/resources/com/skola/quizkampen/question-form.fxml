@@ -6,14 +6,15 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" styleClass="background-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.skola.quizkampen.QuestionWindowController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="560.0" styleClass="background-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.skola.quizkampen.QuestionWindowController">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="question-container" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            <Insets bottom="40.0" left="40.0" right="40.0" top="6.0" />
          </BorderPane.margin>
          <children>
             <Label prefHeight="76.0" prefWidth="76.0" styleClass="countdown-label" text="10" textAlignment="CENTER">
@@ -26,7 +27,7 @@
                   <Insets top="24.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="questionLabel" styleClass="large-question-label" text="Question?">
+            <Label fx:id="questionLabel" styleClass="large-question-label" text="Question?" wrapText="true">
                <VBox.margin>
                   <Insets top="6.0" />
                </VBox.margin>
@@ -41,22 +42,22 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="optionOneButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 1">
+                  <Button fx:id="optionOneButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 1" wrapText="true">
                      <graphic>
                         <Label styleClass="question-number" text="A" />
                      </graphic>
                   </Button>
-                  <Button fx:id="optionTwoButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 2" GridPane.columnIndex="1">
+                  <Button fx:id="optionTwoButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 2" wrapText="true" GridPane.columnIndex="1">
                      <graphic>
                         <Label styleClass="question-number" text="B" />
                      </graphic>
                   </Button>
-                  <Button fx:id="optionThreeButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 3" GridPane.rowIndex="1">
+                  <Button fx:id="optionThreeButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 3" wrapText="true" GridPane.rowIndex="1">
                      <graphic>
                         <Label styleClass="question-number" text="C" />
                      </graphic>
                   </Button>
-                  <Button fx:id="optionFourButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 4" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="optionFourButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 4" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <graphic>
                         <Label styleClass="question-number" text="D" />
                      </graphic>
@@ -69,4 +70,12 @@
          </children>
       </VBox>
    </center>
+   <top>
+      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="560.0" spacing="12.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="medium-white-label" text="Player: " />
+            <Label fx:id="playerNameLabel" style="-fx-font-weight: bold;" styleClass="medium-white-label" text="PLAYER_NAME" />
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

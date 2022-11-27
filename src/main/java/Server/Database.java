@@ -87,7 +87,7 @@ public class Database implements Serializable {
         String wrongAnswer = "";
         String[] wrongAnswers = new String[3];
 
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\villi\\Github Personal Projects\\Quizkampen\\src\\main\\java\\com\\skola\\quizkampen\\Question.java"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\villi\\Github Personal Projects\\Quizkampen\\src\\main\\java\\Server\\questions"))) {
             while((row = br.readLine()) != null){
                 if (!row.isBlank()) {
                     if (row.startsWith("spel")) {

@@ -6,6 +6,10 @@ import javafx.scene.control.Button;
 
 public class CategoryController {
 
+    private Client client;
+
+    private ClientController clientController;
+
     @FXML
     public void chooseCategoryAction(ActionEvent event) {
         Button button = (Button) event.getSource();
@@ -18,11 +22,12 @@ public class CategoryController {
                 break;
             }
         }
+        clientController.displayWaitingWindow();
+
     }
 
-    private Client client;
-
-    public void setupClient(Client client) {
+    public void setupClient(Client client, ClientController clientController) {
         this.client = client;
+        this.clientController = clientController;
     }
 }

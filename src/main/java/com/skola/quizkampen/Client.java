@@ -20,6 +20,8 @@ public class Client extends Task<Void> {
     private static final String NOT_YOUR_TURN = "NOT_YOUR_TURN";
     private static final String CHOOSE_CATEGORY = "CHOOSE_CATEGORY";
 
+    private static final String START_GAME = "START_GAME";
+
     private static final String START_ROUND = "START_ROUND";
 
     public static final String GAME_FINISHED = "GAME_FINISHED";
@@ -65,7 +67,6 @@ public class Client extends Task<Void> {
 
 
     public void sendObject(Object obj) {
-
             try {
                 outputStream.writeObject(obj);
                 outputStream.flush();
@@ -73,34 +74,24 @@ public class Client extends Task<Void> {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-
-
     }
 
-    /**
-     * Skickar object i form av sträng för att sätta användarnamn
-     *
-     * @param username som hämtas från GUI controllern
-     * @throws IOException
-     */
-    public void initializeUser(String username /* TODO: bild för profilbild */) throws IOException {
-        sendObject(username);
-    }
 
     public void requestCategoryQuestions(Category category) {
         System.out.println("requestCategoryQuestions + " + category.name);
         sendObject(category.name);
     }
 
-    public void requestOtherUsername() {
-        //TODO: skickar förfrågan till servern för motståndarens användarnamn
-    }
 
     public void requestStatistics() throws IOException {
         //TODO: fundera ut vilket format vi ska skicka till servern
         List<Boolean> testOpponentList = List.of(true, true, true, false);
         processResponse(testOpponentList);
+    }
+
+    public void requestStartGame(String username) {
+        String[] req = {START_GAME, username};
+        sendObject(req);
     }
 
 
@@ -146,7 +137,7 @@ public class Client extends Task<Void> {
             if (res.equals(CHOOSE_CATEGORY)) {
                 Platform.runLater(() -> controller.displayCategoryChooser());
             } else if (res.equals(NOT_YOUR_TURN)) {
-                //Platform.runLater(() -> controller.displayWaitingWindow());
+                Platform.runLater(() -> controller.displayWaitingWindow());
             }
             System.out.println("inside string");
         }

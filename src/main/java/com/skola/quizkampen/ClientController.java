@@ -35,6 +35,7 @@ public class ClientController implements Initializable {
     protected int questionsPerRound;
 
     private Stage waitingWindow;
+    private String username;
 
 
 
@@ -46,6 +47,10 @@ public class ClientController implements Initializable {
 
 
     public void displayNextQuestion() throws IOException {
+        if (isWaiting) {
+            waitingWindow.getScene().getWindow().hide();
+            isWaiting = false;
+        }
         if (questionsInRound.size() > 0) {
             Question questionToDisplay = questionsInRound.get(0);
             questionsInRound.remove(0);
@@ -58,7 +63,7 @@ public class ClientController implements Initializable {
                 throw new RuntimeException(e);
             }
             QuestionWindowController questionWindowController = loader.getController();
-            questionWindowController.initData(this, questionToDisplay);
+            questionWindowController.initData(this, questionToDisplay, username);
 
             stage.show();
         } else {
@@ -93,33 +98,13 @@ public class ClientController implements Initializable {
         }
 
         CategoryController categoryController = fxmlLoader.getController();
-        categoryController.setupClient(this.client);
+        categoryController.setupClient(this.client, this);
         stage.show();
     }
 
     public void requestIsDoneWithRound() {
         client.requestPlayerDoneWithRound();
     }
-
-
-    /**
-     * Metod som hanterar när användaren klickar på en kategori.
-     * Ber klienten skicka request till servern att valt kategori
-     *
-     */
-   /* @FXML
-    public void chooseCategoryAction(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        String categoryString = button.getText();
-        for (Category category : Category.values()) {
-            if (category.name.equalsIgnoreCase(categoryString)) {
-                System.out.println("Category chosen: " + category.name);
-
-                client.requestCategoryQuestions(category);
-                break;
-            }
-        }
-    } */
 
 
     public void startRound(List<Question> questions) throws IOException {
@@ -144,9 +129,6 @@ public class ClientController implements Initializable {
         System.out.println("Client set");
     }
 
-    //test list
-    //List<Boolean> myResult = new ArrayList<>(List.of(true, false, false, false, true, true, false, false, false, false, true, true));
-
 
     public void displayStatistics(List<Boolean> opponentResult) {
         System.out.println("Motståndare:");
@@ -160,9 +142,6 @@ public class ClientController implements Initializable {
         for (Boolean b : playerScore) {
             System.out.println(b);
         }
-
-        //TODO: antal rundor variabel ska bytas ut till properties värde senare
-
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statistics.fxml"));
         Stage stage = new Stage();
@@ -182,30 +161,22 @@ public class ClientController implements Initializable {
     }
 
     public void startGame(String username) {
-        String[] req = {"START_GAME", username};
+        this.username = username;
+
         System.out.println("inside startgame");
 
-        client.sendObject(req);
+        client.requestStartGame(username);
 
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Choose category");
-        try {
-            stage.setScene(new Scene(fxmlLoader.load()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.show();
-        //waitingWindow = stage;
-        //isWaiting = true;
+        displayWaitingWindow();
 
     }
+
+
 
     public void displayWaitingWindow() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("Choose category");
+        stage.setTitle("Waiting for opponent");
         try {
             stage.setScene(new Scene(fxmlLoader.load()));
         } catch (IOException e) {
@@ -214,6 +185,7 @@ public class ClientController implements Initializable {
         stage.show();
 
         waitingWindow = stage;
+        isWaiting = true;
     }
 
     public void checkIfGameIsOver() {
@@ -246,9 +218,13 @@ public class ClientController implements Initializable {
     }
 
     public void initOpponent(String s) {
-        opponentName = s;
 
-        //waitingWindow.getScene().getWindow().hide();
+        if (isWaiting) {
+            waitingWindow.getScene().getWindow().hide();
+            isWaiting = false;
+        }
+
+        opponentName = s;
 
     }
 }

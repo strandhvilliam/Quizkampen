@@ -80,7 +80,7 @@
 
 .question-button {
     -fx-padding: 16px 24px 16px 24px;
-    -fx-min-width: 140px;
+    -fx-min-width: 200px;
     -fx-border-width: 2;
     -fx-border-color: #323232;
     -fx-background-color: #ffffff;

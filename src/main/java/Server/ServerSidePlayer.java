@@ -174,9 +174,13 @@ public class ServerSidePlayer extends Thread implements Serializable {
                     } else {
                         for (Category category : Category.values()) {
                             if (category.name.equals(s)) {
+                                System.out.println("Category: " + category.name);
                                 List<Question> listOfQuestions = db.getByCategory(category);
                                 output.writeObject(listOfQuestions);
                                 opponent.output.writeObject(listOfQuestions);
+
+                                System.out.println(listOfQuestions.size());
+
                                 break;
                             }
                         }
