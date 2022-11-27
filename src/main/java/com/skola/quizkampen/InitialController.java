@@ -25,12 +25,8 @@ public class InitialController {
             Thread.sleep(100);
             clientController.setupClient(client);
             clientController.startGame(username);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
         }
-
-
     }
 }

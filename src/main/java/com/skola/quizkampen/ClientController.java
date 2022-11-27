@@ -196,7 +196,7 @@ public class ClientController implements Initializable {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("Choose category");
+        stage.setTitle("Waiting for opponent");
         try {
             stage.setScene(new Scene(fxmlLoader.load()));
         } catch (IOException e) {
