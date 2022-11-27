@@ -35,14 +35,6 @@ public class ClientController implements Initializable {
     private Stage waitingWindow;
     protected String userName;
 
-
-
-
-    /*TODO: metod som hanterar när användare skriver in användarnamn.
-        ber klienten skicka request till servern att valt användarnamn
-        sätter namnet i GUIn
-     */
-
     public void displayNextQuestion() {
         if (questionsInRound.size() > 0) {
             Question questionToDisplay = questionsInRound.get(0);
@@ -65,15 +57,6 @@ public class ClientController implements Initializable {
 
             requestIsDoneWithRound();
         }
-
-
-
-        /*else {
-           for (Boolean result : roundResult) {
-               System.out.println(result);
-           }
-        }*/
-
     }
 
     public void sendResult() {
@@ -85,6 +68,7 @@ public class ClientController implements Initializable {
 
 
     public void displayCategoryChooser() {
+        // TODO: Denna metod skapar krasch: EOF exception
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("categoryChooser.fxml"));
         fxmlLoader.setController(this);
         Stage stage = new Stage();
@@ -95,6 +79,15 @@ public class ClientController implements Initializable {
             e.printStackTrace();
         }
         stage.show();
+
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("questionScene.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) currentNode.getScene().getWindow();
+        Scene scene = new Scene(root);
+        Platform.runLater(() -> {
+            stage.setScene(scene);
+            stage.show();
+        });*/ // TODO: KANSKE ALTERNATIVT SÄTT ATT BYTA SCENER?
     }
 
     public void requestIsDoneWithRound() {
@@ -128,7 +121,7 @@ public class ClientController implements Initializable {
     }
 
 
-    public void startRound(List<Question> questions) throws IOException {
+    public void startRound(List<Question> questions) {
         this.questionsInRound = questions;
 
         if (isWaiting) {
@@ -208,6 +201,7 @@ public class ClientController implements Initializable {
     }
 
     public void displayWaitingWindow() {
+        // TODO: Denna metod skapar krasch: EOF exception
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Choose category");
@@ -248,8 +242,5 @@ public class ClientController implements Initializable {
     }
 
     private void resultsController(Data data) {
-
     }
-
-
 }

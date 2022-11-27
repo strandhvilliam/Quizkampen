@@ -78,8 +78,9 @@ public class Client extends Task<Void> {
 
 //            case START_GAME -> (data);
 //            case PROPERTIES_PROTOCOL -> ();
-            case CHOOSE_CATEGORY -> controller.displayCategoryChooser();
-            case NOT_YOUR_TURN -> controller.displayWaitingWindow();
+             case CHOOSE_CATEGORY -> controller.displayCategoryChooser();  // TODO: EOF EXCEPTION
+             case NOT_YOUR_TURN -> controller.displayWaitingWindow();  // TODO: EOF EXCEPTION
+
             case OPPONENT_NAME -> opponentsName(data);
 //            case ROUND_FINISHED -> (data);
             case STATISTICS -> requestStatistics();

@@ -46,17 +46,12 @@ public class ServerSidePlayer extends Thread implements Serializable {
         this.nameOfPlayer = nameOfPlayer;
     }
 
-    // Tar emot ett namn sparar namnet i data objektet tillsammans med själva uppgiften,
-    // skickar dataobjektet över streamen
-
-
     public void setScore(List<Boolean> scores) {
         //scorePlayer.addAll(scores);
         scorePlayer = new ArrayList<>(scores);
     }
 
 
-    // metod för att skicka data så programmet slipper throws exceptions och har allting samlat.
     public void sendData(Data data) {
         try {
             System.out.println("Server tries to send " + data.task + ", " + idInstance);
@@ -94,9 +89,6 @@ public class ServerSidePlayer extends Thread implements Serializable {
                 e.printStackTrace();
             }
         }
-
-        /*TODO: lägg till logiken för spelet. Om spelare svarar rätt spara antal poäng,
-           om spelare svarar fel spara antal fel eventuellt skicka till server*/
 
         /* WHILE output inte är tom
          *       OM output är en instans av lista med booleans
