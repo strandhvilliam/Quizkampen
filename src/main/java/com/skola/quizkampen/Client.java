@@ -46,7 +46,7 @@ public class Client extends Task<Void> {
     }
 
     @Override
-    protected Void call() throws Exception {
+    protected Void call() {
         try {
             socket = new Socket(serverAddress, PORT);
             outputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -54,51 +54,54 @@ public class Client extends Task<Void> {
 
             Data fromServer;
             while ((fromServer = (Data) inputStream.readObject()) != null) {
+                System.out.println("Client received " + fromServer.task);
                 dataProtocol(fromServer);
             }
         } catch (IOException | ClassNotFoundException e) {
-
+            e.getStackTrace();
+        } finally {
+            try {
+                System.out.println("Socket closed " + controller.userName);
+                outputStream.close();
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
 
-    protected void dataProtocol(Data data) throws IOException {
+    protected void dataProtocol(Data data) {
         switch (data.task) {
 
             // TODO: Fortsätt här. Skapa metoder för varje uppdrag enligt switch.
 
 //            case START_GAME -> (data);
 //            case PROPERTIES_PROTOCOL -> ();
-            case CHOOSE_CATEGORY -> chooseCategory();
-            case NOT_YOUR_TURN -> notYourTurn();
+            case CHOOSE_CATEGORY -> controller.displayCategoryChooser();
+            case NOT_YOUR_TURN -> controller.displayWaitingWindow();
             case OPPONENT_NAME -> opponentsName(data);
 //            case ROUND_FINISHED -> (data);
             case STATISTICS -> requestStatistics();
 //            case GAME_FINISHED -> ();
             case GAME_RESULT -> displayGameResult(data);
+//            case SET_QUESTIONS ->
 //            case START_ROUND -> ();
 
             // TODO: DO THIS SHIT
         }
     }
 
-    protected void chooseCategory() {
-        controller.displayCategoryChooser();
-    }
-
-    protected void notYourTurn() {
-        controller.displayWaitingWindow();
-    }
-
 
     public void sendObject(Data obj) {
         try {
-            System.out.println("Client connection startat");
+            System.out.println("Client tries to send " + obj.task);
             outputStream.writeObject(obj);
+            System.out.println("Client has sent " + obj.task);
             outputStream.flush();
             outputStream.reset();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -120,7 +123,7 @@ public class Client extends Task<Void> {
         //TODO: skickar förfrågan till servern för motståndarens användarnamn
     }
 
-    public void requestStatistics() throws IOException {
+    public void requestStatistics() {
         Data data = new Data();
         data.task = TransferData.Task.STATISTICS;
 //        data.listOfBooleans =
@@ -153,7 +156,7 @@ public class Client extends Task<Void> {
      *
      * @param resFromServer objekt som kommer från servern
      */
-    public void processResponse(Data resFromServer) throws IOException {
+    public void processResponse(Data resFromServer) {
         if (resFromServer instanceof List) {
             if (((List<?>) resFromServer).get(0) instanceof Question) {
                 List<Question> questionsForRound = (List<Question>) resFromServer;
@@ -162,7 +165,7 @@ public class Client extends Task<Void> {
                     try {
                         controller.startRound(questionsForRound);
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        e.printStackTrace();
                     }
                 });
             } else if (((List<?>) resFromServer).get(0) instanceof Boolean) {

@@ -15,7 +15,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     String nameOfPlayer;  // för att spelaren ska kunna välja namn
     List<Boolean> scorePlayer;  // räkna antal poäng för spelare.
-    ServerSidePlayer opponent;
+    String nameOfOpponent;
     Socket socket;
     ObjectInputStream input;
     ObjectOutputStream output;
@@ -29,7 +29,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
     protected boolean isWaiting = false;
 
 
-    public ServerSidePlayer(Socket socket, String idInstance, ServerGame game) throws IOException {
+    public ServerSidePlayer(Socket socket, String idInstance, ServerGame game) {
         this.socket = socket;
         this.idInstance = idInstance;
         this.game = game;
@@ -48,25 +48,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     // Tar emot ett namn sparar namnet i data objektet tillsammans med själva uppgiften,
     // skickar dataobjektet över streamen
-    public void sendOpponentName(String name) {
-        Data data = new Data();
-        data.task = Task.OPPONENT_NAME;
-        data.message = name;
-        sendData(data);
-    }
 
-    public String getNameOfPlayer() {
-        return this.nameOfPlayer;
-    }
-
-    public String getOpponentName() {
-        return opponent.nameOfPlayer;
-    }
-
-
-    public void setOpponent(ServerSidePlayer opponent) {
-        this.opponent = opponent;
-    }
 
     public void setScore(List<Boolean> scores) {
         //scorePlayer.addAll(scores);
@@ -74,11 +56,14 @@ public class ServerSidePlayer extends Thread implements Serializable {
     }
 
 
-    // metod för att skicka data så programmet slipper throwa exceptions och har allting samlat.
+    // metod för att skicka data så programmet slipper throws exceptions och har allting samlat.
     public void sendData(Data data) {
         try {
+            System.out.println("Server tries to send " + data.task + ", " + idInstance);
             output.writeObject(data);
-            flushAndReset();
+            System.out.println("Server sent " + data.task + ", " + idInstance);
+            output.flush();
+            output.reset();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,19 +75,24 @@ public class ServerSidePlayer extends Thread implements Serializable {
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
 
-            Data object;
-
             while (true) {
                 // Iterationen tar emot data från strömmen och skickar
                 // det vidare till protokollet som avgör vad som ska
                 // hända härnäst igenom en switch sats.
-                object = (Data) input.readObject();
+                Data object = (Data) input.readObject();
+                System.out.println("Server received " + object.task + ", " + idInstance);
                 dataProtocol(object);
             }
-        } catch (IOException e) {
-            System.out.println("Could not find server: " + e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                System.out.println("Socket closed " + idInstance);
+                output.close();
+                input.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         /*TODO: lägg till logiken för spelet. Om spelare svarar rätt spara antal poäng,
@@ -117,7 +107,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
          */
     }
 
-    protected void dataProtocol(Data data) throws IOException {
+    protected void dataProtocol(Data data) {
         // protocol för vad som ska hända i en switch.
         switch (data.task) {
             case START_GAME -> startGame(data);
@@ -142,72 +132,43 @@ public class ServerSidePlayer extends Thread implements Serializable {
         this.scorePlayer.add(Boolean.valueOf(score));  // användas för att spara svar från spelare.
     }
 
-    public void flushAndReset() {
-        try {
-            output.flush();
-            output.reset();
-        } catch (IOException e) {
-            System.out.println("Could not flush / reset object stream" + " " + e.getMessage());
-        }
 
-    }
-
-    protected void setCategory(Data data) throws IOException {
+    protected void setCategory(Data data) {
+        Data data1 = new Data();
         List<Question> listOfQuestions = db.getByCategory(data.category);
-        output.writeObject(listOfQuestions);
-    }
-
-    protected void roundFinished() {
-        if (!opponent.isWaiting) {
-            this.isWaiting = true;
-        } else {
-            this.isWaiting = false;
-            opponent.isWaiting = false;
-            Data data = new Data();
-            data.task = Task.OPPONENT_SCORE;
-            data.score = scorePlayer;
-
-            sendData(data);
-            opponent.sendData(data);
-
-            // TODO: Denna används inte?
-
-//                            System.out.println(getScore() + " --> " + opponent.getScore());
-//                            game.getScore(getScore(), getName());
-//                            game.getScore(opponent.getScore(), getName());
-
-        }
+        data1.task = Task.SET_QUESTIONS;
+        data1.listOfQuestions = listOfQuestions;
+        sendData(data1);
     }
 
 
-    protected void startGame(Data startGame) {
-        setNameOfPlayer(startGame.message);
-        opponent.sendOpponentName(getNameOfPlayer());
+    protected void startGame(Data data) {
+        setNameOfPlayer(data.message);
         startRound();
     }
 
-    protected void propertiesProtocol() throws IOException {
-        int[] propertiesValues = new int[2];
-        propertiesValues[0] = amountOfRounds;
-        propertiesValues[1] = amountOfQuesitons;
-        output.writeObject(propertiesValues);
-    }
-
-    protected void startRound() {
+    protected void propertiesProtocol() {
         Data data = new Data();
-        if (game.playerTurn(idInstance).equals(idInstance)) {
-            data.task = Task.CHOOSE_CATEGORY;
-            System.out.println("You choose category");
-
-        } else {
-            data.task = Task.NOT_YOUR_TURN;
-            System.out.println("You are waiting");
-        }
+        data.task = Task.PROPERTIES_PROTOCOL;
+        data.properties = new int[2];
+        data.properties[0] = amountOfRounds;
+        data.properties[1] = amountOfQuesitons;
         sendData(data);
     }
 
+    protected void startRound() {
+        if (idInstance.equals("Player_1")) {
+            nameOfOpponent = "Player_2";
+        } else {
+            nameOfOpponent = "Player_1";
+        }
+        sendData(game.playerTurn(idInstance));
+    }
 
-    protected void gameFinished() throws IOException {
+
+    protected void gameFinished() {
+        Data data = new Data();
+        data.task = Task.GAME_FINISHED;
         String[] theWinner = game.getWinner();
         String[] sendArray = new String[3];
         if (theWinner[0].equals(idInstance)) {
@@ -219,8 +180,8 @@ public class ServerSidePlayer extends Thread implements Serializable {
         }
         sendArray[1] = theWinner[1];
         sendArray[2] = theWinner[2];
-
-        output.writeObject(sendArray);
+        data.result = sendArray;
+        sendData(data);
         //TODO: implementera resultat av vinnare / förlorare
     }
 

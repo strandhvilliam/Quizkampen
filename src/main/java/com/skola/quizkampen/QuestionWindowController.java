@@ -36,8 +36,6 @@ public class QuestionWindowController implements Initializable {
     private Question currentQuestionRound;
 
 
-
-
     @FXML
     public void optionSelectedAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
@@ -67,7 +65,6 @@ public class QuestionWindowController implements Initializable {
         optionThreeButton.setText(allAnswers.get(2));
         optionFourButton.setText(allAnswers.get(3));
     }
-
 
 
     public void initData(ClientController clientController, Question question) {

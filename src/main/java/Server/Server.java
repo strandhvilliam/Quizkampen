@@ -14,9 +14,8 @@ public class Server {
                 ServerGame game = new ServerGame();
                 ServerSidePlayer playerOne = new ServerSidePlayer(listener.accept(), "Player_1", game);
                 ServerSidePlayer playerTwo = new ServerSidePlayer(listener.accept(), "Player_2", game);
+                game.setPlayers(playerOne, playerTwo);
 
-                playerOne.setOpponent(playerTwo);
-                playerTwo.setOpponent(playerOne);
                 /*game.currentPlayer = playerOne;*/  // tanken är att kontrollera vems tur det är från ticTacToe spelet,
                 //men kanske inte behövs, tankar kring detta?
                 playerTwo.start();

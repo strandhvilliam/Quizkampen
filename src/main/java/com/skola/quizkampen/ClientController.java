@@ -33,6 +33,7 @@ public class ClientController implements Initializable {
     protected int questionsPerRound;
 
     private Stage waitingWindow;
+    protected String userName;
 
 
 
@@ -42,7 +43,7 @@ public class ClientController implements Initializable {
         sätter namnet i GUIn
      */
 
-    public void displayNextQuestion() throws IOException {
+    public void displayNextQuestion() {
         if (questionsInRound.size() > 0) {
             Question questionToDisplay = questionsInRound.get(0);
             questionsInRound.remove(0);
@@ -52,14 +53,16 @@ public class ClientController implements Initializable {
             try {
                 stage.setScene(new Scene(loader.load()));
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
             QuestionWindowController questionWindowController = loader.getController();
             questionWindowController.initData(this, questionToDisplay);
 
             stage.show();
         } else {
+
             sendResult();
+
             requestIsDoneWithRound();
         }
 
@@ -73,11 +76,11 @@ public class ClientController implements Initializable {
 
     }
 
-    public void sendResult() throws IOException {
-        Data score = new Data();
-        score.task = Task.ROUND_FINISHED;
-        score.listOfBooleans = playerScore;
-        client.sendObject(score);
+    public void sendResult() {
+        Data data = new Data();
+        data.task = Task.ROUND_FINISHED;
+        data.listOfBooleans = playerScore;
+        client.sendObject(data);
     }
 
 
@@ -184,6 +187,7 @@ public class ClientController implements Initializable {
     }
 
     public void startGame(String username) {
+        this.userName = username;
         Data data = new Data();
         data.message = username;
         data.task = Task.START_GAME;
@@ -226,7 +230,7 @@ public class ClientController implements Initializable {
         }
     }
 
-    public void displayGameResult(String[] resArray) {
+    public void displayGameResult(Data data) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("results-windows.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Results");
@@ -238,12 +242,12 @@ public class ClientController implements Initializable {
 
         ResultsController resultsController = fxmlLoader.getController();
 
-        resultsController.initData(resArray);
+        resultsController.initData(data);
 
         stage.show();
     }
 
-    private void resultsController(String[] resArray) {
+    private void resultsController(Data data) {
 
     }
 

@@ -20,9 +20,9 @@ public class InitialController {
             Client client = new Client("127.0.0.1", clientController);
             Thread clientThread = new Thread(client);
 
-            clientThread.setDaemon(true);
+//            clientThread.setDaemon(true);
             clientThread.start();
-            Thread.sleep(1000);
+            Thread.sleep(100);
             clientController.setupClient(client);
             clientController.startGame(username);
         } catch (IOException e) {
