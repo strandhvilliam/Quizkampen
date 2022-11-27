@@ -62,19 +62,32 @@ public class Client extends Task<Void> {
         return null;
     }
 
-    protected void dataProtocol(Data data) {
+    protected void dataProtocol(Data data) throws IOException {
         switch (data.task) {
 
             // TODO: Fortsätt här. Skapa metoder för varje uppdrag enligt switch.
 
-            case START_GAME -> (data);
-            case PROPERTIES_PROTOCOL -> ();
-            case CHOOSE_CATEGORY -> (data);
-            case ROUND_FINISHED -> (data);
-            case GAME_FINISHED -> ();
-            case START_ROUND -> ();
+//            case START_GAME -> (data);
+//            case PROPERTIES_PROTOCOL -> ();
+            case CHOOSE_CATEGORY -> chooseCategory();
+            case NOT_YOUR_TURN -> notYourTurn();
+            case OPPONENT_NAME -> opponentsName(data);
+//            case ROUND_FINISHED -> (data);
+            case STATISTICS -> requestStatistics();
+//            case GAME_FINISHED -> ();
+            case GAME_RESULT -> displayGameResult(data);
+//            case START_ROUND -> ();
+
             // TODO: DO THIS SHIT
         }
+    }
+
+    protected void chooseCategory() {
+        controller.displayCategoryChooser();
+    }
+
+    protected void notYourTurn() {
+        controller.displayWaitingWindow();
     }
 
 
@@ -108,9 +121,30 @@ public class Client extends Task<Void> {
     }
 
     public void requestStatistics() throws IOException {
+        Data data = new Data();
+        data.task = TransferData.Task.STATISTICS;
+//        data.listOfBooleans =
+        // Spara till senare.
         //TODO: fundera ut vilket format vi ska skicka till servern
-        List<Boolean> testOpponentList = List.of(true, true, true, false);
-        processResponse(testOpponentList);
+        processResponse(data);
+    }
+
+    protected void opponentsName(Data data1) {
+        Platform.runLater(() -> controller.opponentName = data1.message);
+        Data data = new Data();
+        data.task = TransferData.Task.PROPERTIES_PROTOCOL;
+        sendObject(data);
+    }
+
+    protected void displayGameResult(Data data) {
+        Platform.runLater(() -> controller.displayGameResult(data));
+    }
+
+    protected void properties(Data data) {
+        // TODO: Fortsätt här in the next rework in jersey shore.
+        Platform.runLater(() -> controller.totalNumOfRounds = data.properties[0]);
+        Platform.runLater(() -> controller.questionsPerRound = data.properties[1]);
+        requestNewRound();
     }
 
 
@@ -119,7 +153,7 @@ public class Client extends Task<Void> {
      *
      * @param resFromServer objekt som kommer från servern
      */
-    public void processResponse(Object resFromServer) throws IOException {
+    public void processResponse(Data resFromServer) throws IOException {
         if (resFromServer instanceof List) {
             if (((List<?>) resFromServer).get(0) instanceof Question) {
                 List<Question> questionsForRound = (List<Question>) resFromServer;
@@ -134,29 +168,6 @@ public class Client extends Task<Void> {
             } else if (((List<?>) resFromServer).get(0) instanceof Boolean) {
                 List<Boolean> opponentResult = (List<Boolean>) resFromServer;
                 Platform.runLater(() -> controller.displayStatistics(opponentResult));
-            }
-        } else if (resFromServer instanceof String[]) {
-            String[] resArray = (String[]) resFromServer;
-            if (resArray[0].equals(OPPONENT_NAME)) {
-                Platform.runLater(() -> controller.opponentName = resArray[1]);
-                Data data = new Data();
-                data.task = TransferData.Task.PROPERTIES_PROTOCOL;
-                sendObject(data);
-            } else {
-                Platform.runLater(() -> controller.displayGameResult(resArray));
-            }
-
-        } else if (resFromServer instanceof int[]) {
-            int[] properties = (int[]) resFromServer;
-            Platform.runLater(() -> controller.totalNumOfRounds = properties[0]);
-            Platform.runLater(() -> controller.questionsPerRound = properties[1]);
-            requestNewRound();
-        } else if (resFromServer instanceof String) {
-            String res = (String) resFromServer;
-            if (res.equals(CHOOSE_CATEGORY)) {
-                controller.displayCategoryChooser();
-            } else if (res.equals(NOT_YOUR_TURN)) {
-                controller.displayWaitingWindow();
             }
         }
 

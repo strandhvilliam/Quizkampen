@@ -30,15 +30,15 @@ public class ServerGame {
 
     public synchronized String playerTurn(String idInstance) {
         // Metod för att kontrollera turbaserade rundor. TODO;
-        if(idInstance.equals(idInstanceOne)){
+        if (idInstance.equals(idInstanceOne)) {
             playerOneReady = true;
-        } else if (idInstance.equals(idInstanceTwo)){
+        } else if (idInstance.equals(idInstanceTwo)) {
             playerTwoReady = true;
         }
 
         String currentPlayerNow = theCurrentPlayer;
 
-        if (playerOneReady && playerTwoReady){
+        if (playerOneReady && playerTwoReady) {
             if (theCurrentPlayer.equals(idInstanceOne)) {
                 theCurrentPlayer = idInstanceTwo;
             } else {

@@ -7,14 +7,13 @@ import TransferData.Task;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Properties;
 
 public class ServerSidePlayer extends Thread implements Serializable {
-    final String idInstance;
+    final String idInstance;  // för att servern ska kunna skilja på instanserna
 
-    String nameOfPlayer;
+    String nameOfPlayer;  // för att spelaren ska kunna välja namn
     List<Boolean> scorePlayer;  // räkna antal poäng för spelare.
     ServerSidePlayer opponent;
     Socket socket;
@@ -25,7 +24,6 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     private final int amountOfRounds;
     private final int amountOfQuesitons;
-
     int rounderCounter = 1;
 
     protected boolean isWaiting = false;
@@ -48,6 +46,8 @@ public class ServerSidePlayer extends Thread implements Serializable {
         this.nameOfPlayer = nameOfPlayer;
     }
 
+    // Tar emot ett namn sparar namnet i data objektet tillsammans med själva uppgiften,
+    // skickar dataobjektet över streamen
     public void sendOpponentName(String name) {
         Data data = new Data();
         data.task = Task.OPPONENT_NAME;
@@ -74,19 +74,14 @@ public class ServerSidePlayer extends Thread implements Serializable {
     }
 
 
+    // metod för att skicka data så programmet slipper throwa exceptions och har allting samlat.
     public void sendData(Data data) {
-
-
         try {
             output.writeObject(data);
             flushAndReset();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-       /* } else {
-//            output.writeObject(scoresOpponent);
-        }*/
     }
 
     public void run() {
@@ -98,9 +93,11 @@ public class ServerSidePlayer extends Thread implements Serializable {
             Data object;
 
             while (true) {
+                // Iterationen tar emot data från strömmen och skickar
+                // det vidare till protokollet som avgör vad som ska
+                // hända härnäst igenom en switch sats.
                 object = (Data) input.readObject();
                 dataProtocol(object);
-
             }
         } catch (IOException e) {
             System.out.println("Could not find server: " + e.getMessage());
@@ -121,6 +118,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
     }
 
     protected void dataProtocol(Data data) throws IOException {
+        // protocol för vad som ska hända i en switch.
         switch (data.task) {
             case START_GAME -> startGame(data);
             case PROPERTIES_PROTOCOL -> propertiesProtocol();
@@ -136,7 +134,6 @@ public class ServerSidePlayer extends Thread implements Serializable {
     }
 
     protected void setScore(Data data) {
-
         setScore(data.score);
         game.getScore(scorePlayer, idInstance);
     }
@@ -172,6 +169,8 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
             sendData(data);
             opponent.sendData(data);
+
+            // TODO: Denna används inte?
 
 //                            System.out.println(getScore() + " --> " + opponent.getScore());
 //                            game.getScore(getScore(), getName());
