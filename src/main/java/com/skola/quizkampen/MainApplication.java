@@ -20,6 +20,25 @@ public class MainApplication extends Application {
         //fxmlLoader.setController(new ClientController());
         stage.show();
 
+        InitialController initialController = fxmlLoader.getController();
+
+
+        ClientController clientController = new ClientController();
+
+        Client client = new Client("127.0.0.1", clientController);
+        Thread clientThread = new Thread(client);
+        clientThread.setDaemon(true);
+        clientThread.start();
+
+        clientController.setupClient(client);
+
+        initialController.setupClientController(clientController);
+
+
+
+
+
+
     }
 
     public static void main(String[] args) {

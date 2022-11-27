@@ -2,7 +2,7 @@ package com.skola.quizkampen;
 
 import java.io.Serializable;
 
-public enum Category implements Serializable {
+public enum Category {
 
     DJUR("Djur & natur"),
     FILM ("Film & TV"),

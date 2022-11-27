@@ -1,6 +1,10 @@
 package com.skola.quizkampen;
 
 import Server.Question;
+import Server.ServerSidePlayer;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -78,15 +82,18 @@ public class ClientController implements Initializable {
 
 
     public void displayCategoryChooser() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("categoryChooser.fxml"));
-        fxmlLoader.setController(this);
+        System.out.println("displayCategoryChooser");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("category-chooser.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Choose category");
         try {
-            stage.setScene(new Scene(fxmlLoader.load(), 320, 240));
+            stage.setScene(new Scene(fxmlLoader.load()));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        CategoryController categoryController = fxmlLoader.getController();
+        categoryController.setupClient(this.client);
         stage.show();
     }
 
@@ -99,20 +106,20 @@ public class ClientController implements Initializable {
      * Metod som hanterar när användaren klickar på en kategori.
      * Ber klienten skicka request till servern att valt kategori
      *
-     * @param event klick på kategori
      */
-    @FXML
+   /* @FXML
     public void chooseCategoryAction(ActionEvent event) {
         Button button = (Button) event.getSource();
         String categoryString = button.getText();
         for (Category category : Category.values()) {
             if (category.name.equalsIgnoreCase(categoryString)) {
-                client.requestCategoryQuestions(category);
                 System.out.println("Category chosen: " + category.name);
+
+                client.requestCategoryQuestions(category);
                 break;
             }
         }
-    }
+    } */
 
 
     public void startRound(List<Question> questions) throws IOException {
@@ -134,6 +141,7 @@ public class ClientController implements Initializable {
 
     public void setupClient(Client client) {
         this.client = client;
+        System.out.println("Client set");
     }
 
     //test list
@@ -175,8 +183,10 @@ public class ClientController implements Initializable {
 
     public void startGame(String username) {
         String[] req = {"START_GAME", username};
+        System.out.println("inside startgame");
 
         client.sendObject(req);
+
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
         Stage stage = new Stage();
@@ -187,6 +197,8 @@ public class ClientController implements Initializable {
             e.printStackTrace();
         }
         stage.show();
+        //waitingWindow = stage;
+        //isWaiting = true;
 
     }
 
@@ -201,7 +213,6 @@ public class ClientController implements Initializable {
         }
         stage.show();
 
-        isWaiting = true;
         waitingWindow = stage;
     }
 
@@ -231,6 +242,13 @@ public class ClientController implements Initializable {
     }
 
     private void resultsController(String[] resArray) {
+
+    }
+
+    public void initOpponent(String s) {
+        opponentName = s;
+
+        //waitingWindow.getScene().getWindow().hide();
 
     }
 }

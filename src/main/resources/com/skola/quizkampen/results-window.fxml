@@ -40,7 +40,7 @@
       <HBox alignment="CENTER" prefHeight="127.0" prefWidth="660.0" spacing="40.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" styleClass="orange-button" text="Spela igen!" />
-            <Button mnemonicParsing="false" styleClass="white-button" text="Avsluta" />
+            <Button mnemonicParsing="false" onAction="#exitGameAction" styleClass="white-button" text="Avsluta" />
          </children>
       </HBox>
    </bottom>

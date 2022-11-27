@@ -51,6 +51,7 @@ public class Client extends Task<Void> {
             socket = new Socket(serverAddress, PORT);
             outputStream = new ObjectOutputStream(socket.getOutputStream());
             inputStream = new ObjectInputStream(socket.getInputStream());
+            System.out.println("inside call");
 
             Object fromServer;
             while ((fromServer = inputStream.readObject()) != null) {
@@ -64,13 +65,16 @@ public class Client extends Task<Void> {
 
 
     public void sendObject(Object obj) {
-        try {
-            outputStream.writeObject(obj);
-            outputStream.flush();
-            outputStream.reset();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+            try {
+                outputStream.writeObject(obj);
+                outputStream.flush();
+                outputStream.reset();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
 
     }
 
@@ -85,7 +89,8 @@ public class Client extends Task<Void> {
     }
 
     public void requestCategoryQuestions(Category category) {
-        sendObject(category);
+        System.out.println("requestCategoryQuestions + " + category.name);
+        sendObject(category.name);
     }
 
     public void requestOtherUsername() {
@@ -123,7 +128,8 @@ public class Client extends Task<Void> {
         } else if (resFromServer instanceof String[]) {
             String[] resArray = (String[]) resFromServer;
             if (resArray[0].equals(OPPONENT_NAME)) {
-                Platform.runLater(() -> controller.opponentName = resArray[1]);
+                Platform.runLater(() -> controller.initOpponent(resArray[1]));
+                System.out.println("inside opponent name");
                 sendObject(PROPERTIES_PROTOCOL);
             } else {
                 Platform.runLater(() -> controller.displayGameResult(resArray));
@@ -133,14 +139,16 @@ public class Client extends Task<Void> {
             int[] properties = (int[]) resFromServer;
             Platform.runLater(() -> controller.totalNumOfRounds = properties[0]);
             Platform.runLater(() -> controller.questionsPerRound = properties[1]);
+            System.out.println("inside properties");
             requestNewRound();
         } else if (resFromServer instanceof String) {
             String res = (String) resFromServer;
             if (res.equals(CHOOSE_CATEGORY)) {
-                controller.displayCategoryChooser();
+                Platform.runLater(() -> controller.displayCategoryChooser());
             } else if (res.equals(NOT_YOUR_TURN)) {
-                controller.displayWaitingWindow();
+                //Platform.runLater(() -> controller.displayWaitingWindow());
             }
+            System.out.println("inside string");
         }
 
         /*
@@ -167,9 +175,6 @@ public class Client extends Task<Void> {
         sendObject(GAME_FINISHED);
     }
 
-
-    public static void main(String[] args) throws IOException {
-    }
 
 
     public void requestPlayerDoneWithRound() {

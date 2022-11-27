@@ -108,16 +108,22 @@ public class ServerSidePlayer extends Thread implements Serializable {
         try {
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
-
             Object object;
 
             while (true) {
                 object = input.readObject();
-                if (object instanceof String[]) {
-                    String[] array = (String[]) object;
+
+                if (object instanceof String[] array) {
                     if (array[0].equals(START_GAME)) {
-                        setNameOfPlayer(array[1]);
-                        opponent.sendOpponentName(getNameOfPlayer());
+                        if (!opponent.isWaiting) {
+                            this.isWaiting = true;
+                        } else {
+                            opponent.isWaiting = false;
+                            setNameOfPlayer(array[1]);
+                            sendOpponentName(opponent.getNameOfPlayer());
+                            opponent.sendOpponentName(getNameOfPlayer());
+                        }
+
                     }
                 }
                 if (object instanceof List<?>) {
@@ -165,11 +171,23 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
                         output.writeObject(sendArray);
                         //TODO: implementera resultat av vinnare / förlorare
+                    } else {
+                        for (Category category : Category.values()) {
+                            if (category.name.equals(s)) {
+                                List<Question> listOfQuestions = db.getByCategory(category);
+                                output.writeObject(listOfQuestions);
+                                opponent.output.writeObject(listOfQuestions);
+                                break;
+                            }
+                        }
                     }
                 } else if (object instanceof Category) {
+                    System.out.println("Category received");
                     Category tempCategory = (Category) object;
+
                     List<Question> listOfQuestions = db.getByCategory(tempCategory);
                     output.writeObject(listOfQuestions);
+                    opponent.output.writeObject(listOfQuestions);
                 }
                 flushAndReset();
                 /*System.out.println(scorePlayer.size());

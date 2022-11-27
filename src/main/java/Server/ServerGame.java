@@ -27,6 +27,12 @@ public class ServerGame {
 
 
     public synchronized boolean playerTurn(ServerSidePlayer player) {
+
+        if (theCurrentPlayer == null) {
+            theCurrentPlayer = player;
+            return true;
+        }
+
         // Metod för att kontrollera turbaserade rundor. TODO;
         if (player == theCurrentPlayer) {
             theCurrentPlayer = theCurrentPlayer.opponent;
