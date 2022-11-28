@@ -5,4 +5,6 @@ module com.skola.quizkampen {
 
     opens com.skola.quizkampen to javafx.fxml;
     exports com.skola.quizkampen;
+    exports Server;
+    opens Server to javafx.fxml;
 }
