@@ -12,10 +12,9 @@ public class Database implements Serializable {
     private int questionsPerRound;
 
     public Database() {
-
         Properties properties = new Properties();
         try {
-            properties.load(new FileInputStream("C:\\Users\\villi\\Github Personal Projects\\Quizkampen\\src\\main\\java\\Server\\Settings.properties"));
+            properties.load(new FileInputStream("src/main/resources/Server/Settings.properties"));
             String questionsPerGameString = properties.getProperty("roundsPerGame", "2");
             roundsPerGame = Integer.parseInt(questionsPerGameString);
             String questionsPerRoundString = properties.getProperty("questionsPerRound", "2");
@@ -65,7 +64,7 @@ public class Database implements Serializable {
     }
 
 
-    public List <Question> getByCategory(Category category) {
+    public List<Question> getByCategory(Category category) {
         List<Question> categoryQList = new ArrayList<>();
         getAllQuestions();
         for (int i = 0; i < allQuestions.size(); i++) {
@@ -76,10 +75,10 @@ public class Database implements Serializable {
         for (int i = 0; i < categoryQList.size(); i++) {
             System.out.println(categoryQList.get(i).getQuestion());
         }
-        return  categoryQList;
+        return categoryQList;
     }
 
-    public void getAllQuestions(){
+    public void getAllQuestions() {
         int i = 0;
         String row;
         String question = "";
@@ -87,8 +86,8 @@ public class Database implements Serializable {
         String wrongAnswer = "";
         String[] wrongAnswers = new String[3];
 
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\villi\\Github Personal Projects\\Quizkampen\\src\\main\\java\\Server\\questions"))) {
-            while((row = br.readLine()) != null){
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/Server/questions"))) {
+            while ((row = br.readLine()) != null) {
                 if (!row.isBlank()) {
                     if (row.startsWith("spel")) {
                         int space = row.indexOf(' ');
@@ -141,7 +140,6 @@ public class Database implements Serializable {
             e.printStackTrace();
         }
     }
-
 
 
     public int getRoundsPerGame() {

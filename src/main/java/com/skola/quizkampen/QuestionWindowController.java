@@ -20,9 +20,6 @@ public class QuestionWindowController implements Initializable {
     @FXML
     private Label questionLabel = new Label();
 
-    @FXML
-    private Label playerNameLabel;
-
 
     @FXML
     private Button optionOneButton;
@@ -33,10 +30,10 @@ public class QuestionWindowController implements Initializable {
     @FXML
     private Button optionFourButton;
 
+
     private ClientController clientController;
+
     private Question currentQuestionRound;
-
-
 
 
     @FXML
@@ -70,13 +67,10 @@ public class QuestionWindowController implements Initializable {
     }
 
 
-
-    public void initData(ClientController clientController, Question question, String playerName) {
+    public void initData(ClientController clientController, Question question) {
         this.clientController = clientController;
         this.currentQuestionRound = question;
-        this.playerNameLabel.setText(playerName);
         setOptionButtons(List.of(question.getWrongAnswers()), question.getCorrectAnswer());
-        questionLabel.setText(question.getQuestion());
     }
 
     @Override

@@ -13,13 +13,12 @@ public class Question implements Serializable {
         this.question = question;
         this.correctAnswer = correctAnswer;
         this.category = category;
-        for (int i = 0; i < 3; i++) {
-            this.wrongAnswers[i] = wrongAnswers[i];
-        }
+        System.arraycopy(wrongAnswers, 0, this.wrongAnswers, 0, 3);
     }
 
     public Question(String dbQuestion, String[] dbAnswersArr, String dbCategory) {
     }
+
     public String getQuestion() {
         return question;
     }

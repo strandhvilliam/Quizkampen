@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="various bugfixes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/InitialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/InitialController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/QuestionWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ResultsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ResultsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/StatisticsController.java" afterDir="false" />
-    </list>
+    <list default="true" id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="various bugfixes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,9 +13,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -34,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="nyservermerge" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -68,15 +59,18 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\linus\OneDrive\Skrivbord\Java Nacka\Projekt skolan\Quizkampen\src\main\resources\Server" />
       <recent name="C:\Users\linus\OneDrive\Skrivbord\Java Nacka\Projekt skolan\Quizkampen\src\main\java\Server" />
       <recent name="D:\javamapp\Quizkampen\src\main\java\com\skola\quizkampen" />
     </key>
@@ -130,7 +124,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="moved initialize ClientController" />
+      <changelist id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="" />
       <created>1668762985455</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -139,11 +133,15 @@
       <workItem from="1669018204213" duration="16758000" />
       <workItem from="1669382150326" duration="195000" />
       <workItem from="1669382354684" duration="3591000" />
-      <workItem from="1669394635388" duration="4282000" />
-      <workItem from="1669552719215" duration="2546000" />
-      <workItem from="1669555274725" duration="2246000" />
-      <workItem from="1669558025316" duration="309000" />
-      <workItem from="1669618859433" duration="4346000" />
+      <workItem from="1669452666016" duration="1190000" />
+      <workItem from="1669465774427" duration="36000" />
+      <workItem from="1669490160446" duration="2003000" />
+      <workItem from="1669507161366" duration="621000" />
+      <workItem from="1669537679838" duration="174000" />
+      <workItem from="1669566245305" duration="217000" />
+      <workItem from="1669569997706" duration="337000" />
+      <workItem from="1669580407655" duration="13443000" />
+      <workItem from="1669622941371" duration="849000" />
     </task>
     <task id="LOCAL−00001" summary="la till kategori">
       <created>1669020334736</created>
@@ -197,35 +195,63 @@
       <option name="project" value="LOCAL" />
       <updated>1669390072561</updated>
     </task>
-    <task id="LOCAL-00009" summary="moved initialize ClientController">
-      <created>1669390793437</created>
+    <task id="LOCAL-00009" summary="reworked, everything.">
+      <created>1669403126616</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1669390793437</updated>
+      <updated>1669403126616</updated>
     </task>
-    <task id="LOCAL-00010" summary="fixed some bugs when running">
-      <created>1669554511401</created>
+    <task id="LOCAL-00010" summary="reworked, everything.">
+      <created>1669405556885</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1669554511401</updated>
+      <updated>1669405556885</updated>
     </task>
-    <task id="LOCAL-00011" summary="various bugfixes">
-      <created>1669558294605</created>
+    <task id="LOCAL-00011" summary="reworked, everything.">
+      <created>1669406306229</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1669558294605</updated>
+      <updated>1669406306229</updated>
     </task>
-    <task id="LOCAL-00012" summary="various bugfixes">
-      <created>1669619649167</created>
+    <task id="LOCAL-00012" summary="reworked, everything.">
+      <created>1669570315388</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1669619649167</updated>
+      <updated>1669570315388</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="reworked, everything.">
+      <created>1669591243514</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669591243514</updated>
+    </task>
+    <task id="LOCAL-00014" summary="reworked, everything.">
+      <created>1669591815510</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1669591815510</updated>
+    </task>
+    <task id="LOCAL-00015" summary="reworked, everything.">
+      <created>1669593475208</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1669593475208</updated>
+    </task>
+    <task id="LOCAL-00016" summary="reworked, everything.">
+      <created>1669593852346</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1669593852346</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +268,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="bug_fixes" />
+                        <option value="client_update" />
                       </list>
                     </value>
                   </entry>
@@ -264,13 +290,7 @@
     <MESSAGE value="moved classes" />
     <MESSAGE value="restructured packages" />
     <MESSAGE value="completed walkthrough of program" />
-    <MESSAGE value="moved initialize ClientController" />
-    <MESSAGE value="fixed some bugs when running" />
-    <MESSAGE value="various bugfixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="various bugfixes" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <MESSAGE value="reworked, everything." />
+    <option name="LAST_COMMIT_MESSAGE" value="reworked, everything." />
   </component>
 </project>

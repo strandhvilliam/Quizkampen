@@ -1,10 +1,8 @@
 package com.skola.quizkampen;
 
 import Server.Question;
-import Server.ServerSidePlayer;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
-import javafx.concurrent.Worker;
+import TransferData.Data;
+import TransferData.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,22 +33,9 @@ public class ClientController implements Initializable {
     protected int questionsPerRound;
 
     private Stage waitingWindow;
-    private String username;
+    protected String userName;
 
-
-
-
-    /*TODO: metod som hanterar när användare skriver in användarnamn.
-        ber klienten skicka request till servern att valt användarnamn
-        sätter namnet i GUIn
-     */
-
-
-    public void displayNextQuestion() throws IOException {
-        if (isWaiting) {
-            waitingWindow.getScene().getWindow().hide();
-            isWaiting = false;
-        }
+    public void displayNextQuestion() {
         if (questionsInRound.size() > 0) {
             Question questionToDisplay = questionsInRound.get(0);
             questionsInRound.remove(0);
@@ -60,38 +45,49 @@ public class ClientController implements Initializable {
             try {
                 stage.setScene(new Scene(loader.load()));
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
             QuestionWindowController questionWindowController = loader.getController();
-            questionWindowController.initData(this, questionToDisplay, username);
+            questionWindowController.initData(this, questionToDisplay);
 
             stage.show();
         } else {
+
             sendResult();
+
             requestIsDoneWithRound();
         }
-
     }
 
-    public void sendResult() throws IOException {
-        client.sendObject(playerScore);
+    public void sendResult() {
+        Data data = new Data();
+        data.task = Task.ROUND_FINISHED;
+        data.listOfBooleans = playerScore;
+        client.sendObject(data);
     }
 
 
     public void displayCategoryChooser() {
-        System.out.println("displayCategoryChooser");
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("category-chooser.fxml"));
+        // TODO: Denna metod skapar krasch: EOF exception
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("categoryChooser.fxml"));
+        fxmlLoader.setController(this);
         Stage stage = new Stage();
         stage.setTitle("Choose category");
         try {
-            stage.setScene(new Scene(fxmlLoader.load()));
+            stage.setScene(new Scene(fxmlLoader.load(), 320, 240));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        CategoryController categoryController = fxmlLoader.getController();
-        categoryController.setupClient(this.client, this);
         stage.show();
+
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("questionScene.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) currentNode.getScene().getWindow();
+        Scene scene = new Scene(root);
+        Platform.runLater(() -> {
+            stage.setScene(scene);
+            stage.show();
+        });*/ // TODO: KANSKE ALTERNATIVT SÄTT ATT BYTA SCENER?
     }
 
     public void requestIsDoneWithRound() {
@@ -99,7 +95,33 @@ public class ClientController implements Initializable {
     }
 
 
-    public void startRound(List<Question> questions) throws IOException {
+    /**
+     * Metod som hanterar när användaren klickar på en kategori.
+     * Ber klienten skicka request till servern att valt kategori
+     *
+     * @param event klick på kategori
+     */
+    @FXML
+    public void chooseCategoryAction(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        String categoryString = button.getText();
+
+        Data categories = new Data();
+        categories.task = Task.CHOOSE_CATEGORY;
+
+        for (Category category : Category.values()) {
+            if (category.name.equalsIgnoreCase(categoryString)) {
+//                client.requestCategoryQuestions(category);
+                categories.category = Server.Category.valueOf(categoryString);
+                client.sendObject(categories);
+                System.out.println("Category chosen: " + category.name);
+                break;
+            }
+        }
+    }
+
+
+    public void startRound(List<Question> questions) {
         this.questionsInRound = questions;
 
         if (isWaiting) {
@@ -112,13 +134,16 @@ public class ClientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Initialize method");
 
     }
 
     public void setupClient(Client client) {
         this.client = client;
-        System.out.println("Client set");
     }
+
+    //test list
+    //List<Boolean> myResult = new ArrayList<>(List.of(true, false, false, false, true, true, false, false, false, false, true, true));
 
 
     public void displayStatistics(List<Boolean> opponentResult) {
@@ -133,6 +158,9 @@ public class ClientController implements Initializable {
         for (Boolean b : playerScore) {
             System.out.println(b);
         }
+
+        //TODO: antal rundor variabel ska bytas ut till properties värde senare
+
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statistics.fxml"));
         Stage stage = new Stage();
@@ -152,22 +180,31 @@ public class ClientController implements Initializable {
     }
 
     public void startGame(String username) {
-        this.username = username;
-
-        System.out.println("inside startgame");
-
-        client.requestStartGame(username);
-
-        displayWaitingWindow();
-
-    }
+        this.userName = username;
+        Data data = new Data();
+        data.message = username;
+        data.task = Task.START_GAME;
+        client.sendObject(data);
 
 
-
-    public void displayWaitingWindow() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Waiting for opponent");
+        try {
+            stage.setScene(new Scene(fxmlLoader.load()));
+        } catch (IOException e) {
+            e.getCause();
+            e.printStackTrace();
+        }
+        stage.show();
+
+    }
+
+    public void displayWaitingWindow() {
+        // TODO: Denna metod skapar krasch: EOF exception
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Choose category");
         try {
             stage.setScene(new Scene(fxmlLoader.load()));
         } catch (IOException e) {
@@ -175,8 +212,8 @@ public class ClientController implements Initializable {
         }
         stage.show();
 
-        waitingWindow = stage;
         isWaiting = true;
+        waitingWindow = stage;
     }
 
     public void checkIfGameIsOver() {
@@ -187,7 +224,7 @@ public class ClientController implements Initializable {
         }
     }
 
-    public void displayGameResult(String[] resArray) {
+    public void displayGameResult(Data data) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("results-windows.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Results");
@@ -199,20 +236,11 @@ public class ClientController implements Initializable {
 
         ResultsController resultsController = fxmlLoader.getController();
 
-        resultsController.initData(resArray);
+        resultsController.initData(data);
 
         stage.show();
     }
 
-
-    public void initOpponent(String s) {
-
-        if (isWaiting) {
-            waitingWindow.getScene().getWindow().hide();
-            isWaiting = false;
-        }
-
-        opponentName = s;
-
+    private void resultsController(Data data) {
     }
 }

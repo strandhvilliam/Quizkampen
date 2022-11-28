@@ -10,17 +10,23 @@ public class InitialController {
     @FXML
     private TextField usernameTextField;
 
-    private ClientController clientController;
-
     @FXML
     void initializeGameAction(ActionEvent event) {
         String username = usernameTextField.getText();
-        clientController.startGame(username);
-        usernameTextField.getScene().getWindow().hide();
-    }
 
+        try {
+            ClientController clientController = new ClientController();
 
-    public void setupClientController(ClientController clientController) {
-        this.clientController = clientController;
+            Client client = new Client("127.0.0.1", clientController);
+            Thread clientThread = new Thread(client);
+
+//            clientThread.setDaemon(true);
+            clientThread.start();
+            Thread.sleep(100);
+            clientController.setupClient(client);
+            clientController.startGame(username);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

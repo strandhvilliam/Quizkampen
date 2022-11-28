@@ -1,18 +1,22 @@
 package Server;
 
+import TransferData.Data;
+import TransferData.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ServerGame {
-    // BEHÖVER VI ENS DEN HÄR KLASSEN?
-    ServerSidePlayer theCurrentPlayer;
     List<Boolean> scoreOfPlayerOne;
     List<Boolean> scoreOfPlayerTwo;
+    boolean playerOneReady = false;
+    boolean playerTwoReady = false;
+    ServerSidePlayer playerOne, playerTwo;
 
     int numberOfRounds;
-
     private final String idInstanceOne = "Player_1";
     private final String idInstanceTwo = "Player_2";
+    String theCurrentPlayer = idInstanceOne;
 
     private static final int WAITING = 0;
     private static final int STARTROUND = 1;
@@ -26,19 +30,31 @@ public class ServerGame {
     private int currentQuestion = 0;
 
 
-    public synchronized boolean playerTurn(ServerSidePlayer player) {
+    public synchronized Data playerTurn(String idInstance) {
+        Data data = new Data();
+        if (idInstance.equals(idInstanceOne)) {
+            playerOneReady = true;
 
-        if (theCurrentPlayer == null) {
-            theCurrentPlayer = player;
-            return true;
+        } else if (idInstance.equals(idInstanceTwo)) {
+            playerTwoReady = true;
+        }
+        if (theCurrentPlayer.equals(idInstance)) {
+            data.task = Task.CHOOSE_CATEGORY;
+        } else {
+            data.task = Task.NOT_YOUR_TURN;
         }
 
-        // Metod för att kontrollera turbaserade rundor. TODO;
-        if (player == theCurrentPlayer) {
-            theCurrentPlayer = theCurrentPlayer.opponent;
-            return true;
+        if (playerOneReady && playerTwoReady) {
+            if (theCurrentPlayer.equals(idInstanceOne)) {
+                theCurrentPlayer = idInstanceTwo;
+            } else {
+                theCurrentPlayer = idInstanceOne;
+            }
+
+            playerOneReady = false;
+            playerTwoReady = false;
         }
-        return false;
+        return data;
     }
 
     public void getScore(List<Boolean> playerScores, String idInstance) {
@@ -63,7 +79,6 @@ public class ServerGame {
                     score1++;
                 }
             }
-            //numberOfQuestionsAnsweredOne = scoreOfPlayerOne.size();
         }
         if (scoreOfPlayerTwo != null) {
             for (Boolean aBoolean : scoreOfPlayerTwo) {
@@ -71,24 +86,31 @@ public class ServerGame {
                     score2++;
                 }
             }
-            //numberOfQuestionsAnsweredTwo = scoreOfPlayerTwo.size();
         }
-        //getWinner(scoreOfPlayerOne, idInstance);
 
+    }
 
+    protected void roundFinished(List<Boolean> scorePlayer, String player) {
+        Data data = new Data();
+        data.task = Task.OPPONENT_SCORE;
 
+        Data data1 = new Data();
+        data1.task = Task.OPPONENT_SCORE;
 
-        /* if (numberOfQuestionsAnsweredOne == 4 && numberOfQuestionsAnsweredTwo == 4) {
-            if (score1 > score2) {
+        if (player.equals(idInstanceOne)) {
+            playerOneReady = true;
+            data1.score = scorePlayer;
+        } else if (player.equals(idInstanceTwo)) {
+            playerTwoReady = true;
+            data.score = scorePlayer;
+        }
 
-                System.out.println("Placeholder one won!" + " score Player 1 --> " + score1 + " Player 2 --> " + score2);
-            } else if (score1 == score2) {
-                System.out.println("It's a draw!");
-            } else {
-                System.out.println("Placeholder 2 won!" + " score Player 2 --> " + score2 + " Player 1 --> " + score1);
-            }
-        } */
-
+        if (playerOneReady && playerTwoReady) {
+            playerOneReady = false;
+            playerTwoReady = false;
+            playerOne.sendData(data);
+            playerTwo.sendData(data1);
+        }
     }
 
     public String[] getWinner() {
@@ -127,23 +149,12 @@ public class ServerGame {
             results[2] = String.valueOf(playerScoreTwo);
             return results;
         }
+    }
 
-       /* System.out.println("Placeholder one total score "
-                + playerScoreOne
-                + " Placeholder two total score "
-                + playerScoreTwo
-                + "\nIndividual rounds: "
-                + playerOne
-                + " "
-                + playerTwo);
-
-        numberOfRounds++;*/
+    public void setPlayers(ServerSidePlayer playerOne, ServerSidePlayer playerTwo) {
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
     }
 
 
-    /*
-        Eventuellt ta inspiration från:
-        https://github.com/sigrunolafsdottir/natverksprogrammering/blob/master/src/TicTacToeSimple/ServerSideGame.java
-        Vad vill vi behålla och inte behålla.
-    */
 }
