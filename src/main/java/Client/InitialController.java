@@ -12,10 +12,7 @@ public class InitialController {
     @FXML
     public void initializeGameAction(ActionEvent event) {
         String username = usernameTextField.getText();
-
         game.startGame(username);
-
-        //usernameTextField.getScene().getWindow().hide();
 
     }
 

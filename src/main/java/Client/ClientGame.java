@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ClientGame {
@@ -25,7 +26,7 @@ public class ClientGame {
     private int questionsPerRound;
     protected String playerName;
     protected String opponentName;
-    private List<Question> questionsForRound;
+    private List<Question> listOfQuestions;
 
 
     public ClientGame(Client client, Stage stage) {
@@ -35,7 +36,7 @@ public class ClientGame {
     }
 
     public void displayQuestionWindow() {
-        if (questionsForRound.size() > 0) {
+        if (listOfQuestions.size() > 0) {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("question-form.fxml"));
             stage.setTitle("Fråga");
@@ -46,9 +47,9 @@ public class ClientGame {
             }
 
             QuestionWindowController questionWindowController = loader.getController();
-            questionWindowController.initData(this, questionsForRound.get(0));
-            questionsForRound.remove(0);
-            System.out.println("Fråga: " + questionsForRound.size());
+            questionWindowController.initData(this, listOfQuestions.get(0));
+            listOfQuestions.remove(0);
+            System.out.println("Fråga: " + listOfQuestions.size());
             stage.show();
 
         } else {
@@ -158,7 +159,17 @@ public class ClientGame {
 
     public void startRound(List<Question> questionsForRound) {
         round++;
-        this.questionsForRound = new ArrayList<>(questionsForRound);
+        Collections.shuffle(questionsForRound);
+
+        List<Question> list = new ArrayList<>();
+        for (Question question : questionsForRound) {
+            list.add(question);
+            if (list.size() == questionsPerRound) {
+                break;
+            }
+        }
+
+        this.listOfQuestions = new ArrayList<>(list);
         displayQuestionWindow();
     }
 

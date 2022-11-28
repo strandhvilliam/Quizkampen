@@ -3,6 +3,7 @@ package Client;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 
@@ -24,6 +25,14 @@ public class StatisticsController implements Initializable {
     private GridPane roundGrid;
 
     private ClientGame game;
+    @FXML
+    private Label playerNameLabel;
+
+    @FXML
+    private Label opponentNameLabel;
+
+    @FXML
+    private Button nextRoundButton;
 
 
 
@@ -42,6 +51,13 @@ public class StatisticsController implements Initializable {
      */
     public void initData(ClientGame game, List<Boolean> playerResult, List<Boolean> opponentResult, int numOfRounds, int numOfColumns) {
         this.game = game;
+        playerNameLabel.setText(game.playerName);
+        opponentNameLabel.setText(game.opponentName);
+
+        if (playerResult.size() == numOfRounds * numOfColumns) {
+            nextRoundButton.setText("Se resultat!");
+        }
+
 
         for (int row = 0; row < numOfRounds; row++) {
             Label roundLabel = new Label("" + (row + 1));

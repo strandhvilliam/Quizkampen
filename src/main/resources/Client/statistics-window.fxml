@@ -60,9 +60,9 @@
                           </rowConstraints>
                            <children>
                               <Label prefHeight="46.0" prefWidth="46.0" style="-fx-font-size: 28;" styleClass="player-icon-label" text="1" />
-                              <Label layoutX="105.0" layoutY="74.0" styleClass="medium-black-thin-label" text="Player 1" GridPane.rowIndex="1" />
+                              <Label fx:id="playerNameLabel" layoutX="105.0" layoutY="74.0" styleClass="medium-black-thin-label" text="Player 1" GridPane.rowIndex="1" />
                               <Label layoutX="110.0" layoutY="8.0" prefHeight="46.0" prefWidth="46.0" style="-fx-font-size: 28;" styleClass="player-icon-label" text="2" GridPane.columnIndex="2" />
-                              <Label layoutX="105.0" layoutY="59.0" styleClass="medium-black-thin-label" text="Player 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Label fx:id="opponentNameLabel" layoutX="105.0" layoutY="59.0" styleClass="medium-black-thin-label" text="Player 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                            </children>
                            <HBox.margin>
                               <Insets left="12.0" right="12.0" top="16.0" />
@@ -88,7 +88,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="92.0" prefWidth="660.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="nextRoundButton" mnemonicParsing="false" onAction="#nextRoundAction" styleClass="orange-button" text="Next Round" />
+            <Button fx:id="nextRoundButton" mnemonicParsing="false" onAction="#nextRoundAction" styleClass="orange-button" text="Nästa Runda" />
          </children>
          <BorderPane.margin>
             <Insets bottom="12.0" top="12.0" />

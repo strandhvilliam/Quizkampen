@@ -65,7 +65,6 @@ public class Client extends javafx.concurrent.Task<Void> {
             case NOT_YOUR_TURN -> waitForOpponent();
             case OPPONENT_SCORE -> showStatistics(data);
             case OPPONENT_NAME -> initOpponentName(data);
-
             case GAME_RESULT -> displayGameResult(data);
             case SET_QUESTIONS -> setQuestions(data);
 

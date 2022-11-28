@@ -24,9 +24,6 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     private final int amountOfRounds;
     private final int amountOfQuesitons;
-    int rounderCounter = 1;
-
-    protected boolean isWaiting = false;
 
 
     public ServerSidePlayer(Socket socket, String idInstance, ServerGame game, Database db) {
