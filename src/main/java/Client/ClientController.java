@@ -1,13 +1,11 @@
-package com.skola.quizkampen;
+/*package Client;
 
-import TransferData.Data;
-import TransferData.Task;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import Models.Data;
+import Models.Question;
+import Models.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -82,9 +80,9 @@ public class ClientController implements Initializable {
         Platform.runLater(() -> {
             stage.setScene(scene);
             stage.show();
-        });*/ // TODO: KANSKE ALTERNATIVT SÄTT ATT BYTA SCENER?
+        }); // TODO: KANSKE ALTERNATIVT SÄTT ATT BYTA SCENER?
     }
-
+*/
     /*@FXML
     public void chooseCategoryAction(ActionEvent event) {
         Button button = (Button) event.getSource();
@@ -102,7 +100,7 @@ public class ClientController implements Initializable {
             }
         }
     } */
-
+/*
     public void startRound(List<Question> questions) {
         this.questionsInRound = questions;
 
@@ -140,7 +138,7 @@ public class ClientController implements Initializable {
         //TODO: antal rundor variabel ska bytas ut till properties värde senare
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statistics.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("statistics-window.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Choose category");
         try {
@@ -214,9 +212,9 @@ public class ClientController implements Initializable {
             e.printStackTrace();
         }
 
-        ResultsController resultsController = fxmlLoader.getController();
+        ResultWindowController resultsWindowController = fxmlLoader.getController();
 
-        resultsController.initData(data);
+        resultsWindowController.initData(data);
 
         stage.show();
     }
@@ -228,4 +226,4 @@ public class ClientController implements Initializable {
         data.task = Task.START_ROUND;
         client.sendObject(data);
     }
-}
+} */

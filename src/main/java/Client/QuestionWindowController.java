@@ -1,5 +1,6 @@
-package com.skola.quizkampen;
+package Client;
 
+import Models.Question;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,7 +20,6 @@ public class QuestionWindowController implements Initializable {
     @FXML
     private Label questionLabel = new Label();
 
-
     @FXML
     private Button optionOneButton;
     @FXML
@@ -30,9 +30,9 @@ public class QuestionWindowController implements Initializable {
     private Button optionFourButton;
 
 
-    private ClientController clientController;
+    private ClientGame game;
 
-    private Question currentQuestionRound;
+    private Question currentQuestion;
 
 
     @FXML
@@ -41,17 +41,12 @@ public class QuestionWindowController implements Initializable {
 
         //TODO: lägg in kod så att GUI reagerar med grönt om rätt, rött om fel
 
-        checkIfCorrectAnswer(button.getText());
-        clientController.displayNextQuestion();
-        questionLabel.getScene().getWindow().hide();
+        processPlayerAnswer(button.getText());
+        game.displayQuestionWindow();
     }
 
-    private void checkIfCorrectAnswer(String userAnswer) {
-        if (userAnswer.equals(currentQuestionRound.getCorrectAnswer())) {
-            clientController.playerScore.add(true);
-        } else {
-            clientController.playerScore.add(false);
-        }
+    private void processPlayerAnswer(String userAnswer) {
+        game.addPlayerScore(userAnswer.equals(currentQuestion.getCorrectAnswer()));
     }
 
 
@@ -66,10 +61,11 @@ public class QuestionWindowController implements Initializable {
     }
 
 
-    public void initData(ClientController clientController, Question question) {
-        this.clientController = clientController;
-        this.currentQuestionRound = question;
+    public void initData(ClientGame game, Question question) {
+        this.game = game;
+        this.currentQuestion = question;
         setOptionButtons(List.of(question.getWrongAnswers()), question.getCorrectAnswer());
+        questionLabel.setText(question.getQuestion());
     }
 
     @Override

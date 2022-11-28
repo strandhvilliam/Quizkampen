@@ -1,4 +1,4 @@
-package com.skola.quizkampen;
+package Client;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

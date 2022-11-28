@@ -1,5 +1,8 @@
 package Server;
 
+import Models.Category;
+import Models.Question;
+
 import java.io.*;
 import java.util.*;
 

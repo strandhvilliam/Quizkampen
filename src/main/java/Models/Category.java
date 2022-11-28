@@ -1,6 +1,4 @@
-package Server;
-
-import java.io.Serializable;
+package Models;
 
 public enum Category {
 

@@ -1,4 +1,4 @@
-package com.skola.quizkampen;
+package Client;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,26 +22,25 @@ public class StatisticsController implements Initializable {
     @FXML
     private GridPane roundGrid;
 
-    private ClientController clientController;
+    private ClientGame game;
 
 
 
     public void nextRoundAction() {
-        roundGrid.getScene().getWindow().hide();
-        clientController.checkIfGameIsOver();
+        game.checkIfGameFinished();
     }
 
 
     /**
      * Initierar datan som ska presenteras för spelaren efter varje runda är klar.
-     * @param clientController kontrollern för klienten
+     * @param game spelklassen
      * @param playerResult resultatet för spelaren
      * @param opponentResult resultatet för motståndaren
      * @param numOfRounds antal ronder i spelet totalt (från properties)
      * @param numOfColumns antal frågor per runda blir antal kolumner (från properties)
      */
-    public void initStatistics(ClientController clientController, List<Boolean> playerResult, List<Boolean> opponentResult, int numOfRounds, int numOfColumns) {
-        this.clientController = clientController;
+    public void initData(ClientGame game, List<Boolean> playerResult, List<Boolean> opponentResult, int numOfRounds, int numOfColumns) {
+        this.game = game;
 
         for (int row = 0; row < numOfRounds; row++) {
             Label roundLabel = new Label("" + (row + 1));

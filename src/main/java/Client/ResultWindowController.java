@@ -1,10 +1,10 @@
-package com.skola.quizkampen;
-import TransferData.Data;
+package Client;
+import Models.Data;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class ResultsController {
+public class ResultWindowController {
 
     @FXML
     private Label opponentPoints;

@@ -1,7 +1,7 @@
 package Server;
 
-import TransferData.Data;
-import TransferData.Task;
+import Models.Data;
+import Models.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,26 +90,26 @@ public class ServerGame {
 
     }
 
-    protected void roundFinished(List<Boolean> scorePlayer, String player) {
-        Data data = new Data();
-        data.task = Task.OPPONENT_SCORE;
+    protected void roundIsFinished(String player) {
 
-        Data data1 = new Data();
-        data1.task = Task.OPPONENT_SCORE;
 
         if (player.equals(idInstanceOne)) {
             playerOneReady = true;
-            data1.score = scorePlayer;
         } else if (player.equals(idInstanceTwo)) {
             playerTwoReady = true;
-            data.score = scorePlayer;
         }
 
         if (playerOneReady && playerTwoReady) {
             playerOneReady = false;
             playerTwoReady = false;
-            playerOne.sendData(data);
-            playerTwo.sendData(data1);
+
+            Data playerOneResult = new Data(Task.OPPONENT_SCORE);
+            Data playerTwoResult = new Data(Task.OPPONENT_SCORE);
+            playerOneResult.listOfBooleans = scoreOfPlayerTwo;
+            playerTwoResult.listOfBooleans = scoreOfPlayerOne;
+
+            playerOne.sendData(playerOneResult);
+            playerTwo.sendData(playerTwoResult);
         }
     }
 
@@ -156,5 +156,13 @@ public class ServerGame {
         this.playerTwo = playerTwo;
     }
 
+
+    public ServerSidePlayer getOpponent(ServerSidePlayer callerPlayer) {
+        if (callerPlayer == playerOne) {
+            return playerTwo;
+        } else {
+            return playerOne;
+        }
+    }
 
 }

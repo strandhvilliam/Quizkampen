@@ -1,14 +1,16 @@
-package com.skola.quizkampen;
+package Client;
 
 
-import TransferData.Data;
-import TransferData.Task;
+import Models.Data;
+import Models.Question;
+import Models.Task;
 import javafx.application.Platform;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 public class Client extends javafx.concurrent.Task<Void> {
 
@@ -61,19 +63,35 @@ public class Client extends javafx.concurrent.Task<Void> {
             // TODO: Fortsätt här. Skapa metoder för varje uppdrag enligt switch.
 
 //            case START_GAME -> (data);
-//            case PROPERTIES_PROTOCOL -> ();
-            case CHOOSE_CATEGORY -> Platform.runLater(() -> game.displayCategoryWindow());
-            case NOT_YOUR_TURN -> Platform.runLater(() -> game.displayWaitingWindow());
-
+            case PROPERTIES_PROTOCOL -> initProperties(data);
+            case CHOOSE_CATEGORY -> showCategoryWindow();
+            case NOT_YOUR_TURN -> waitForOpponent();
+            case OPPONENT_SCORE -> showStatistics(data);
             case OPPONENT_NAME -> initOpponentName(data);
-//            case ROUND_FINISHED -> (data);
-            //case STATISTICS -> requestStatistics();
+            //case OPPONENT_SCORE -> showStatistics(data);
 //            case GAME_FINISHED -> ();
             case GAME_RESULT -> displayGameResult(data);
-//            case SET_QUESTIONS ->
+            case SET_QUESTIONS -> setQuestions(data);
 
             // TODO: DO THIS SHIT
         }
+    }
+
+    private void showStatistics(Data data) {
+        Platform.runLater(() -> game.displayStatisticsWindow(data.listOfBooleans));
+        System.out.println("Client received " + data.listOfBooleans);
+    }
+
+    private void waitForOpponent() {
+        Platform.runLater(() -> {
+            game.displayWaitingWindow();
+        });
+    }
+
+    private void showCategoryWindow() {
+        Platform.runLater(() -> {
+            game.displayCategoryWindow();
+        });
     }
 
 
@@ -91,16 +109,22 @@ public class Client extends javafx.concurrent.Task<Void> {
 
     protected void initOpponentName(Data res) {
         Platform.runLater(() -> game.setOpponentName(res.message));
-        Data req = new Data();
-        req.task = Task.PROPERTIES_PROTOCOL;
+        Data req = new Data(Task.PROPERTIES_PROTOCOL);
         sendObject(req);
     }
 
-    protected void displayGameResult(Data data) {
-        Platform.runLater(() -> game.displayResultWindow(data));
+    private void setQuestions(Data data) {
+
+        List<Question> questions = data.listOfQuestions;
+        Platform.runLater(() -> game.startRound(questions));
     }
 
-    protected void properties(Data data) {
+    protected void displayGameResult(Data data) {
+        String[] gameResult = data.arrayOfStrings;
+        Platform.runLater(() -> game.displayResultWindow(gameResult));
+    }
+
+    protected void initProperties(Data data) {
         Platform.runLater(() ->  game.setProperties(data.properties[0], data.properties[1]));
     }
 

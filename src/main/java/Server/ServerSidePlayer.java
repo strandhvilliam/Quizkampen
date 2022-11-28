@@ -1,7 +1,8 @@
 package Server;
 
-import TransferData.Data;
-import TransferData.Task;
+import Models.Data;
+import Models.Question;
+import Models.Task;
 
 import java.io.*;
 import java.net.Socket;
@@ -34,8 +35,6 @@ public class ServerSidePlayer extends Thread implements Serializable {
         this.game = game;
         this.scorePlayer = new ArrayList<>();
 
-
-        Properties p = new Properties();
         this.amountOfRounds = db.getRoundsPerGame();
         this.amountOfQuesitons = db.getQuestionsPerRound();
 
@@ -47,6 +46,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     public void setScore(List<Boolean> scores) {
         //scorePlayer.addAll(scores);
+
         scorePlayer = new ArrayList<>(scores);
     }
 
@@ -115,8 +115,9 @@ public class ServerSidePlayer extends Thread implements Serializable {
     }
 
     protected void setScore(Data data) {
-        setScore(data.score);
+        setScore(data.listOfBooleans);
         game.getScore(scorePlayer, idInstance);
+        game.roundIsFinished(idInstance);
     }
 
     public void checkAnswer(String score) {
@@ -125,11 +126,12 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
 
     protected void setCategory(Data data) {
-        Data data1 = new Data();
+        Data res = new Data(Task.SET_QUESTIONS);
         List<Question> listOfQuestions = db.getByCategory(data.category);
-        data1.task = Task.SET_QUESTIONS;
-        data1.listOfQuestions = listOfQuestions;
-        sendData(data1);
+        res.listOfQuestions = listOfQuestions;
+        sendData(res);
+        game.getOpponent(this).sendData(res);
+
     }
 
 
@@ -139,8 +141,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
     }
 
     protected void propertiesProtocol() {
-        Data data = new Data();
-        data.task = Task.PROPERTIES_PROTOCOL;
+        Data data = new Data(Task.PROPERTIES_PROTOCOL);
         data.properties = new int[2];
         data.properties[0] = amountOfRounds;
         data.properties[1] = amountOfQuesitons;
@@ -158,8 +159,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
 
     protected void gameFinished() {
-        Data data = new Data();
-        data.task = Task.GAME_FINISHED;
+        Data data = new Data(Task.GAME_FINISHED);
         String[] theWinner = game.getWinner();
         String[] sendArray = new String[3];
         if (theWinner[0].equals(idInstance)) {

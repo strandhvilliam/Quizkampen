@@ -3,9 +3,10 @@ module com.skola.quizkampen {
     requires javafx.fxml;
 
 
-    opens com.skola.quizkampen to javafx.fxml;
-    exports com.skola.quizkampen;
-    exports TransferData;
+    opens Client to javafx.fxml;
+    exports Client;
+    exports Models;
     exports Server;
     opens Server to javafx.fxml;
+    opens Models to javafx.fxml;
 }

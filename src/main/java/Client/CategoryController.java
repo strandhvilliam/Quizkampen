@@ -1,12 +1,11 @@
-package com.skola.quizkampen;
+package Client;
 
+import Models.Category;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class CategoryController {
-
-    private Client client;
 
     private ClientGame game;
 
@@ -21,8 +20,6 @@ public class CategoryController {
                 break;
             }
         }
-       // clientController.displayWaitingWindow();
-
     }
 
     public void setGame(ClientGame game) {

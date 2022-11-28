@@ -1,5 +1,4 @@
-package Server;
-
+package Models;
 
 import java.io.Serializable;
 
@@ -13,12 +12,13 @@ public class Question implements Serializable {
         this.question = question;
         this.correctAnswer = correctAnswer;
         this.category = category;
-        System.arraycopy(wrongAnswers, 0, this.wrongAnswers, 0, 3);
+        for (int i = 0; i < 3; i++) {
+            this.wrongAnswers[i] = wrongAnswers[i];
+        }
     }
 
     public Question(String dbQuestion, String[] dbAnswersArr, String dbCategory) {
     }
-
     public String getQuestion() {
         return question;
     }

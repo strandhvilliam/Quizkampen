@@ -1,4 +1,4 @@
-package TransferData;
+package Models;
 
 public enum Task {
     OPPONENT_NAME,
