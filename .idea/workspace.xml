@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="minor changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/InitialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/InitialController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/StatisticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/statistics-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/statistics-window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Server/Settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Server/Settings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Server/questions" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Server/questions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
