@@ -71,14 +71,6 @@ public class ClientController implements Initializable {
             requestIsDoneWithRound();
         }
 
-
-
-        /*else {
-           for (Boolean result : roundResult) {
-               System.out.println(result);
-           }
-        }*/
-
     }
 
     public void sendResult() throws IOException {
@@ -120,7 +112,6 @@ public class ClientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Initialize method");
 
     }
 
@@ -213,9 +204,6 @@ public class ClientController implements Initializable {
         stage.show();
     }
 
-    private void resultsController(String[] resArray) {
-
-    }
 
     public void initOpponent(String s) {
 

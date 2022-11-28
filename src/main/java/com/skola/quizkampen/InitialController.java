@@ -10,17 +10,15 @@ public class InitialController {
     @FXML
     private TextField usernameTextField;
 
+    private ClientController clientController;
+
     @FXML
     void initializeGameAction(ActionEvent event) {
         String username = usernameTextField.getText();
-
         clientController.startGame(username);
-
         usernameTextField.getScene().getWindow().hide();
-
     }
 
-    private ClientController clientController;
 
     public void setupClientController(ClientController clientController) {
         this.clientController = clientController;

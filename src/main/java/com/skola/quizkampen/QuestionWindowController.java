@@ -33,9 +33,7 @@ public class QuestionWindowController implements Initializable {
     @FXML
     private Button optionFourButton;
 
-
     private ClientController clientController;
-
     private Question currentQuestionRound;
 
 

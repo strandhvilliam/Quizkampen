@@ -20,6 +20,12 @@ public class ResultsController {
         Platform.exit();
     }
 
+
+    /**
+     * Metoden visar resultatet av spelet genom att använda arrayen och sätta värdena i GUI:et.
+     * Räknar ut vems poäng som är vems i arrayen beroende om man vunnit eller inte.
+     * @param results arrayen som innehåller resultatet av spelet. [0] = om vunnit, [1] = första spelarens, [2] = andraspelarens poäng.
+     */
     public void initData(String[] results) {
 
         switch (results[0]) {

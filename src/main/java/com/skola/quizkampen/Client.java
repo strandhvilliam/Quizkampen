@@ -14,25 +14,17 @@ import java.util.List;
 public class Client extends Task<Void> {
 
     private static final String OPPONENT_NAME = "OPPONENT_NAME";
-
     private static final String PROPERTIES_PROTOCOL = "PROPERTIES_PROTOCOL";
-
     private static final String NOT_YOUR_TURN = "NOT_YOUR_TURN";
     private static final String CHOOSE_CATEGORY = "CHOOSE_CATEGORY";
-
     private static final String START_GAME = "START_GAME";
-
     private static final String START_ROUND = "START_ROUND";
-
     public static final String GAME_FINISHED = "GAME_FINISHED";
-
     public static final String ROUND_FINISHED = "ROUND_FINISHED";
 
 
 
     private final String serverAddress;
-
-
     private Socket socket;
     private final static int PORT = 5555;
     private ObjectOutputStream outputStream;
@@ -41,14 +33,14 @@ public class Client extends Task<Void> {
     private final ClientController controller;
 
 
-    public Client(String serverAdress, ClientController controller) throws IOException {
+    public Client(String serverAdress, ClientController controller) {
         this.serverAddress = serverAdress;
         this.controller = controller;
 
     }
 
     @Override
-    protected Void call() throws Exception {
+    protected Void call() {
         try {
             socket = new Socket(serverAddress, PORT);
             outputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -60,7 +52,7 @@ public class Client extends Task<Void> {
                 processResponse(fromServer);
             }
         } catch (IOException | ClassNotFoundException e) {
-
+            e.printStackTrace();
         }
         return null;
     }
@@ -82,24 +74,11 @@ public class Client extends Task<Void> {
         sendObject(category.name);
     }
 
-
-    public void requestStatistics() throws IOException {
-        //TODO: fundera ut vilket format vi ska skicka till servern
-        List<Boolean> testOpponentList = List.of(true, true, true, false);
-        processResponse(testOpponentList);
-    }
-
     public void requestStartGame(String username) {
         String[] req = {START_GAME, username};
         sendObject(req);
     }
 
-
-    /**
-     * Metoden hanterar all inkommande data från servern och väljer vad som ska göras med den
-     *
-     * @param resFromServer objekt som kommer från servern
-     */
     public void processResponse(Object resFromServer) throws IOException {
         if (resFromServer instanceof List) {
             if (((List<?>) resFromServer).get(0) instanceof Question) {
@@ -141,21 +120,6 @@ public class Client extends Task<Void> {
             }
             System.out.println("inside string");
         }
-
-        /*
-
-
-        OM servern skickar en lista med frågor från ur en kategori
-            starta runda med frågor
-            startRound(List<Questions>)
-            controller.startRound
-        OM servern skickar resultat från föregående omgång
-            be controllern visa ruta med statistik och knapp att börja nästa omgång
-        OM servern skickar motståndarens namn
-            be controllern initiera GUIn med motståndarens namn
-
-         */
-
     }
 
     public void requestNewRound() {
@@ -165,8 +129,6 @@ public class Client extends Task<Void> {
     public void requestGameOver() {
         sendObject(GAME_FINISHED);
     }
-
-
 
     public void requestPlayerDoneWithRound() {
         sendObject(ROUND_FINISHED);

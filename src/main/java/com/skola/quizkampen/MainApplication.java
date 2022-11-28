@@ -17,12 +17,9 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
-        //fxmlLoader.setController(new ClientController());
         stage.show();
 
         InitialController initialController = fxmlLoader.getController();
-
-
         ClientController clientController = new ClientController();
 
         Client client = new Client("127.0.0.1", clientController);
@@ -33,11 +30,6 @@ public class MainApplication extends Application {
         clientController.setupClient(client);
 
         initialController.setupClientController(clientController);
-
-
-
-
-
 
     }
 
