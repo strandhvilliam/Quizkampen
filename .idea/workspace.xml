@@ -20,7 +20,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="question_display" />
+    <option name="BRANCH" value="rework_SadFace" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -115,6 +115,8 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.MainApplication" />
         <item itemvalue="Application.MainApplication" />
         <item itemvalue="Application.Server" />
         <item itemvalue="Application.MainApplication" />
