@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b466456-c2d9-48c7-b2a4-03599f1bfefc" name="Changes" comment="">
+    <list default="true" id="4b466456-c2d9-48c7-b2a4-03599f1bfefc" name="Changes" comment="Databas med properties">
       <change afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Settings.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +52,7 @@
     </option>
   </component>
   <component name="ProjectId" id="2HiLQ7TvpoKMTuNtO2DDqx4GnxB" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -123,6 +123,7 @@
       <workItem from="1669196505756" duration="351000" />
       <workItem from="1669196866054" duration="146000" />
       <workItem from="1669197048457" duration="9858000" />
+      <workItem from="1669622128809" duration="299000" />
     </task>
     <task id="LOCAL−00001" summary="First commit">
       <created>1669039826666</created>
@@ -148,7 +149,13 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1669201814412</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="...">
+      <created>1669622368301</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1669622368301</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,7 +172,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/Database" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -182,6 +189,7 @@
     <MESSAGE value="Database-commit" />
     <MESSAGE value="misc-vcs-commit" />
     <MESSAGE value="Databas med properties" />
-    <option name="LAST_COMMIT_MESSAGE" value="Databas med properties" />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
 </project>
