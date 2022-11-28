@@ -22,7 +22,7 @@ public class CategoryController {
                 break;
             }
         }
-        clientController.displayWaitingWindow();
+       // clientController.displayWaitingWindow();
 
     }
 
