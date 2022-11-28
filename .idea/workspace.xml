@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="multple modifications to both server and client">
+    <list default="true" id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="fixed game to working state">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ResultWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ResultWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/StatisticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/category-chooser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/category-chooser.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/results-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/results-window.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Client/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -306,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669640421112</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="fixed game to working state">
+      <created>1669646140857</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1669646140857</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,6 +347,7 @@
     <MESSAGE value="workspace commit" />
     <MESSAGE value="mergar Lukas &amp; Linus server med klient och GUI" />
     <MESSAGE value="multple modifications to both server and client" />
-    <option name="LAST_COMMIT_MESSAGE" value="multple modifications to both server and client" />
+    <MESSAGE value="fixed game to working state" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed game to working state" />
   </component>
 </project>

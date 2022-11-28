@@ -47,8 +47,6 @@ public class ServerGame {
     }
 
     public void getScore(List<Boolean> playerScores, String idInstance) {
-        int numberOfQuestionsAnsweredOne = 0;
-        int numberOfQuestionsAnsweredTwo = 0;
 
         if (idInstance.equals(idInstanceOne)) {
             scoreOfPlayerOne = new ArrayList<>();
@@ -56,25 +54,6 @@ public class ServerGame {
         } else if (idInstance.equals(idInstanceTwo)) {
             scoreOfPlayerTwo = new ArrayList<>();
             scoreOfPlayerTwo.addAll(playerScores);
-        }
-
-        int score1 = 0;
-        int score2 = 0;
-
-
-        if (scoreOfPlayerOne != null) {
-            for (Boolean aBoolean : scoreOfPlayerOne) {
-                if (aBoolean) {
-                    score1++;
-                }
-            }
-        }
-        if (scoreOfPlayerTwo != null) {
-            for (Boolean aBoolean : scoreOfPlayerTwo) {
-                if (aBoolean) {
-                    score2++;
-                }
-            }
         }
 
     }

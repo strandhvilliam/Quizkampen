@@ -60,20 +60,15 @@ public class Client extends javafx.concurrent.Task<Void> {
     protected void dataProtocol(Data data) {
         switch (data.task) {
 
-            // TODO: Fortsätt här. Skapa metoder för varje uppdrag enligt switch.
-
-//            case START_GAME -> (data);
             case PROPERTIES_PROTOCOL -> initProperties(data);
             case CHOOSE_CATEGORY -> showCategoryWindow();
             case NOT_YOUR_TURN -> waitForOpponent();
             case OPPONENT_SCORE -> showStatistics(data);
             case OPPONENT_NAME -> initOpponentName(data);
-            //case OPPONENT_SCORE -> showStatistics(data);
-//            case GAME_FINISHED -> ();
+
             case GAME_RESULT -> displayGameResult(data);
             case SET_QUESTIONS -> setQuestions(data);
 
-            // TODO: DO THIS SHIT
         }
     }
 
@@ -114,7 +109,6 @@ public class Client extends javafx.concurrent.Task<Void> {
     }
 
     private void setQuestions(Data data) {
-
         List<Question> questions = data.listOfQuestions;
         Platform.runLater(() -> game.startRound(questions));
     }
