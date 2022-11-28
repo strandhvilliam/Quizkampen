@@ -163,11 +163,7 @@ public class Client extends Task<Void> {
                 List<Question> questionsForRound = (List<Question>) resFromServer;
                 //TODO: kolla hur många frågor per rond och avgör storlek på lista efter det
                 Platform.runLater(() -> {
-                    try {
-                        controller.startRound(questionsForRound);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    controller.startRound(questionsForRound);
                 });
             } else if (((List<?>) resFromServer).get(0) instanceof Boolean) {
                 List<Boolean> opponentResult = (List<Boolean>) resFromServer;
