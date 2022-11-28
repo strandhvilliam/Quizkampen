@@ -120,12 +120,13 @@ public class Client extends javafx.concurrent.Task<Void> {
     }
 
     protected void displayGameResult(Data data) {
-        String[] gameResult = data.arrayOfStrings;
+        String[] gameResult = data.result;
         Platform.runLater(() -> game.displayResultWindow(gameResult));
     }
 
     protected void initProperties(Data data) {
         Platform.runLater(() ->  game.setProperties(data.properties[0], data.properties[1]));
+        sendObject(new Data(Task.START_ROUND));
     }
 
     public void setGame(ClientGame clientGame) {

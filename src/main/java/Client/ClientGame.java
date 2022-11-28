@@ -17,14 +17,14 @@ public class ClientGame {
     private final Stage stage;
     private final Client client;
 
-    private List<Boolean> playerScore = new ArrayList<>();
+    private List<Boolean> playerScore;
 
-
+    private int round;
     private int totalNumOfRounds;
 
     private int questionsPerRound;
-    private String playerName;
-    private String opponentName;
+    protected String playerName;
+    protected String opponentName;
     private List<Question> questionsForRound;
 
 
@@ -48,10 +48,12 @@ public class ClientGame {
             QuestionWindowController questionWindowController = loader.getController();
             questionWindowController.initData(this, questionsForRound.get(0));
             questionsForRound.remove(0);
+            System.out.println("Fråga: " + questionsForRound.size());
             stage.show();
 
         } else {
             sendResult();
+            displayWaitingWindow();
         }
 
     }
@@ -83,6 +85,17 @@ public class ClientGame {
     }
 
     public void displayResultWindow(String[] gameResult) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("results-window.fxml"));
+        stage.setTitle("Resultat");
+        try {
+            stage.setScene(new Scene(fxmlLoader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ResultWindowController resultWindowController = fxmlLoader.getController();
+        resultWindowController.initData(this, gameResult);
+
     }
 
     public void displayStatisticsWindow(List<Boolean> opponentScore) {
@@ -100,7 +113,10 @@ public class ClientGame {
 
 
     public void startGame(String username) {
-        this.playerName = username;
+        playerName = username;
+        playerScore = new ArrayList<>();
+        round = 0;
+
 
         Data data = new Data(Task.START_GAME);
         data.message = username;
@@ -111,7 +127,7 @@ public class ClientGame {
 
     public void checkIfGameFinished() {
         Data data;
-        if (playerScore.size() == totalNumOfRounds) {
+        if (round == totalNumOfRounds) {
             data = new Data(Task.GAME_FINISHED);
         } else {
             data = new Data(Task.START_ROUND);
@@ -141,6 +157,7 @@ public class ClientGame {
     }
 
     public void startRound(List<Question> questionsForRound) {
+        round++;
         this.questionsForRound = new ArrayList<>(questionsForRound);
         displayQuestionWindow();
     }

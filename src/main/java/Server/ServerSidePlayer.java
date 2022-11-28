@@ -20,7 +20,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
     ObjectInputStream input;
     ObjectOutputStream output;
     ServerGame game;
-    Database db = new Database();
+    Database db;
 
     private final int amountOfRounds;
     private final int amountOfQuesitons;
@@ -29,10 +29,11 @@ public class ServerSidePlayer extends Thread implements Serializable {
     protected boolean isWaiting = false;
 
 
-    public ServerSidePlayer(Socket socket, String idInstance, ServerGame game) {
+    public ServerSidePlayer(Socket socket, String idInstance, ServerGame game, Database db) {
         this.socket = socket;
         this.idInstance = idInstance;
         this.game = game;
+        this.db = db;
         this.scorePlayer = new ArrayList<>();
 
         this.amountOfRounds = db.getRoundsPerGame();
@@ -128,6 +129,8 @@ public class ServerSidePlayer extends Thread implements Serializable {
     protected void setCategory(Data data) {
         Data res = new Data(Task.SET_QUESTIONS);
         List<Question> listOfQuestions = db.getByCategory(data.category);
+
+
         res.listOfQuestions = listOfQuestions;
         sendData(res);
         game.getOpponent(this).sendData(res);
@@ -137,7 +140,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
     protected void startGame(Data data) {
         setNameOfPlayer(data.message);
-        startRound();
+        game.sendOpponentNames(idInstance);
     }
 
     protected void propertiesProtocol() {
@@ -159,12 +162,12 @@ public class ServerSidePlayer extends Thread implements Serializable {
 
 
     protected void gameFinished() {
-        Data data = new Data(Task.GAME_FINISHED);
+        Data data = new Data(Task.GAME_RESULT);
         String[] theWinner = game.getWinner();
         String[] sendArray = new String[3];
         if (theWinner[0].equals(idInstance)) {
             sendArray[0] = "WON";
-        } else if (!theWinner[0].equals("DRAW")) {
+        } else if (theWinner[0].equals("DRAW")) {
             sendArray[0] = "DRAW";
         } else {
             sendArray[0] = "LOSE";

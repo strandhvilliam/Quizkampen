@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Database implements Serializable {
 
-    static List<Question> allQuestions = new ArrayList<Question>();
+    static List<Question> allQuestions = new ArrayList<>();
 
     static Category category;
     private int roundsPerGame;
@@ -27,6 +27,8 @@ public class Database implements Serializable {
         } catch (IOException e) {
             System.out.println("IOException");
         }
+        getAllQuestions();
+
     }
 
     /*public void initializeQuestions() throws IOException {
@@ -69,14 +71,10 @@ public class Database implements Serializable {
 
     public List<Question> getByCategory(Category category) {
         List<Question> categoryQList = new ArrayList<>();
-        getAllQuestions();
         for (int i = 0; i < allQuestions.size(); i++) {
             if (allQuestions.get(i).getCategory().equals(category)) {
                 categoryQList.add(allQuestions.get(i));
             }
-        }
-        for (int i = 0; i < categoryQList.size(); i++) {
-            System.out.println(categoryQList.get(i).getQuestion());
         }
         return categoryQList;
     }

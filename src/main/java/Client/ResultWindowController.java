@@ -1,5 +1,5 @@
 package Client;
-import Models.Data;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -13,7 +13,14 @@ public class ResultWindowController {
     private Label playerPoints;
 
     @FXML
+    private Label playerNameLabel;
+
+    @FXML
+    private Label opponentNameLabel;
+
+    @FXML
     private Label resultsLabel;
+    private ClientGame game;
 
 
     @FXML
@@ -21,27 +28,33 @@ public class ResultWindowController {
         Platform.exit();
     }
 
-    public void initData(Data data) {
+    @FXML
+    private void playAgainAction() {
+        game.startGame(playerNameLabel.getText());
+    }
 
-        switch (data.result[0]) {
+    public void initData(ClientGame game, String[] result) {
+        this.game = game;
+        this.playerNameLabel.setText(game.playerName);
+        this.opponentNameLabel.setText(game.opponentName);
+
+        switch (result[0]) {
             case "WON" -> {
                 resultsLabel.setText("Du vann!");
-                playerPoints.setText(String.valueOf(Math.max(Integer.parseInt(data.result[1]), Integer.parseInt(data.result[2]))));
-                opponentPoints.setText(String.valueOf(Math.min(Integer.parseInt(data.result[1]), Integer.parseInt(data.result[2]))));
+                playerPoints.setText(String.valueOf(Math.max(Integer.parseInt(result[1]), Integer.parseInt(result[2]))));
+                opponentPoints.setText(String.valueOf(Math.min(Integer.parseInt(result[1]), Integer.parseInt(result[2]))));
             }
-            case "DRAW" ->  {
+            case "DRAW" -> {
                 resultsLabel.setText("Lika!");
-                playerPoints.setText(String.valueOf(data.result[1]));
-                opponentPoints.setText(String.valueOf(data.result[1]));
+                playerPoints.setText(String.valueOf(result[1]));
+                opponentPoints.setText(String.valueOf(result[1]));
             }
             case "LOSE" -> {
                 resultsLabel.setText("Du förlorade!");
-                opponentPoints.setText(String.valueOf(Math.max(Integer.parseInt(data.result[1]), Integer.parseInt(data.result[2]))));
-                playerPoints.setText(String.valueOf(Math.min(Integer.parseInt(data.result[1]), Integer.parseInt(data.result[2]))));
+                opponentPoints.setText(String.valueOf(Math.max(Integer.parseInt(result[1]), Integer.parseInt(result[2]))));
+                playerPoints.setText(String.valueOf(Math.min(Integer.parseInt(result[1]), Integer.parseInt(result[2]))));
             }
         }
-
-
 
 
     }

@@ -18,17 +18,6 @@ public class ServerGame {
     private final String idInstanceTwo = "Player_2";
     String theCurrentPlayer = idInstanceOne;
 
-    private static final int WAITING = 0;
-    private static final int STARTROUND = 1;
-    private static final int NEXTROUND = 2;
-    private static final int NEXTGAME = 3;
-// för att bestämma vilken state spelaren är i
-
-    private static final int NUMBEROFQUESTIONS = 4;
-
-    private int state = WAITING;
-    private int currentQuestion = 0;
-
 
     public synchronized Data playerTurn(String idInstance) {
         Data data = new Data();
@@ -165,4 +154,28 @@ public class ServerGame {
         }
     }
 
+    public void sendOpponentNames(String idInstance) {
+        if (idInstance.equals(idInstanceOne)) {
+            playerOneReady = true;
+        } else if (idInstance.equals(idInstanceTwo)) {
+            playerTwoReady = true;
+        }
+
+        if (playerOneReady && playerTwoReady) {
+            playerOneReady = false;
+            playerTwoReady = false;
+
+            Data data = new Data(Task.OPPONENT_NAME);
+            data.message = playerTwo.nameOfPlayer;
+            System.out.println("Player 1 name: " + data.message);
+            playerOne.sendData(data);
+
+            data = new Data(Task.OPPONENT_NAME);
+            data.message = playerOne.nameOfPlayer;
+            System.out.println("Player 2 name: " + data.message);
+            playerTwo.sendData(data);
+        }
+
+
+    }
 }

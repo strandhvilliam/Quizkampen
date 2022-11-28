@@ -4,42 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="mergar Lukas &amp; Linus server med klient och GUI">
+    <list default="true" id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="multple modifications to both server and client">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ResultWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ResultWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/StatisticsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Server/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Question.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TransferData/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TransferData/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/InitialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/InitialController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ResultsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ResultWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/StatisticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/category-chooser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/category-chooser.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/home-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/home-page.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/icons/icons8_adventure_40px.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_adventure_40px.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/icons/icons8_cute_hamster_40px.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_cute_hamster_40px.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/icons/icons8_film_reel_40px.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_film_reel_40px.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/icons/icons8_game_controller_40px.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_game_controller_40px.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/icons/icons8_greek_helmet_40px.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_greek_helmet_40px.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/icons/icons8_robot_2_40px.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_robot_2_40px.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/initial-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/initial-window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/question-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/results-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/results-window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/statistics.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/statistics-window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/waiting-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/waiting-window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/category-chooser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/category-chooser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/results-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/results-window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669632976275</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="multple modifications to both server and client">
+      <created>1669640421112</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1669640421112</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,6 +348,7 @@
     <MESSAGE value="reworked, everything." />
     <MESSAGE value="workspace commit" />
     <MESSAGE value="mergar Lukas &amp; Linus server med klient och GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="mergar Lukas &amp; Linus server med klient och GUI" />
+    <MESSAGE value="multple modifications to both server and client" />
+    <option name="LAST_COMMIT_MESSAGE" value="multple modifications to both server and client" />
   </component>
 </project>

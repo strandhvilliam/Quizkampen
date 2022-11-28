@@ -21,6 +21,9 @@ public class QuestionWindowController implements Initializable {
     private Label questionLabel = new Label();
 
     @FXML
+    private Label categoryLabel = new Label();
+
+    @FXML
     private Button optionOneButton;
     @FXML
     private Button optionTwoButton;
@@ -66,6 +69,8 @@ public class QuestionWindowController implements Initializable {
         this.currentQuestion = question;
         setOptionButtons(List.of(question.getWrongAnswers()), question.getCorrectAnswer());
         questionLabel.setText(question.getQuestion());
+        categoryLabel.setText(question.getCategory().name);
+
     }
 
     @Override

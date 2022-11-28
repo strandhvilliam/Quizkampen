@@ -68,7 +68,7 @@
 
 .large-question-label {
     -fx-text-fill: #232323;
-    -fx-font-size: 32px;
+    -fx-font-size: 26px;
     -fx-font-weight: bold;
 }
 
@@ -105,7 +105,7 @@
 .category-button {
     -fx-alignment: CENTER-LEFT;
     -fx-padding: 8px 0 8px 32px;
-    -fx-min-width: 240px;
+    -fx-min-width: 260px;
     -fx-border-width: 2;
     -fx-border-color: transparent;
     -fx-background-color: #ffffff;
@@ -166,6 +166,7 @@
 
 .point-circle {
     -fx-border-color: #323232;
+    -fx-background-color: transparent;
     -fx-border-width: 2;
     -fx-border-radius: 1000;
     -fx-background-radius: 1000;

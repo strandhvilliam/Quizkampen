@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -62,6 +63,12 @@ public class StatisticsController implements Initializable {
      */
     private void fillStatistics(List<Boolean> result, StackPane stackPane, int numOfColumns, int numOfRounds) {
 
+        for (Boolean aResult : result) {
+            System.out.println(aResult);
+        }
+
+        List<Boolean> resultCopy = new ArrayList<>(result);
+
         GridPane gridPane = new GridPane();
 
         for (int row = 0; row < numOfRounds; row++) {
@@ -70,13 +77,14 @@ public class StatisticsController implements Initializable {
                 VBox vBox = new VBox();
                 Label pointLabel = new Label("");
                 pointLabel.getStyleClass().add("point-circle");
-                if (!result.isEmpty()) {
-                    if (result.get(0)) {
+                if (!resultCopy.isEmpty()) {
+                    if (resultCopy.get(0)) {
                         pointLabel.getStyleClass().add("win-point-label");
                     } else {
                         pointLabel.getStyleClass().add("loss-point-label");
                     }
-                    result.remove(0);
+                    resultCopy.remove(0);
+                    System.out.println("result.size(): " + resultCopy.size());
                 }
 
                 vBox.setAlignment(Pos.CENTER);
