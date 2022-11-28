@@ -1,6 +1,5 @@
 package com.skola.quizkampen;
 
-import Server.Question;
 import TransferData.Data;
 import TransferData.Task;
 import javafx.event.ActionEvent;
@@ -52,10 +51,7 @@ public class ClientController implements Initializable {
 
             stage.show();
         } else {
-
             sendResult();
-
-            requestIsDoneWithRound();
         }
     }
 
@@ -68,13 +64,12 @@ public class ClientController implements Initializable {
 
 
     public void displayCategoryChooser() {
-        // TODO: Denna metod skapar krasch: EOF exception
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("categoryChooser.fxml"));
         fxmlLoader.setController(this);
         Stage stage = new Stage();
         stage.setTitle("Choose category");
         try {
-            stage.setScene(new Scene(fxmlLoader.load(), 320, 240));
+            stage.setScene(new Scene(fxmlLoader.load()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,18 +85,7 @@ public class ClientController implements Initializable {
         });*/ // TODO: KANSKE ALTERNATIVT SÄTT ATT BYTA SCENER?
     }
 
-    public void requestIsDoneWithRound() {
-        client.requestPlayerDoneWithRound();
-    }
-
-
-    /**
-     * Metod som hanterar när användaren klickar på en kategori.
-     * Ber klienten skicka request till servern att valt kategori
-     *
-     * @param event klick på kategori
-     */
-    @FXML
+    /*@FXML
     public void chooseCategoryAction(ActionEvent event) {
         Button button = (Button) event.getSource();
         String categoryString = button.getText();
@@ -111,15 +95,13 @@ public class ClientController implements Initializable {
 
         for (Category category : Category.values()) {
             if (category.name.equalsIgnoreCase(categoryString)) {
-//                client.requestCategoryQuestions(category);
-                categories.category = Server.Category.valueOf(categoryString);
+                categories.category = Category.valueOf(categoryString);
                 client.sendObject(categories);
                 System.out.println("Category chosen: " + category.name);
                 break;
             }
         }
-    }
-
+    } */
 
     public void startRound(List<Question> questions) {
         this.questionsInRound = questions;
@@ -141,10 +123,6 @@ public class ClientController implements Initializable {
     public void setupClient(Client client) {
         this.client = client;
     }
-
-    //test list
-    //List<Boolean> myResult = new ArrayList<>(List.of(true, false, false, false, true, true, false, false, false, false, true, true));
-
 
     public void displayStatistics(List<Boolean> opponentResult) {
         System.out.println("Motståndare:");
@@ -186,7 +164,6 @@ public class ClientController implements Initializable {
         data.task = Task.START_GAME;
         client.sendObject(data);
 
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("waiting-window.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Waiting for opponent");
@@ -217,10 +194,13 @@ public class ClientController implements Initializable {
     }
 
     public void checkIfGameIsOver() {
+        Data data = new Data();
         if (playerScore.size() == totalNumOfRounds) {
-            client.requestGameOver();
+            data.task = Task.GAME_FINISHED;
+            client.sendObject(data);
         } else {
-            client.requestNewRound();
+            data.task = Task.ROUND_FINISHED;
+            client.sendObject(data);
         }
     }
 
@@ -241,6 +221,11 @@ public class ClientController implements Initializable {
         stage.show();
     }
 
-    private void resultsController(Data data) {
+    public void initProperties(int totalNumOfRounds, int questionsPerRound) {
+        this.totalNumOfRounds = totalNumOfRounds;
+        this.questionsPerRound = questionsPerRound;
+        Data data = new Data();
+        data.task = Task.START_ROUND;
+        client.sendObject(data);
     }
 }

@@ -8,7 +8,7 @@ public class CategoryController {
 
     private Client client;
 
-    private ClientController clientController;
+    private ClientGame game;
 
     @FXML
     public void chooseCategoryAction(ActionEvent event) {
@@ -17,8 +17,7 @@ public class CategoryController {
         for (Category category : Category.values()) {
             if (category.name.equalsIgnoreCase(categoryString)) {
                 System.out.println("Category chosen: " + category.name);
-                client.requestCategoryQuestions(category);
-                button.getScene().getWindow().hide();
+                game.sendCategory(category);
                 break;
             }
         }
@@ -26,8 +25,7 @@ public class CategoryController {
 
     }
 
-    public void setupClient(Client client, ClientController clientController) {
-        this.client = client;
-        this.clientController = clientController;
+    public void setGame(ClientGame game) {
+        this.game = game;
     }
 }

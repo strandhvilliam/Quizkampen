@@ -1,31 +1,16 @@
 package com.skola.quizkampen;
 
 
-import Server.Question;
 import TransferData.Data;
+import TransferData.Task;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.List;
 
-public class Client extends Task<Void> {
-
-    private static final String OPPONENT_NAME = "OPPONENT_NAME";
-
-    private static final String PROPERTIES_PROTOCOL = "PROPERTIES_PROTOCOL";
-
-    private static final String NOT_YOUR_TURN = "NOT_YOUR_TURN";
-    private static final String CHOOSE_CATEGORY = "CHOOSE_CATEGORY";
-
-    private static final String START_ROUND = "START_ROUND";
-
-    public static final String GAME_FINISHED = "GAME_FINISHED";
-
-    public static final String ROUND_FINISHED = "ROUND_FINISHED";
+public class Client extends javafx.concurrent.Task<Void> {
 
 
     private final String serverAddress;
@@ -36,12 +21,11 @@ public class Client extends Task<Void> {
     private ObjectOutputStream outputStream;
     private ObjectInputStream inputStream;
 
-    private final ClientController controller;
+    private ClientGame game;
 
 
-    public Client(String serverAdress, ClientController controller) throws IOException {
+    public Client(String serverAdress) throws IOException {
         this.serverAddress = serverAdress;
-        this.controller = controller;
 
     }
 
@@ -61,7 +45,7 @@ public class Client extends Task<Void> {
             e.getStackTrace();
         } finally {
             try {
-                System.out.println("Socket closed " + controller.userName);
+                outputStream.flush();
                 outputStream.close();
                 inputStream.close();
             } catch (IOException e) {
@@ -78,16 +62,15 @@ public class Client extends Task<Void> {
 
 //            case START_GAME -> (data);
 //            case PROPERTIES_PROTOCOL -> ();
-             case CHOOSE_CATEGORY -> controller.displayCategoryChooser();  // TODO: EOF EXCEPTION
-             case NOT_YOUR_TURN -> controller.displayWaitingWindow();  // TODO: EOF EXCEPTION
+            case CHOOSE_CATEGORY -> Platform.runLater(() -> game.displayCategoryWindow());
+            case NOT_YOUR_TURN -> Platform.runLater(() -> game.displayWaitingWindow());
 
-            case OPPONENT_NAME -> opponentsName(data);
+            case OPPONENT_NAME -> initOpponentName(data);
 //            case ROUND_FINISHED -> (data);
-            case STATISTICS -> requestStatistics();
+            //case STATISTICS -> requestStatistics();
 //            case GAME_FINISHED -> ();
             case GAME_RESULT -> displayGameResult(data);
 //            case SET_QUESTIONS ->
-//            case START_ROUND -> ();
 
             // TODO: DO THIS SHIT
         }
@@ -106,100 +89,22 @@ public class Client extends Task<Void> {
         }
     }
 
-    /**
-     * Skickar object i form av sträng för att sätta användarnamn
-     *
-     * @param username som hämtas från GUI controllern
-     * @throws IOException
-     */
-    public void initializeUser(Data username /* TODO: bild för profilbild */) throws IOException {
-        sendObject(username);
-    }
-
-//    public void requestCategoryQuestions(Data category) {
-//        sendObject(category);
-//    }
-
-    public void requestOtherUsername() {
-        //TODO: skickar förfrågan till servern för motståndarens användarnamn
-    }
-
-    public void requestStatistics() {
-        Data data = new Data();
-        data.task = TransferData.Task.STATISTICS;
-//        data.listOfBooleans =
-        // Spara till senare.
-        //TODO: fundera ut vilket format vi ska skicka till servern
-        processResponse(data);
-    }
-
-    protected void opponentsName(Data data1) {
-        Platform.runLater(() -> controller.opponentName = data1.message);
-        Data data = new Data();
-        data.task = TransferData.Task.PROPERTIES_PROTOCOL;
-        sendObject(data);
+    protected void initOpponentName(Data res) {
+        Platform.runLater(() -> game.setOpponentName(res.message));
+        Data req = new Data();
+        req.task = Task.PROPERTIES_PROTOCOL;
+        sendObject(req);
     }
 
     protected void displayGameResult(Data data) {
-        Platform.runLater(() -> controller.displayGameResult(data));
+        Platform.runLater(() -> game.displayResultWindow(data));
     }
 
     protected void properties(Data data) {
-        Platform.runLater(() -> controller.totalNumOfRounds = data.properties[0]);
-        Platform.runLater(() -> controller.questionsPerRound = data.properties[1]);
-        requestNewRound();
+        Platform.runLater(() ->  game.setProperties(data.properties[0], data.properties[1]));
     }
 
-
-    /**
-     * Metoden hanterar all inkommande data från servern och väljer vad som ska göras med den
-     *
-     * @param resFromServer objekt som kommer från servern
-     */
-    public void processResponse(Data resFromServer) {
-        if (resFromServer instanceof List) {
-            if (((List<?>) resFromServer).get(0) instanceof Question) {
-                List<Question> questionsForRound = (List<Question>) resFromServer;
-                //TODO: kolla hur många frågor per rond och avgör storlek på lista efter det
-                Platform.runLater(() -> {
-                    controller.startRound(questionsForRound);
-                });
-            } else if (((List<?>) resFromServer).get(0) instanceof Boolean) {
-                List<Boolean> opponentResult = (List<Boolean>) resFromServer;
-                Platform.runLater(() -> controller.displayStatistics(opponentResult));
-            }
-        }
-
-        /*
-
-
-        OM servern skickar en lista med frågor från ur en kategori
-            starta runda med frågor
-            startRound(List<Questions>)
-            controller.startRound
-        OM servern skickar resultat från föregående omgång
-            be controllern visa ruta med statistik och knapp att börja nästa omgång
-        OM servern skickar motståndarens namn
-            be controllern initiera GUIn med motståndarens namn
-
-         */
-
-    }
-
-    public void requestNewRound() {
-//        sendObject(START_ROUND);
-    }
-
-    public void requestGameOver() {
-//        sendObject(GAME_FINISHED);
-    }
-
-
-    public static void main(String[] args) throws IOException {
-    }
-
-
-    public void requestPlayerDoneWithRound() {
-//        sendObject(ROUND_FINISHED);
+    public void setGame(ClientGame clientGame) {
+        this.game = clientGame;
     }
 }

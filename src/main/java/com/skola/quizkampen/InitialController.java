@@ -4,29 +4,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
 
 public class InitialController {
     @FXML
     private TextField usernameTextField;
 
     @FXML
-    void initializeGameAction(ActionEvent event) {
+    public void initializeGameAction(ActionEvent event) {
         String username = usernameTextField.getText();
 
-        try {
-            ClientController clientController = new ClientController();
+        game.startGame(username);
 
-            Client client = new Client("127.0.0.1", clientController);
-            Thread clientThread = new Thread(client);
+        //usernameTextField.getScene().getWindow().hide();
 
-//            clientThread.setDaemon(true);
-            clientThread.start();
-            Thread.sleep(100);
-            clientController.setupClient(client);
-            clientController.startGame(username);
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
+    }
+
+    private ClientGame game;
+
+    public void setupGame(ClientGame clientGame) {
+        this.game = clientGame;
+
     }
 }

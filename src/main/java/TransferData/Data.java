@@ -1,5 +1,6 @@
 package TransferData;
 
+
 import Server.Category;
 import Server.Question;
 
@@ -17,5 +18,6 @@ public class Data implements Serializable {
     public List<Boolean> listOfBooleans;
     public String message;
     public List<Question> listOfQuestions;
+
 
 }

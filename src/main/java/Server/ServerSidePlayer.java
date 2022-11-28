@@ -1,6 +1,5 @@
 package Server;
 
-
 import TransferData.Data;
 import TransferData.Task;
 
