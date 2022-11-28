@@ -145,7 +145,6 @@ public class Client extends Task<Void> {
     }
 
     protected void properties(Data data) {
-        // TODO: Fortsätt här in the next rework in jersey shore.
         Platform.runLater(() -> controller.totalNumOfRounds = data.properties[0]);
         Platform.runLater(() -> controller.questionsPerRound = data.properties[1]);
         requestNewRound();
