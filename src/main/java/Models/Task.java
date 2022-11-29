@@ -13,7 +13,9 @@ public enum Task {
     STATISTICS,
     OPPONENTS_NAME,
     GAME_RESULT,
-    SET_QUESTIONS
+    SET_QUESTIONS,
+    SET_COLOR_GREEN,
+    SET_COLOR_RED
 
 }
 
