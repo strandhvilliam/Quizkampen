@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -40,7 +42,12 @@ public class QuestionWindowController implements Initializable {
     @FXML
     public void optionSelectedAction(ActionEvent event){
         Button button = (Button) event.getSource();
-
+        if (button.getText().equals(currentQuestion.getCorrectAnswer())) {
+            button.setBackground(Background.fill(Color.GREEN));
+        }
+        else {
+            button.setBackground(Background.fill(Color.RED));
+        }
         //TODO: lägg in kod så att GUI reagerar med grönt om rätt, rött om fel
 
         processPlayerAnswer(button.getText());
@@ -56,6 +63,10 @@ public class QuestionWindowController implements Initializable {
         List<String> allAnswers = new ArrayList<>(wrongAlternatives);
         allAnswers.add(correctAnswer);
         Collections.shuffle(allAnswers);
+        optionOneButton.setBackground(Background.fill(Color.WHITE));
+        optionTwoButton.setBackground(Background.fill(Color.WHITE));
+        optionThreeButton.setBackground(Background.fill(Color.WHITE));
+        optionFourButton.setBackground(Background.fill(Color.WHITE));
         optionOneButton.setText(allAnswers.get(0));
         optionTwoButton.setText(allAnswers.get(1));
         optionThreeButton.setText(allAnswers.get(2));

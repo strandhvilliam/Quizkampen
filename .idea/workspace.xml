@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="minor changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ClientController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Server/Settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Server/Settings.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +67,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -153,7 +147,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="minor changes" />
+      <changelist id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="" />
       <created>1668762985455</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -171,14 +165,6 @@
       <workItem from="1669569997706" duration="337000" />
       <workItem from="1669580407655" duration="13443000" />
       <workItem from="1669622941371" duration="849000" />
-      <workItem from="1669649886693" duration="126000" />
-      <workItem from="1669651051217" duration="60000" />
-      <workItem from="1669651122886" duration="106000" />
-      <workItem from="1669651257732" duration="1571000" />
-      <workItem from="1669656111215" duration="242000" />
-      <workItem from="1669711102947" duration="306000" />
-      <workItem from="1669712061539" duration="372000" />
-      <workItem from="1669738365376" duration="384000" />
     </task>
     <task id="LOCAL−00001" summary="la till kategori">
       <created>1669020334736</created>
