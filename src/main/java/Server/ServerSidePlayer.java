@@ -1,14 +1,12 @@
 package Server;
 
 import Models.Data;
-import Models.Question;
 import Models.Task;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class ServerSidePlayer extends Thread implements Serializable {
     final String idInstance;  // för att servern ska kunna skilja på instanserna
@@ -23,7 +21,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
     Database db;
 
     private final int amountOfRounds;
-    private final int amountOfQuesitons;
+    private final int amountOfQuestions;
 
 
     public ServerSidePlayer(Socket socket, String idInstance, ServerGame game, Database db) {
@@ -34,7 +32,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
         this.scorePlayer = new ArrayList<>();
 
         this.amountOfRounds = db.getRoundsPerGame();
-        this.amountOfQuesitons = db.getQuestionsPerRound();
+        this.amountOfQuestions = db.getQuestionsPerRound();
 
     }
 
@@ -108,27 +106,18 @@ public class ServerSidePlayer extends Thread implements Serializable {
         }
     }
 
-    public void showMessage(String s) {
-        System.out.println(s);
-    }
-
     protected void setScore(Data data) {
         setScore(data.listOfBooleans);
         game.getScore(scorePlayer, idInstance);
         game.roundIsFinished(idInstance);
     }
 
-    public void checkAnswer(String score) {
-        this.scorePlayer.add(Boolean.valueOf(score));  // användas för att spara svar från spelare.
-    }
-
 
     protected void setCategory(Data data) {
         Data res = new Data(Task.SET_QUESTIONS);
-        List<Question> listOfQuestions = db.getByCategory(data.category);
 
 
-        res.listOfQuestions = listOfQuestions;
+        res.listOfQuestions = db.getByCategory(data.category);
         sendData(res);
         game.getOpponent(this).sendData(res);
 
@@ -144,7 +133,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
         Data data = new Data(Task.PROPERTIES_PROTOCOL);
         data.properties = new int[2];
         data.properties[0] = amountOfRounds;
-        data.properties[1] = amountOfQuesitons;
+        data.properties[1] = amountOfQuestions;
         sendData(data);
     }
 
@@ -173,9 +162,5 @@ public class ServerSidePlayer extends Thread implements Serializable {
         sendArray[2] = theWinner[2];
         data.result = sendArray;
         sendData(data);
-        //TODO: implementera resultat av vinnare / förlorare
     }
-
-
 }
-//Todo: Lägga till metod ifall en person har vunnit trots att det fortfarande finns ronder kvar att spela

@@ -31,49 +31,26 @@ public class Database implements Serializable {
 
     }
 
-    /*public void initializeQuestions() throws IOException {
-        allQuestions.clear();
-
-        String filePath = "src/main/java/com/skola/quizkampen/questions.txt";
-        String dbQuestion, dbAnswers, dbCategory;
-
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
-
-            while ((dbQuestion = bufferedReader.readLine()) != null) {
-                dbAnswers = bufferedReader.readLine();
-                dbCategory = bufferedReader.readLine();
-                String[] dbAnswersArr = dbAnswers.split(",");
-                allQuestions.add(new Question(dbQuestion, dbAnswersArr, dbCategory));
-            }
-        } catch (IOException e) {
-            System.out.println("IOException");
-        }
-    }*/
-
-    public void shuffleListOfQuestions() {
-        Collections.shuffle(allQuestions);
-    }
-
-    public List<Question> getAllQuestions(List<Question> questionTestList) {
-        List<Question> questions = new ArrayList<>();
-        Category tempCategory = questionTestList.get(0).getCategory();
-        questions.add(questionTestList.get(0));
-
-        for (int i = 1; i < questionTestList.size(); i++) {
-            if (questionTestList.get(i).getCategory().equals(questionTestList.get(0).getCategory())) {
-                questions.add(questionTestList.get(i));
-                questionTestList.remove(i);
-            }
-        }
-        return questions;
-    }
+//    public List<Question> getAllQuestions(List<Question> questionTestList) {
+//        List<Question> questions = new ArrayList<>();
+//        Category tempCategory = questionTestList.get(0).getCategory();
+//        questions.add(questionTestList.get(0));
+//
+//        for (int i = 1; i < questionTestList.size(); i++) {
+//            if (questionTestList.get(i).getCategory().equals(questionTestList.get(0).getCategory())) {
+//                questions.add(questionTestList.get(i));
+//                questionTestList.remove(i);
+//            }
+//        }
+//        return questions;
+//    }
 
 
     public List<Question> getByCategory(Category category) {
         List<Question> categoryQList = new ArrayList<>();
-        for (int i = 0; i < allQuestions.size(); i++) {
-            if (allQuestions.get(i).getCategory().equals(category)) {
-                categoryQList.add(allQuestions.get(i));
+        for (Question allQuestion : allQuestions) {
+            if (allQuestion.getCategory().equals(category)) {
+                categoryQList.add(allQuestion);
             }
         }
         return categoryQList;
@@ -83,8 +60,8 @@ public class Database implements Serializable {
         int i = 0;
         String row;
         String question = "";
-        String rightAnswer = "";
-        String wrongAnswer = "";
+        String rightAnswer;
+        String wrongAnswer;
         String[] wrongAnswers = new String[3];
 
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/Server/questions"))) {
@@ -135,8 +112,6 @@ public class Database implements Serializable {
                     }
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

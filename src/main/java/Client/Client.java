@@ -18,7 +18,6 @@ public class Client extends javafx.concurrent.Task<Void> {
     private final String serverAddress;
 
 
-    private Socket socket;
     private final static int PORT = 5555;
     private ObjectOutputStream outputStream;
     private ObjectInputStream inputStream;
@@ -33,11 +32,9 @@ public class Client extends javafx.concurrent.Task<Void> {
 
     @Override
     protected Void call() {
-        try {
-            socket = new Socket(serverAddress, PORT);
+        try (Socket socket = new Socket(serverAddress, PORT)) {
             outputStream = new ObjectOutputStream(socket.getOutputStream());
             inputStream = new ObjectInputStream(socket.getInputStream());
-
             Data fromServer;
             while ((fromServer = (Data) inputStream.readObject()) != null) {
                 System.out.println("Client received " + fromServer.task);
@@ -77,15 +74,11 @@ public class Client extends javafx.concurrent.Task<Void> {
     }
 
     private void waitForOpponent() {
-        Platform.runLater(() -> {
-            game.displayWaitingWindow();
-        });
+        Platform.runLater(() -> game.displayWaitingWindow());
     }
 
     private void showCategoryWindow() {
-        Platform.runLater(() -> {
-            game.displayCategoryWindow();
-        });
+        Platform.runLater(() -> game.displayCategoryWindow());
     }
 
 
@@ -118,7 +111,7 @@ public class Client extends javafx.concurrent.Task<Void> {
     }
 
     protected void initProperties(Data data) {
-        Platform.runLater(() ->  game.setProperties(data.properties[0], data.properties[1]));
+        Platform.runLater(() -> game.setProperties(data.properties[0], data.properties[1]));
         sendObject(new Data(Task.START_ROUND));
     }
 

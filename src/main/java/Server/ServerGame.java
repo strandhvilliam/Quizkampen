@@ -12,8 +12,6 @@ public class ServerGame {
     boolean playerOneReady = false;
     boolean playerTwoReady = false;
     ServerSidePlayer playerOne, playerTwo;
-
-    int numberOfRounds;
     private final String idInstanceOne = "Player_1";
     private final String idInstanceTwo = "Player_2";
     String theCurrentPlayer = idInstanceOne;

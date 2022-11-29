@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,7 +38,7 @@ public class QuestionWindowController implements Initializable {
 
 
     @FXML
-    public void optionSelectedAction(ActionEvent event) throws IOException {
+    public void optionSelectedAction(ActionEvent event){
         Button button = (Button) event.getSource();
 
         //TODO: lägg in kod så att GUI reagerar med grönt om rätt, rött om fel
