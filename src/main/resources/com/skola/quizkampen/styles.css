@@ -195,3 +195,16 @@
     -fx-progress-color: #ffffff;
 }
 
+.avatar-buttons{
+    -fx-font-size: 24px;
+    -fx-font: Chalkduster;
+}
+
+.category-button{
+    -fx-font-size: 24px;
+    -fx-font-family: Chalkduster;
+}
+
+
+
+

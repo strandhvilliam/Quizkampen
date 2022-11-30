@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="completed walkthrough of program">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/AvatarChooser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/icons/ChooseAvatar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/InitialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/InitialController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/skola/quizkampen/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/category-chooser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/category-chooser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -53,7 +53,9 @@
     </option>
   </component>
   <component name="ProjectId" id="2HiLVfi6nXJsEmdhqp2lp6VkrOG" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -69,11 +71,12 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/skola/quizkampen/icons" />
       <recent name="C:\Users\linus\OneDrive\Skrivbord\Java Nacka\Projekt skolan\Quizkampen\src\main\java\Server" />
       <recent name="D:\javamapp\Quizkampen\src\main\java\com\skola\quizkampen" />
     </key>
@@ -85,7 +88,7 @@
       <recent name="Server" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainApplication">
+  <component name="RunManager">
     <configuration name="MainApplication" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.skola.quizkampen.MainApplication" />
       <module name="Quizkampen" />
@@ -118,16 +121,18 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Server" />
         <item itemvalue="Application.MainApplication" />
         <item itemvalue="Application.Server" />
         <item itemvalue="Application.MainApplication" />
+        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="" />
+      <changelist id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="completed walkthrough of program" />
       <created>1668762985455</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -136,6 +141,18 @@
       <workItem from="1669018204213" duration="16758000" />
       <workItem from="1669382150326" duration="195000" />
       <workItem from="1669382354684" duration="3591000" />
+      <workItem from="1669664231017" duration="84000" />
+      <workItem from="1669664325139" duration="297000" />
+      <workItem from="1669664663193" duration="2201000" />
+      <workItem from="1669666879803" duration="24000" />
+      <workItem from="1669666943036" duration="506000" />
+      <workItem from="1669709379259" duration="1008000" />
+      <workItem from="1669710398327" duration="1416000" />
+      <workItem from="1669712746520" duration="4457000" />
+      <workItem from="1669717475511" duration="20000" />
+      <workItem from="1669717540874" duration="433000" />
+      <workItem from="1669718006478" duration="1333000" />
+      <workItem from="1669794489162" duration="3318000" />
     </task>
     <task id="LOCAL−00001" summary="la till kategori">
       <created>1669020334736</created>
@@ -189,7 +206,19 @@
       <option name="project" value="LOCAL" />
       <updated>1669390072561</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL−00009" summary="First commit">
+      <created>1669628828076</created>
+      <option name="number" value="LOCAL−00009" />
+      <option name="presentableId" value="LOCAL−00009" />
+      <updated>1669628828076</updated>
+    </task>
+    <task id="LOCAL−00010" summary="first commit">
+      <created>1669663332266</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1669663332266</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +235,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="client_update" />
+                        <option value="Avatar" />
                       </list>
                     </value>
                   </entry>
@@ -228,6 +257,12 @@
     <MESSAGE value="moved classes" />
     <MESSAGE value="restructured packages" />
     <MESSAGE value="completed walkthrough of program" />
-    <option name="LAST_COMMIT_MESSAGE" value="completed walkthrough of program" />
+    <MESSAGE value="First commit" />
+    <MESSAGE value="first commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
