@@ -32,24 +32,57 @@ public class QuestionWindowController implements Initializable {
     @FXML
     private Button optionFourButton;
 
+    @FXML
+    private Button nextQuestionButton;
+
+
 
     private ClientGame game;
 
     private Question currentQuestion;
 
+    List<Button> buttons = new ArrayList<>();
 
     @FXML
-    public void optionSelectedAction(ActionEvent event) throws IOException {
+    public void optionSelectedAction(ActionEvent event) {
         Button button = (Button) event.getSource();
 
         //TODO: lägg in kod så att GUI reagerar med grönt om rätt, rött om fel
 
-        processPlayerAnswer(button.getText());
-        game.displayQuestionWindow();
+
+
+        processPlayerAnswer(button);
+        //game.displayQuestionWindow();
     }
 
-    private void processPlayerAnswer(String userAnswer) {
-        game.addPlayerScore(userAnswer.equals(currentQuestion.getCorrectAnswer()));
+    //nextRoundButtonClicked {
+    //      game.displayQuestionWindow()
+
+    private void processPlayerAnswer(Button clickedButton) {
+        String correctAnswer = currentQuestion.getCorrectAnswer();
+        for (Button b : buttons) {
+            if (b.getText().equals(correctAnswer)) {
+                b.setStyle("-fx-border-color: #48cb27");
+                b.setMouseTransparent(true);
+            } else {
+                b.setStyle("-fx-border-color: #FE4545");
+                b.setMouseTransparent(true);
+            }
+        }
+        if (clickedButton.getText().equals(correctAnswer)) {
+            game.addPlayerScore(true);
+            clickedButton.setStyle("-fx-background-color: #48cb27; -fx-text-fill: #ffffff");
+        } else {
+            game.addPlayerScore(false);
+            clickedButton.setStyle("-fx-background-color: #FE4545; -fx-text-fill: #ffffff");
+        }
+
+        nextQuestionButton.setDisable(false);
+
+    }
+
+    public void nextQuestionAction() {
+        game.displayQuestionWindow();
     }
 
 
@@ -57,10 +90,15 @@ public class QuestionWindowController implements Initializable {
         List<String> allAnswers = new ArrayList<>(wrongAlternatives);
         allAnswers.add(correctAnswer);
         Collections.shuffle(allAnswers);
-        optionOneButton.setText(allAnswers.get(0));
-        optionTwoButton.setText(allAnswers.get(1));
-        optionThreeButton.setText(allAnswers.get(2));
-        optionFourButton.setText(allAnswers.get(3));
+
+        buttons.add(optionOneButton);
+        buttons.add(optionTwoButton);
+        buttons.add(optionThreeButton);
+        buttons.add(optionFourButton);
+
+        for (int i = 0; i < allAnswers.size(); i++) {
+            buttons.get(i).setText(allAnswers.get(i));
+        }
     }
 
 
@@ -70,6 +108,7 @@ public class QuestionWindowController implements Initializable {
         setOptionButtons(List.of(question.getWrongAnswers()), question.getCorrectAnswer());
         questionLabel.setText(question.getQuestion());
         categoryLabel.setText(question.getCategory().name);
+        nextQuestionButton.setDisable(true);
 
     }
 
