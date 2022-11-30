@@ -35,6 +35,7 @@ public class QuestionWindowController implements Initializable {
     @FXML
     private Button nextQuestionButton;
     //testkommentar
+    //testkommentar 2
 
 
     private ClientGame game;
