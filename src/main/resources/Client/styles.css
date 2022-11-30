@@ -25,11 +25,12 @@
 
 .countdown-label {
     -fx-alignment: CENTER;
-    -fx-font-size: 32px;
+    -fx-font-size: 42px;
     -fx-font-weight: bold;
-    -fx-border-width: 3;
-    -fx-border-color: #FC5C0A;
-    -fx-border-radius: 1000px;
+    -fx-border-width: 4;
+    -fx-border-color: #323232;
+    -fx-border-radius: 1000;
+    -fx-background-color: transparent;
 }
 
 .player-icon-label {
@@ -201,8 +202,26 @@
     -fx-background-color: #FE4545;
 }
 
-.progress-indicator {
+.progress-indicator .tick {
+
+}
+
+.progress-indicator:indeterminate {
     -fx-progress-color: #ffffff;
+}
+
+
+.progress-indicator:determinate .progress{
+    -fx-background-color: linear-gradient(to right, #FFA700, #FC5C0A);
+
+}
+
+.progress-indicator .determinate-indicator {
+    -fx-padding: 64px;
+}
+
+.progress-indicator .percentage{
+    -fx-fill: transparent;
 }
 
 .progress-bar {
@@ -212,4 +231,3 @@
 .progress-bar .bar {
     -fx-background-color: linear-gradient(to right, #FFA700, #FC5C0A);
 }
-

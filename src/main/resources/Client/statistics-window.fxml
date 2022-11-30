@@ -12,7 +12,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="660.0" styleClass="background-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.StatisticsController">
    <top>
-      <Label styleClass="large-white-label" text="Current Statistics" BorderPane.alignment="CENTER">
+      <Label styleClass="large-white-label" text="Statistik för rond" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="12.0" top="32.0" />
          </BorderPane.margin>
@@ -43,7 +43,7 @@
                <children>
                   <HBox alignment="BOTTOM_LEFT" prefHeight="94.0" prefWidth="580.0" style="-fx-border-width: 2;" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label prefHeight="25.0" prefWidth="95.0" styleClass="medium-gray-label" text="Rounds">
+                        <Label prefHeight="25.0" prefWidth="95.0" styleClass="medium-gray-label" text="Omgång">
                            <HBox.margin>
                               <Insets left="8.0" />
                            </HBox.margin>

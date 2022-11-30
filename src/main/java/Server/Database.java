@@ -31,20 +31,6 @@ public class Database implements Serializable {
 
     }
 
-//    public List<Question> getAllQuestions(List<Question> questionTestList) {
-//        List<Question> questions = new ArrayList<>();
-//        Category tempCategory = questionTestList.get(0).getCategory();
-//        questions.add(questionTestList.get(0));
-//
-//        for (int i = 1; i < questionTestList.size(); i++) {
-//            if (questionTestList.get(i).getCategory().equals(questionTestList.get(0).getCategory())) {
-//                questions.add(questionTestList.get(i));
-//                questionTestList.remove(i);
-//            }
-//        }
-//        return questions;
-//    }
-
 
     public List<Question> getByCategory(Category category) {
         List<Question> categoryQList = new ArrayList<>();

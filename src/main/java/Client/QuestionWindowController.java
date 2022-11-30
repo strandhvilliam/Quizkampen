@@ -1,11 +1,17 @@
 package Client;
 
 import Models.Question;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +30,9 @@ public class QuestionWindowController implements Initializable {
     private Label categoryLabel = new Label();
 
     @FXML
+    private ProgressIndicator pIndicator;
+
+    @FXML
     private Button optionOneButton;
     @FXML
     private Button optionTwoButton;
@@ -35,33 +44,37 @@ public class QuestionWindowController implements Initializable {
     @FXML
     private Button nextQuestionButton;
 
+    @FXML
+    private Label countDownLabel;
+
     private ClientGame game;
 
     private Question currentQuestion;
 
     List<Button> buttons = new ArrayList<>();
 
+    Timer timer;
+
     @FXML
     public void optionSelectedAction(ActionEvent event) {
         Button button = (Button) event.getSource();
         processPlayerAnswer(button);
-
+        timer.stopTimer();
     }
-
 
 
     private void processPlayerAnswer(Button clickedButton) {
         setButtonColours(clickedButton);
     }
 
-    public void setButtonColours(Button clickedButton){
+    public void setButtonColours(Button clickedButton) {
         setBorderButton();
         setBackgroundButton(clickedButton);
         nextQuestionButton.setDisable(false);
 
     }
 
-    private void setBorderButton(){
+    private void setBorderButton() {
         for (Button b : buttons) {
             if (b.getText().equals(currentQuestion.getCorrectAnswer())) {
                 b.setStyle("-fx-border-color: #48cb27");
@@ -73,7 +86,7 @@ public class QuestionWindowController implements Initializable {
         }
     }
 
-    private void setBackgroundButton(Button clickedButton){
+    private void setBackgroundButton(Button clickedButton) {
         if (clickedButton.getText().equals(currentQuestion.getCorrectAnswer())) {
             game.addPlayerScore(true);
             clickedButton.setStyle("-fx-background-color: #48cb27; -fx-text-fill: #ffffff");
@@ -112,10 +125,44 @@ public class QuestionWindowController implements Initializable {
         categoryLabel.setText(question.getCategory().name);
         nextQuestionButton.setDisable(true);
 
+        countDownLabel.textProperty().bind(pIndicator.progressProperty().multiply(10).asString("%.0f"));
+        timer = new Timer();
+        Thread thread = new Thread(timer);
+        thread.start();
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+
+    class Timer extends Task<Void> {
+
+        private Timeline timeline;
+        @Override
+        protected Void call() throws Exception {
+            timeline = new Timeline(
+                    new KeyFrame(Duration.seconds(10),
+                            e -> {
+                                System.out.println("times, up");
+                                buttons.forEach(b -> b.setMouseTransparent(true));
+                                setBorderButton();
+                                nextQuestionButton.setDisable(false);
+                                game.addPlayerScore(false);
+                            },
+                            new KeyValue(pIndicator.progressProperty(), 0)),
+                    new KeyFrame(Duration.ZERO,
+                            e -> System.out.println("start"),
+                            new KeyValue(pIndicator.progressProperty(), 1)));
+
+            timeline.play();
+            return null;
+        }
+
+        public void stopTimer() {
+            timeline.stop();
+        }
     }
 }
