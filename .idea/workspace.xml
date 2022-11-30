@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="fixed some more bugs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Server/Settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Server/Settings.properties" afterDir="false" />
-    </list>
+    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="removed progressindicator" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +20,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="rework_SadFace" />
+    <option name="BRANCH" value="timer_test" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -318,7 +312,21 @@
       <option name="project" value="LOCAL" />
       <updated>1669649633564</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="added color change">
+      <created>1669800717148</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1669800717148</updated>
+    </task>
+    <task id="LOCAL-00023" summary="removed progressindicator">
+      <created>1669800847463</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1669800847463</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,6 +371,8 @@
     <MESSAGE value="multple modifications to both server and client" />
     <MESSAGE value="fixed game to working state" />
     <MESSAGE value="fixed some more bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some more bugs" />
+    <MESSAGE value="added color change" />
+    <MESSAGE value="removed progressindicator" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed progressindicator" />
   </component>
 </project>
