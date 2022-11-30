@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="minor changes">
+    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="fixed some more bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Server/Settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Server/Settings.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +19,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -28,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="nyservermerge" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -139,7 +142,7 @@
         <item itemvalue="Application.Client.MainApplication" />
         <item itemvalue="Application.Server" />
         <item itemvalue="Application.MainApplication" />
-        <item itemvalue="Application.MainApplication" />
+        <item itemvalue="Application.Client.MainApplication" />
         <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
@@ -147,7 +150,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4bd3eff3-38b0-4710-8e8e-d767c96b3fbf" name="Changes" comment="" />
+      <changelist id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="fixed some more bugs" />
       <created>1668762985455</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -165,6 +168,12 @@
       <workItem from="1669569997706" duration="337000" />
       <workItem from="1669580407655" duration="13443000" />
       <workItem from="1669622941371" duration="849000" />
+      <workItem from="1669665548980" duration="116000" />
+      <workItem from="1669665749484" duration="677000" />
+      <workItem from="1669707169496" duration="11000" />
+      <workItem from="1669707298008" duration="187000" />
+      <workItem from="1669711035927" duration="3074000" />
+      <workItem from="1669746737224" duration="6585000" />
     </task>
     <task id="LOCAL−00001" summary="la till kategori">
       <created>1669020334736</created>
@@ -302,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669646140857</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="fixed some more bugs">
+      <created>1669649633564</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1669649633564</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,6 +362,7 @@
     <MESSAGE value="mergar Lukas &amp; Linus server med klient och GUI" />
     <MESSAGE value="multple modifications to both server and client" />
     <MESSAGE value="fixed game to working state" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed game to working state" />
+    <MESSAGE value="fixed some more bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some more bugs" />
   </component>
 </project>
