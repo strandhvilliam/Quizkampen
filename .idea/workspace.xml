@@ -4,6 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="Refactored parts in Question Window Controller.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Server/questions" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Server/questions" afterDir="false" />
+    </list>
     <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="added countdown timer for questions" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -332,14 +337,7 @@
       <option name="presentableId" value="LOCAL−00024" />
       <updated>1669801200402</updated>
     </task>
-    <task id="LOCAL-00025" summary="added countdown timer for questions">
-      <created>1669812430936</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1669812430936</updated>
-    </task>
-    <option name="localTasksCounter" value="26" />
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -386,7 +384,6 @@
     <MESSAGE value="added color change" />
     <MESSAGE value="removed progressindicator" />
     <MESSAGE value="fixed some more bugs" />
-    <MESSAGE value="added countdown timer for questions" />
-    <option name="LAST_COMMIT_MESSAGE" value="added countdown timer for questions" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some more bugs" />
   </component>
 </project>
