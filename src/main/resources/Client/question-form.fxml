@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="620.0" styleClass="background-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.QuestionWindowController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="620.0" styleClass="background-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.QuestionWindowController">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="question-container" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -35,6 +30,7 @@
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -46,7 +42,7 @@
                         <Label styleClass="question-number" text="A" />
                      </graphic>
                   </Button>
-                  <Button fx:id="optionTwoButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 2" wrapText="true" GridPane.columnIndex="1">
+                  <Button fx:id="optionTwoButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 2" wrapText="true" GridPane.columnIndex="2">
                      <graphic>
                         <Label styleClass="question-number" text="B" />
                      </graphic>
@@ -56,7 +52,7 @@
                         <Label styleClass="question-number" text="C" />
                      </graphic>
                   </Button>
-                  <Button fx:id="optionFourButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 4" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="optionFourButton" graphicTextGap="12.0" mnemonicParsing="false" onAction="#optionSelectedAction" styleClass="question-button" text="Option 4" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <graphic>
                         <Label styleClass="question-number" text="D" />
                      </graphic>
@@ -66,6 +62,7 @@
                   <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
                </VBox.margin>
             </GridPane>
+            <Button mnemonicParsing="false" onAction="#displayQuestionWindowEvent" prefHeight="80.0" prefWidth="107.0" text="Nästa" />
          </children>
       </VBox>
    </center>
