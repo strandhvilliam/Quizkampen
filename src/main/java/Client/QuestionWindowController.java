@@ -34,9 +34,6 @@ public class QuestionWindowController implements Initializable {
 
     @FXML
     private Button nextQuestionButton;
-    //testkommentar
-    //testkommentar 2
-
 
     private ClientGame game;
 
@@ -47,22 +44,26 @@ public class QuestionWindowController implements Initializable {
     @FXML
     public void optionSelectedAction(ActionEvent event) {
         Button button = (Button) event.getSource();
-
-        //TODO: lägg in kod så att GUI reagerar med grönt om rätt, rött om fel
-
-
-
         processPlayerAnswer(button);
-        //game.displayQuestionWindow();
+
     }
 
-    //nextRoundButtonClicked {
-    //      game.displayQuestionWindow()
+
 
     private void processPlayerAnswer(Button clickedButton) {
-        String correctAnswer = currentQuestion.getCorrectAnswer();
+        setButtonColours(clickedButton);
+    }
+
+    public void setButtonColours(Button clickedButton){
+        setBorderButton();
+        setBackgroundButton(clickedButton);
+        nextQuestionButton.setDisable(false);
+
+    }
+
+    private void setBorderButton(){
         for (Button b : buttons) {
-            if (b.getText().equals(correctAnswer)) {
+            if (b.getText().equals(currentQuestion.getCorrectAnswer())) {
                 b.setStyle("-fx-border-color: #48cb27");
                 b.setMouseTransparent(true);
             } else {
@@ -70,16 +71,16 @@ public class QuestionWindowController implements Initializable {
                 b.setMouseTransparent(true);
             }
         }
-        if (clickedButton.getText().equals(correctAnswer)) {
+    }
+
+    private void setBackgroundButton(Button clickedButton){
+        if (clickedButton.getText().equals(currentQuestion.getCorrectAnswer())) {
             game.addPlayerScore(true);
             clickedButton.setStyle("-fx-background-color: #48cb27; -fx-text-fill: #ffffff");
         } else {
             game.addPlayerScore(false);
             clickedButton.setStyle("-fx-background-color: #FE4545; -fx-text-fill: #ffffff");
         }
-
-        nextQuestionButton.setDisable(false);
-
     }
 
     public void nextQuestionAction() {

@@ -62,7 +62,6 @@
                   <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
                </VBox.margin>
             </GridPane>
-            <Button mnemonicParsing="false" onAction="#displayQuestionWindowEvent" prefHeight="80.0" prefWidth="107.0" text="Nästa" />
          </children>
       </VBox>
    </center>

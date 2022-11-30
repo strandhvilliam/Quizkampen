@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="removed progressindicator" />
+    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -326,7 +332,13 @@
       <option name="project" value="LOCAL" />
       <updated>1669800847463</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL−00024" summary="fixed some more bugs">
+      <created>1669801200402</created>
+      <option name="number" value="LOCAL−00024" />
+      <option name="presentableId" value="LOCAL−00024" />
+      <updated>1669801200402</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,7 +355,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="client_update" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -370,9 +382,9 @@
     <MESSAGE value="mergar Lukas &amp; Linus server med klient och GUI" />
     <MESSAGE value="multple modifications to both server and client" />
     <MESSAGE value="fixed game to working state" />
-    <MESSAGE value="fixed some more bugs" />
     <MESSAGE value="added color change" />
     <MESSAGE value="removed progressindicator" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed progressindicator" />
+    <MESSAGE value="fixed some more bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some more bugs" />
   </component>
 </project>

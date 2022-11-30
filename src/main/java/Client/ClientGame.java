@@ -159,7 +159,7 @@ public class ClientGame {
 
     public void startRound(List<Question> questionsForRound) {
         round++;
-        Collections.shuffle(questionsForRound);
+//        Collections.shuffle(questionsForRound);
 
         List<Question> list = new ArrayList<>();
         for (Question question : questionsForRound) {
