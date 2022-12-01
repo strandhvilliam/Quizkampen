@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -89,9 +90,18 @@ public class QuestionWindowController implements Initializable {
         if (clickedButton.getText().equals(currentQuestion.getCorrectAnswer())) {
             game.addPlayerScore(true);
             clickedButton.setStyle("-fx-background-color: #48cb27; -fx-text-fill: #ffffff");
+            countDownLabel.textProperty().unbind();
+            countDownLabel.setText("");
+            countDownLabel.setGraphic(new ImageView(getClass().getResource("icons/icons8_ok_127px.png").toExternalForm()));
+            countDownLabel.setStyle("-fx-background-color: #fff");
         } else {
             game.addPlayerScore(false);
             clickedButton.setStyle("-fx-background-color: #FE4545; -fx-text-fill: #ffffff");
+            pIndicator.setVisible(false);
+            countDownLabel.textProperty().unbind();
+            countDownLabel.setText("");
+            countDownLabel.setGraphic(new ImageView(getClass().getResource("icons/icons8_cancel_127px.png").toExternalForm()));
+            countDownLabel.setStyle("-fx-background-color: #fff");
         }
     }
 

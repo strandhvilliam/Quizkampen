@@ -8,6 +8,6 @@
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="320.0" spacing="16.0" styleClass="secondary-background-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ProgressIndicator />
-      <Label styleClass="medium-white-label" text="Waiting for opponent..." />
+      <Label styleClass="medium-white-label" text="Väntar på motståndare..." />
    </children>
 </VBox>
