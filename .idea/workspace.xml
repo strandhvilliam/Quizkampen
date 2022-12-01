@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="Refactored parts in Question Window Controller.">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_cancel_127px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_ok_127px.png" afterDir="false" />
+    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="updated images when providing answers">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_confetti_100px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_crying_baby_100px.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ResultWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ResultWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/results-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/results-window.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,23 +56,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Git.Branch.Popup.ShowAllRemotes": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/villi/Github Personal Projects/Quizkampen/src/main/resources/Client/icons",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/villi/Github Personal Projects/Quizkampen/src/main/resources/Client/icons&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\villi\Github Personal Projects\Quizkampen\src\main\resources\Client\icons" />
@@ -178,7 +177,7 @@
       <workItem from="1669746737224" duration="6585000" />
       <workItem from="1669876698588" duration="30000" />
       <workItem from="1669876773937" duration="21000" />
-      <workItem from="1669881491151" duration="955000" />
+      <workItem from="1669881491151" duration="1636000" />
     </task>
     <task id="LOCAL−00001" summary="la till kategori">
       <created>1669020334736</created>
@@ -343,7 +342,14 @@
       <option name="presentableId" value="LOCAL−00024" />
       <updated>1669801200402</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="updated images when providing answers">
+      <created>1669882772773</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1669882772773</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,6 +396,7 @@
     <MESSAGE value="added color change" />
     <MESSAGE value="removed progressindicator" />
     <MESSAGE value="fixed some more bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some more bugs" />
+    <MESSAGE value="updated images when providing answers" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated images when providing answers" />
   </component>
 </project>
