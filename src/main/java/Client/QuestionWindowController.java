@@ -160,6 +160,10 @@ public class QuestionWindowController implements Initializable {
                                 setBorderButton();
                                 nextQuestionButton.setDisable(false);
                                 game.addPlayerScore(false);
+                                countDownLabel.textProperty().unbind();
+                                countDownLabel.setText("");
+                                countDownLabel.setGraphic(new ImageView(getClass().getResource("icons/icons8_cancel_127px.png").toExternalForm()));
+                                countDownLabel.setStyle("-fx-background-color: #fff");
                             },
                             new KeyValue(pIndicator.progressProperty(), 0)),
                     new KeyFrame(Duration.ZERO,

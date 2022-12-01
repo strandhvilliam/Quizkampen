@@ -39,7 +39,7 @@
       </HBox>
    </bottom>
    <top>
-      <HBox alignment="CENTER" prefHeight="158.0" prefWidth="660.0" spacing="24.0" BorderPane.alignment="CENTER_LEFT">
+      <HBox alignment="CENTER" prefHeight="158.0" prefWidth="660.0" spacing="24.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="leftImageView" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="resultsLabel" prefWidth="356.0" styleClass="large-white-label" text="WIN/LOSE/DRAW" />

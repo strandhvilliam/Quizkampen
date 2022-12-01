@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="added images to result window">
+    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="minor change to GUI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/results-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/results-window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/StatisticsController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,6 +177,7 @@
       <workItem from="1669876773937" duration="21000" />
       <workItem from="1669881491151" duration="1636000" />
       <workItem from="1669883310100" duration="937000" />
+      <workItem from="1669929622202" duration="1056000" />
     </task>
     <task id="LOCAL−00001" summary="la till kategori">
       <created>1669020334736</created>
@@ -354,7 +356,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669883529734</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="minor change to GUI">
+      <created>1669929640324</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1669929640324</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -403,6 +412,7 @@
     <MESSAGE value="fixed some more bugs" />
     <MESSAGE value="updated images when providing answers" />
     <MESSAGE value="added images to result window" />
-    <option name="LAST_COMMIT_MESSAGE" value="added images to result window" />
+    <MESSAGE value="minor change to GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor change to GUI" />
   </component>
 </project>

@@ -33,7 +33,8 @@ public class StatisticsController implements Initializable {
 
     @FXML
     private Button nextRoundButton;
-
+    private int numOfRounds;
+    private int numOfColumns;
 
 
     public void nextRoundAction() {
@@ -41,16 +42,10 @@ public class StatisticsController implements Initializable {
     }
 
 
-    /**
-     * Initierar datan som ska presenteras för spelaren efter varje runda är klar.
-     * @param game spelklassen
-     * @param playerResult resultatet för spelaren
-     * @param opponentResult resultatet för motståndaren
-     * @param numOfRounds antal ronder i spelet totalt (från properties)
-     * @param numOfColumns antal frågor per runda blir antal kolumner (från properties)
-     */
     public void initData(ClientGame game, List<Boolean> playerResult, List<Boolean> opponentResult, int numOfRounds, int numOfColumns) {
         this.game = game;
+        this.numOfRounds = numOfRounds;
+        this.numOfColumns = numOfColumns;
         playerNameLabel.setText(game.playerName);
         opponentNameLabel.setText(game.opponentName);
 
@@ -66,25 +61,22 @@ public class StatisticsController implements Initializable {
             GridPane.setVgrow(roundLabel, Priority.ALWAYS);
         }
 
-        fillStatistics(playerResult, playerPointGrid, numOfColumns, numOfRounds);
-        fillStatistics(opponentResult, opponentPointGrid, numOfColumns, numOfRounds);
+        fillStatistics(playerResult, playerPointGrid);
+        fillStatistics(opponentResult, opponentPointGrid);
     }
 
-    /**
-     * Fyller i statistiken för spelaren eller motståndaren.
-     * @param result resultatet för spelaren eller motståndaren
-     * @param stackPane FXML destination för statistiken
-     * @param numOfColumns antal frågor per runda blir antal kolumner (från properties)
-     * @param numOfRounds antal ronder i spelet totalt (från properties)
-     */
-    private void fillStatistics(List<Boolean> result, StackPane stackPane, int numOfColumns, int numOfRounds) {
+    private void fillStatistics(List<Boolean> result, StackPane stackPane) {
 
         for (Boolean aResult : result) {
             System.out.println(aResult);
         }
 
-        List<Boolean> resultCopy = new ArrayList<>(result);
+        List<Boolean> copyOfResult = new ArrayList<>(result);
+        GridPane gridPane = createGridPane(copyOfResult);
+        stackPane.getChildren().add(gridPane);
+    }
 
+    private GridPane createGridPane(List<Boolean> copyOfResult) {
         GridPane gridPane = new GridPane();
 
         for (int row = 0; row < numOfRounds; row++) {
@@ -93,14 +85,13 @@ public class StatisticsController implements Initializable {
                 VBox vBox = new VBox();
                 Label pointLabel = new Label("");
                 pointLabel.getStyleClass().add("point-circle");
-                if (!resultCopy.isEmpty()) {
-                    if (resultCopy.get(0)) {
+                if (!copyOfResult.isEmpty()) {
+                    if (copyOfResult.get(0)) {
                         pointLabel.getStyleClass().add("win-point-label");
                     } else {
                         pointLabel.getStyleClass().add("loss-point-label");
                     }
-                    resultCopy.remove(0);
-                    System.out.println("result.size(): " + resultCopy.size());
+                    copyOfResult.remove(0);
                 }
 
                 vBox.setAlignment(Pos.CENTER);
@@ -111,8 +102,7 @@ public class StatisticsController implements Initializable {
 
             }
         }
-
-        stackPane.getChildren().add(gridPane);
+        return gridPane;
     }
 
 
