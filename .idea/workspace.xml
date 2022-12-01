@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="updated images when providing answers">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_confetti_100px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Client/icons/icons8_crying_baby_100px.png" afterDir="false" />
+    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="added images to result window">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ResultWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ResultWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Client/results-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/results-window.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,6 +175,7 @@
       <workItem from="1669876698588" duration="30000" />
       <workItem from="1669876773937" duration="21000" />
       <workItem from="1669881491151" duration="1636000" />
+      <workItem from="1669883310100" duration="937000" />
     </task>
     <task id="LOCAL−00001" summary="la till kategori">
       <created>1669020334736</created>
@@ -349,7 +347,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669882772773</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="added images to result window">
+      <created>1669883529734</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1669883529734</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,6 +402,7 @@
     <MESSAGE value="removed progressindicator" />
     <MESSAGE value="fixed some more bugs" />
     <MESSAGE value="updated images when providing answers" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated images when providing answers" />
+    <MESSAGE value="added images to result window" />
+    <option name="LAST_COMMIT_MESSAGE" value="added images to result window" />
   </component>
 </project>
