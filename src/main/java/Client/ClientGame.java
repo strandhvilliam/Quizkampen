@@ -167,7 +167,6 @@ public class ClientGame {
         Data data = new Data(Task.SEND_MESSAGE);
         data.message = message;
         client.sendObject(data);
-        //client.receiveMessage(data);
     }
 
 

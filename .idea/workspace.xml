@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="lagt till chattfunktion">
+    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="lagt till chattfunktion + felmeddelande">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/chat-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/chat-window.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +175,7 @@
       <workItem from="1669876698588" duration="30000" />
       <workItem from="1669876773937" duration="21000" />
       <workItem from="1669881491151" duration="1636000" />
-      <workItem from="1669897011966" duration="21257000" />
+      <workItem from="1669897011966" duration="21918000" />
     </task>
     <task id="LOCAL−00001" summary="la till kategori">
       <created>1669020334736</created>
@@ -356,7 +353,13 @@
       <option name="presentableId" value="LOCAL−00026" />
       <updated>1669942930228</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL−00027" summary="lagt till chattfunktion + felmeddelande">
+      <created>1669945240755</created>
+      <option name="number" value="LOCAL−00027" />
+      <option name="presentableId" value="LOCAL−00027" />
+      <updated>1669945240755</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,6 +413,7 @@
     <MESSAGE value="fixed some more bugs" />
     <MESSAGE value="updated images when providing answers" />
     <MESSAGE value="lagt till chattfunktion" />
-    <option name="LAST_COMMIT_MESSAGE" value="lagt till chattfunktion" />
+    <MESSAGE value="lagt till chattfunktion + felmeddelande" />
+    <option name="LAST_COMMIT_MESSAGE" value="lagt till chattfunktion + felmeddelande" />
   </component>
 </project>

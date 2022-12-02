@@ -76,7 +76,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
-            /*try {
+            try {
                 System.out.println("Socket closed " + idInstance);
                 output.close();
                 input.close();
@@ -84,19 +84,8 @@ public class ServerSidePlayer extends Thread implements Serializable {
                 e.printStackTrace();
             }
         }
-        */
-             /*
-
-        /* WHILE output inte är tom
-         *       OM output är en instans av lista med booleans
-         *           skicka statistik från rond till båda klienterna
-         *       OM output är en category (från en av klienterna)
-         *           skicka frågor ur rätt kategori till båda klienterna
-         *
-         */
-
-        }
     }
+
 
     protected void dataProtocol(Data data) {
         // protocol för vad som ska hända i en switch.
