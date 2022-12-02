@@ -155,4 +155,16 @@ public class ServerGame {
 
 
     }
+
+    public void sendChatMessage (String message, String idInstance) {
+        Data data = new Data(Task.SEND_MESSAGE);
+        data.message = message;
+        if (idInstance.equals(idInstanceOne)) {
+            playerTwo.sendData(data);
+        }
+        else if (idInstance.equals(idInstanceTwo)) {
+            playerOne.sendData(data);
+        }
+    }
+
 }

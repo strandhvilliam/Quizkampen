@@ -5,7 +5,7 @@ public enum Category {
     DJUR("Djur & natur"),
     FILM("Film & TV"),
     HISTORIA("Historia"),
-    SPEL("Dator- och TV_spel"),
+    SPEL("Dator- och TV-spel"),
     GEOGRAFI("Geografi"),
     TEKNIK("Teknik");
 

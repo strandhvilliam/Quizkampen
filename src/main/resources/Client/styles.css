@@ -164,6 +164,17 @@
 
 }
 
+.orange-button-2 {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-padding: 16px;
+    -fx-background-radius: 6;
+    -fx-background-color: linear-gradient(to right, #FFA700, #FC5C0A);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 4, 3);
+
+}
+
 .white-button {
     -fx-padding: 8px;
     -fx-font-size: 16px;

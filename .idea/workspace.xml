@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="minor change to GUI">
+    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="lagt till chattfunktion + felmeddelande">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/StatisticsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +17,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -176,8 +175,7 @@
       <workItem from="1669876698588" duration="30000" />
       <workItem from="1669876773937" duration="21000" />
       <workItem from="1669881491151" duration="1636000" />
-      <workItem from="1669883310100" duration="937000" />
-      <workItem from="1669929622202" duration="1056000" />
+      <workItem from="1669897011966" duration="21918000" />
     </task>
     <task id="LOCAL−00001" summary="la till kategori">
       <created>1669020334736</created>
@@ -349,19 +347,17 @@
       <option name="project" value="LOCAL" />
       <updated>1669882772773</updated>
     </task>
-    <task id="LOCAL-00026" summary="added images to result window">
-      <created>1669883529734</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1669883529734</updated>
+    <task id="LOCAL−00026" summary="lagt till chattfunktion">
+      <created>1669942930228</created>
+      <option name="number" value="LOCAL−00026" />
+      <option name="presentableId" value="LOCAL−00026" />
+      <updated>1669942930228</updated>
     </task>
-    <task id="LOCAL-00027" summary="minor change to GUI">
-      <created>1669929640324</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1669929640324</updated>
+    <task id="LOCAL−00027" summary="lagt till chattfunktion + felmeddelande">
+      <created>1669945240755</created>
+      <option name="number" value="LOCAL−00027" />
+      <option name="presentableId" value="LOCAL−00027" />
+      <updated>1669945240755</updated>
     </task>
     <option name="localTasksCounter" value="28" />
     <servers />
@@ -372,6 +368,11 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="164c9761-afc9-4b15-9eaf-9c389e20adf3">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -411,8 +412,8 @@
     <MESSAGE value="removed progressindicator" />
     <MESSAGE value="fixed some more bugs" />
     <MESSAGE value="updated images when providing answers" />
-    <MESSAGE value="added images to result window" />
-    <MESSAGE value="minor change to GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor change to GUI" />
+    <MESSAGE value="lagt till chattfunktion" />
+    <MESSAGE value="lagt till chattfunktion + felmeddelande" />
+    <option name="LAST_COMMIT_MESSAGE" value="lagt till chattfunktion + felmeddelande" />
   </component>
 </project>

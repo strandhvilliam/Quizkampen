@@ -10,23 +10,25 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ClientGame {
 
     private final Stage stage;
     private final Client client;
-
     private List<Boolean> playerScore;
 
     private int round;
+
+    private String message;
     private int totalNumOfRounds;
 
     private int questionsPerRound;
     protected String playerName;
     protected String opponentName;
     private List<Question> listOfQuestions;
+
+    ChatController cc;
 
 
     public ClientGame(Client client, Stage stage) {
@@ -156,6 +158,28 @@ public class ClientGame {
         data.listOfBooleans = playerScore;
         client.sendObject(data);
     }
+
+    public void setChatController(ChatController cc) {
+        this.cc = cc;
+    }
+
+    public void sendMessage(String message) {
+        Data data = new Data(Task.SEND_MESSAGE);
+        data.message = message;
+        client.sendObject(data);
+    }
+
+
+    public void receiveMessage(String message) {
+        this.message = message;
+        System.out.println(message);
+        try {
+        cc.receiveMessage(message);
+        } catch (NullPointerException e) {
+            System.out.println(opponentName + " är inte uppkopplad i chatten och kan inte ta emot meddelandet.");
+        }
+    }
+
 
     public void startRound(List<Question> questionsForRound) {
         round++;

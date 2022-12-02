@@ -64,7 +64,7 @@ public class Client extends javafx.concurrent.Task<Void> {
             case OPPONENT_NAME -> initOpponentName(data);
             case GAME_RESULT -> displayGameResult(data);
             case SET_QUESTIONS -> setQuestions(data);
-
+            case SEND_MESSAGE -> receiveMessage(data);
         }
     }
 
@@ -100,6 +100,7 @@ public class Client extends javafx.concurrent.Task<Void> {
         sendObject(req);
     }
 
+
     private void setQuestions(Data data) {
         List<Question> questions = data.listOfQuestions;
         Platform.runLater(() -> game.startRound(questions));
@@ -118,4 +119,9 @@ public class Client extends javafx.concurrent.Task<Void> {
     public void setGame(ClientGame clientGame) {
         this.game = clientGame;
     }
+    public void receiveMessage(Data data){
+        String message = data.message;
+        Platform.runLater(() -> game.receiveMessage(message));
+    }
 }
+

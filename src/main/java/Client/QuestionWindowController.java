@@ -7,13 +7,17 @@ import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,6 +47,9 @@ public class QuestionWindowController implements Initializable {
 
     @FXML
     private Button nextQuestionButton;
+
+    @FXML
+    private Button chatButton;
 
     @FXML
     private Label countDownLabel;
@@ -177,5 +184,24 @@ public class QuestionWindowController implements Initializable {
         public void stopTimer() {
             timeline.stop();
         }
+    }
+
+    public void displayChatBox(){
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        try {
+        fxmlLoader.setLocation(getClass().getResource("chat-window.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Chatta med " + game.opponentName);
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+        ChatController chatController = fxmlLoader.getController();
+        chatController.setGame(this.game);
+        chatController.setPadding();
+        game.setChatController(chatController);
+
     }
 }
