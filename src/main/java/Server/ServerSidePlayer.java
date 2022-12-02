@@ -114,7 +114,6 @@ public class ServerSidePlayer extends Thread implements Serializable {
     protected void setCategory(Data data) {
         Data res = new Data(Task.SET_QUESTIONS);
 
-
         res.listOfQuestions = db.getByCategory(data.category);
         sendData(res);
         game.getOpponent(this).sendData(res);
