@@ -1,7 +1,7 @@
 package Client;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.geometry.Insets;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -10,7 +10,6 @@ public class ChatController {
 
     @FXML
     private TextArea chatField = new TextArea();
-
     @FXML
     private TextField chatMessageBox;
 
@@ -19,6 +18,7 @@ public class ChatController {
     private String message;
 
     private String messageLog;
+
 
     @FXML
     public void sendMessage() {
@@ -32,6 +32,11 @@ public class ChatController {
         }
     }
 
+    public void setPadding() {
+        chatField.setPadding(new Insets(0, 5, 0, 5));
+    }
+
+
     @FXML
     public void receiveMessage(String opponentMessage) {
         chatField.setText(chatField.getText() + "\n" + game.opponentName + ": " + opponentMessage);
@@ -41,5 +46,4 @@ public class ChatController {
     public void setGame(ClientGame game) {
         this.game = game;
     }
-
 }

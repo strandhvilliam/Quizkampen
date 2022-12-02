@@ -174,7 +174,11 @@ public class ClientGame {
     public void receiveMessage(String message) {
         this.message = message;
         System.out.println(message);
+        try {
         cc.receiveMessage(message);
+        } catch (NullPointerException e) {
+            System.out.println(opponentName + " är inte uppkopplad i chatten och kan inte ta emot meddelandet.");
+        }
     }
 
 

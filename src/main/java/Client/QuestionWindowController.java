@@ -196,8 +196,8 @@ public class QuestionWindowController implements Initializable {
     }
         ChatController chatController = fxmlLoader.getController();
         chatController.setGame(this.game);
+        chatController.setPadding();
         game.setChatController(chatController);
-
 
     }
 }

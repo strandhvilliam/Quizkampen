@@ -13,7 +13,7 @@
                 <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
             </BorderPane.margin>
          <children>
-            <TextArea fx:id="chatField" editable="false" prefHeight="324.0" prefWidth="292.0" style="-fx-background-radius: 16;">
+            <TextArea fx:id="chatField" editable="false" prefHeight="324.0" prefWidth="292.0" style="-fx-border-color: black">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

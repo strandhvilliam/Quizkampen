@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="color change buttons">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Client/ChatController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Client/chat-window.fxml" afterDir="false" />
+    <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="lagt till chattfunktion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/InitialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/InitialController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/QuestionWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerSidePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/category-chooser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/category-chooser.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/question-form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Server/questions" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Server/questions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Client/chat-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Client/chat-window.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +178,7 @@
       <workItem from="1669876698588" duration="30000" />
       <workItem from="1669876773937" duration="21000" />
       <workItem from="1669881491151" duration="1636000" />
-      <workItem from="1669897011966" duration="19219000" />
+      <workItem from="1669897011966" duration="21257000" />
     </task>
     <task id="LOCAL−00001" summary="la till kategori">
       <created>1669020334736</created>
@@ -360,7 +350,13 @@
       <option name="project" value="LOCAL" />
       <updated>1669882772773</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL−00026" summary="lagt till chattfunktion">
+      <created>1669942930228</created>
+      <option name="number" value="LOCAL−00026" />
+      <option name="presentableId" value="LOCAL−00026" />
+      <updated>1669942930228</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,6 +409,7 @@
     <MESSAGE value="removed progressindicator" />
     <MESSAGE value="fixed some more bugs" />
     <MESSAGE value="updated images when providing answers" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated images when providing answers" />
+    <MESSAGE value="lagt till chattfunktion" />
+    <option name="LAST_COMMIT_MESSAGE" value="lagt till chattfunktion" />
   </component>
 </project>
