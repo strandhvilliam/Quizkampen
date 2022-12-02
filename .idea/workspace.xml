@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="efe40607-43c9-4418-9e2d-4bb9d08f7240" name="Changes" comment="lagt till chattfunktion + felmeddelande">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

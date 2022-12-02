@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="340.0" styleClass="background-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.ChatController">
     <center>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="16.0" BorderPane.alignment="CENTER">
@@ -13,7 +12,7 @@
                 <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
             </BorderPane.margin>
          <children>
-            <TextArea fx:id="chatField" editable="false" prefHeight="324.0" prefWidth="292.0" style="-fx-border-color: black">
+            <TextArea fx:id="chatField" editable="false" prefHeight="324.0" prefWidth="292.0" style="-fx-border-color: black" wrapText="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
