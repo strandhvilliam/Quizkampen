@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressIndicator?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="620.0" styleClass="background-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.QuestionWindowController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="620.0" styleClass="background-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.QuestionWindowController">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="521.0" prefWidth="540.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -22,6 +15,7 @@
                <children>
                   <ProgressIndicator fx:id="pIndicator" layoutX="206.0" layoutY="11.0" progress="0.85" />
                   <Label fx:id="countDownLabel" layoutX="213.0" layoutY="9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="115.0" prefWidth="115.0" styleClass="countdown-label" text="10" textAlignment="CENTER" />
+                  <Button fx:id="chatButton" mnemonicParsing="false" onAction="#displayChatBox" styleClass="orange-button" text="Chatta" />
                </children>
             </Pane>
             <Label fx:id="categoryLabel" styleClass="medium-gray-label" text="Category">

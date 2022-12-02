@@ -15,7 +15,8 @@ public enum Task {
     GAME_RESULT,
     SET_QUESTIONS,
     SET_COLOR_GREEN,
-    SET_COLOR_RED
+    SET_COLOR_RED,
+    SEND_MESSAGE
 
 }
 

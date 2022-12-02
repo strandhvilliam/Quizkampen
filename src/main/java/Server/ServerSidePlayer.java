@@ -76,7 +76,7 @@ public class ServerSidePlayer extends Thread implements Serializable {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
-            try {
+            /*try {
                 System.out.println("Socket closed " + idInstance);
                 output.close();
                 input.close();
@@ -84,6 +84,8 @@ public class ServerSidePlayer extends Thread implements Serializable {
                 e.printStackTrace();
             }
         }
+        */
+             /*
 
         /* WHILE output inte är tom
          *       OM output är en instans av lista med booleans
@@ -92,6 +94,8 @@ public class ServerSidePlayer extends Thread implements Serializable {
          *           skicka frågor ur rätt kategori till båda klienterna
          *
          */
+
+        }
     }
 
     protected void dataProtocol(Data data) {
@@ -103,7 +107,12 @@ public class ServerSidePlayer extends Thread implements Serializable {
             case ROUND_FINISHED -> setScore(data);
             case GAME_FINISHED -> gameFinished();
             case START_ROUND -> startRound();
+            case SEND_MESSAGE -> sendChatMessage(data);
         }
+    }
+
+    public void sendChatMessage (Data data) {
+        game.sendChatMessage(data.message, idInstance);
     }
 
     protected void setScore(Data data) {

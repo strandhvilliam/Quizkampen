@@ -53,7 +53,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="cat4" graphicTextGap="12.0" layoutX="192.0" layoutY="131.0" mnemonicParsing="false" onAction="#chooseCategoryAction" styleClass="category-button" text="Dator- och TV_spel">
+            <Button fx:id="cat4" graphicTextGap="12.0" layoutX="192.0" layoutY="131.0" mnemonicParsing="false" onAction="#chooseCategoryAction" styleClass="category-button" text="Dator- och TV-spel">
                <VBox.margin>
                   <Insets top="6.0" />
                </VBox.margin>
